@@ -11,4 +11,5 @@
 /.env.dev
 /docker-compose.yml
 /phpdocker/
+/migrations/
 ###< symfony/framework-bundle ###
