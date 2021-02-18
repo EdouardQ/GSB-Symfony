@@ -7,7 +7,7 @@ use DateTime;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 
-class User extends Fixture
+class UserFixtures extends Fixture
 {
     private array $list = [
         [

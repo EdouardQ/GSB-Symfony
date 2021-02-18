@@ -19,7 +19,7 @@ class User implements UserInterface
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=180, unique=true)
+     * @ORM\Column(type="string", length=180)
      */
     private $email;
 
@@ -65,7 +65,7 @@ class User implements UserInterface
     private $dateEmbauche;
 
     /**
-     * @ORM\Column(type="string", length=40)
+     * @ORM\Column(type="string", length=40, unique=true)
      */
     private $login;
 
@@ -93,7 +93,7 @@ class User implements UserInterface
      */
     public function getUsername(): string
     {
-        return (string) $this->email;
+        return (string) $this->login;
     }
 
     /**
