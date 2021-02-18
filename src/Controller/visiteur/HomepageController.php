@@ -16,9 +16,9 @@ class HomepageController extends AbstractController
         $this->UserRepository = $UserRepository;
     }
     
-    /**
-     * @Route("/visiteur/", name="visiteur.homepage.index")
-    */
+    #[Route('/visiteur/', name: 'visiteur.homepage.index')]
+
+    
     public function index():Response
     {
         $user = $this->getUser();
