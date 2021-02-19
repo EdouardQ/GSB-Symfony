@@ -18,15 +18,10 @@ class LigneFraisHorsForfait
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity=User::class)
+     * @ORM\ManyToOne(targetEntity=FicheFrais::class)
      * @ORM\JoinColumn(nullable=false)
      */
-    private $idVisiteur;
-
-    /**
-     * @ORM\Column(type="string", length=6)
-     */
-    private $mois;
+    private $idFicheFrais;
 
     /**
      * @ORM\Column(type="string", length=100, nullable=true)
@@ -48,26 +43,14 @@ class LigneFraisHorsForfait
         return $this->id;
     }
 
-    public function getIdVisiteur(): ?User
+    public function getIdFicheFrais(): ?FicheFrais
     {
-        return $this->idVisiteur;
+        return $this->idFicheFrais;
     }
 
-    public function setIdVisiteur(?User $idVisiteur): self
+    public function setIdFicheFrais(?FicheFrais $idFicheFrais): self
     {
-        $this->idVisiteur = $idVisiteur;
-
-        return $this;
-    }
-
-    public function getMois(): ?string
-    {
-        return $this->mois;
-    }
-
-    public function setMois(string $mois): self
-    {
-        $this->mois = $mois;
+        $this->idFicheFrais = $idFicheFrais;
 
         return $this;
     }

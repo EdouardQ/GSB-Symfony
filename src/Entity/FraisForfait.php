@@ -12,7 +12,8 @@ class FraisForfait
 {
     /**
      * @ORM\Id
-     * @ORM\Column(type="string", length=3)
+     * @ORM\GeneratedValue
+     * @ORM\Column(type="integer")
      */
     private $id;
 
@@ -26,16 +27,9 @@ class FraisForfait
      */
     private $montant;
 
-    public function getId(): ?string
+    public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function setId(?string $id): self
-    {
-        $this->id = $id;
-
-        return $this;
     }
 
     public function getLibelle(): ?string

@@ -12,37 +12,41 @@ class LigneFraisForfait
 {
     /**
      * @ORM\Id
-     * @ORM\ManyToOne(targetEntity=User::class)
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\GeneratedValue
+     * @ORM\Column(type="integer")
      */
-    private $idVisiteur;
+    private $id;
 
     /**
-     * @ORM\Id
+     * @ORM\ManyToOne(targetEntity=FicheFrais::class)
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $idFicheFrais;
+
+    /**
      * @ORM\ManyToOne(targetEntity=FraisForfait::class)
      * @ORM\JoinColumn(nullable=false)
      */
     private $idFraisForfait;
 
     /**
-     * @ORM\Id
-     * @ORM\Column(type="string", length=6)
-     */
-    private $mois;
-
-    /**
      * @ORM\Column(type="integer", nullable=true)
      */
     private $quantite;
 
-    public function getIdVisiteur(): ?User
+    public function getId(): ?int
     {
-        return $this->idVisiteur;
+        return $this->id;
     }
 
-    public function setIdVisiteur(?User $idVisiteur): self
+    public function getIdFicheFrais(): ?FicheFrais
     {
-        $this->idVisiteur = $idVisiteur;
+        return $this->idFicheFrais;
+    }
+
+    public function setIdFicheFrais(?FicheFrais $idFicheFrais): self
+    {
+        $this->idFicheFrais = $idFicheFrais;
 
         return $this;
     }
@@ -55,18 +59,6 @@ class LigneFraisForfait
     public function setIdFraisForfait(?FraisForfait $idFraisForfait): self
     {
         $this->idFraisForfait = $idFraisForfait;
-
-        return $this;
-    }
-
-    public function getMois(): ?string
-    {
-        return $this->mois;
-    }
-
-    public function setMois(string $mois): self
-    {
-        $this->mois = $mois;
 
         return $this;
     }

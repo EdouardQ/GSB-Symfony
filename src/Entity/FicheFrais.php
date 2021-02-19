@@ -12,16 +12,21 @@ class FicheFrais
 {
     /**
      * @ORM\Id
-     * @ORM\ManyToOne(targetEntity=User::class)
+     * @ORM\GeneratedValue
+     * @ORM\Column(type="integer")
+     */
+    private $id;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="ficheFrais")
      * @ORM\JoinColumn(nullable=false)
      */
     private $idVisiteur;
 
     /**
-     * @ORM\Id
-     * @ORM\Column(type="string", length=6)
+     * @ORM\Column(type="string", length=5)
      */
-    private $mois;
+    private $date;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
@@ -40,9 +45,13 @@ class FicheFrais
 
     /**
      * @ORM\ManyToOne(targetEntity=Etat::class)
-     * @ORM\JoinColumn(nullable=false)
      */
     private $idEtat;
+
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
 
     public function getIdVisiteur(): ?User
     {
@@ -56,14 +65,14 @@ class FicheFrais
         return $this;
     }
 
-    public function getMois(): ?string
+    public function getDate(): ?string
     {
-        return $this->mois;
+        return $this->date;
     }
 
-    public function setMois(string $mois): self
+    public function setDate(string $date): self
     {
-        $this->mois = $mois;
+        $this->date = $date;
 
         return $this;
     }
