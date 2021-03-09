@@ -46,6 +46,18 @@ class UserFixtures extends Fixture
             'codePostal' => '13012',
             'dateEmbauche' => '1998-10-01',
         ],
+        [
+            'nom' => 'Groetschel',
+            'prenom' => 'Jonas',
+            'login' => 'jogroe',
+            'roles' => ['ROLE_VISITEUR'],
+            'email' => 'jogroe@gsb.fr',
+            'password' => '$argon2i$v=19$m=16,t=2,p=1$c1o0ZWI0ZkczalB5ODRKQg$q+DWOfcstsq5+NV9+apfpw',
+            'adresse' => '40 av Barth',
+            'ville' => 'paris',
+            'codePostal' => '75015',
+            'dateEmbauche' => '2019-09-01',
+        ],
     ];
     public function load(ObjectManager $manager)
     {
