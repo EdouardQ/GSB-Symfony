@@ -79,12 +79,12 @@ class LineExpenseOutBundle
         return $this;
     }
 
-    public function getexpenseForm(): ?ExpenseForm
+    public function getExpenseForm(): ?ExpenseForm
     {
         return $this->expenseForm;
     }
 
-    public function setexpenseForm(?ExpenseForm $expenseForm): self
+    public function setExpenseForm(?ExpenseForm $expenseForm): self
     {
         $this->expenseForm = $expenseForm;
 

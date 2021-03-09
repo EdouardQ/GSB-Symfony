@@ -51,24 +51,24 @@ class LineExpenseBundle
         return $this;
     }
 
-    public function getexpenseForm(): ?ExpenseForm
+    public function getExpenseForm(): ?ExpenseForm
     {
         return $this->expenseForm;
     }
 
-    public function setexpenseForm(?ExpenseForm $expenseForm): self
+    public function setExpenseForm(?ExpenseForm $expenseForm): self
     {
         $this->expenseForm = $expenseForm;
 
         return $this;
     }
 
-    public function getexpenseBundle(): ?ExpenseBundle
+    public function getExpenseBundle(): ?ExpenseBundle
     {
         return $this->expenseBundle;
     }
 
-    public function setexpenseBundle(?ExpenseBundle $expenseBundle): self
+    public function setExpenseBundle(?ExpenseBundle $expenseBundle): self
     {
         $this->expenseBundle = $expenseBundle;
 

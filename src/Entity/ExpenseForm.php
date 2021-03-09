@@ -56,12 +56,12 @@ class ExpenseForm
         return $this->id;
     }   
 
-    public function getuser(): ?User
+    public function getUser(): ?User
     {
         return $this->user;
     }
 
-    public function setuser(?User $user): self
+    public function setUser(?User $user): self
     {
         $this->user = $user;
 
@@ -116,12 +116,12 @@ class ExpenseForm
         return $this;
     }
 
-    public function getstate(): ?State
+    public function getState(): ?State
     {
         return $this->state;
     }
 
-    public function setstate(?State $state): self
+    public function setState(?State $state): self
     {
         $this->state = $state;
 
