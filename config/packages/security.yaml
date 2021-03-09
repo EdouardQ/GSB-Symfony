@@ -22,7 +22,7 @@ security:
                 authenticators:
                     - App\Security\AppAuthenticator
             logout:
-                path: security.logout
+                path: app_logout
                 # where to redirect after logout
                 # target: app_any_route
 
@@ -36,5 +36,5 @@ security:
     # Note: Only the *first* access control that matches will be used
     access_control:
         - { path: ^/visiteur, roles: ROLE_VISITEUR }
-        # - { path: ^/admin, roles: ROLE_ADMIN }
-        # - { path: ^/profile, roles: ROLE_USER }
+        - { path: ^/comptable, roles: ROLE_COMPTABLE }
+        - { path: ^/admin, roles: ROLE_ADMIN }

@@ -9,6 +9,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 class HomepageController extends AbstractController
 {
+    
     private UserRepository $UserRepository;
 
     public function __construct(UserRepository $UserRepository)

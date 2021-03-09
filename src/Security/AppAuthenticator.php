@@ -71,7 +71,7 @@ class AppAuthenticator extends AbstractFormLoginAuthenticator implements Passwor
 
         if (!$user) {
             // fail authentication with a custom error
-            throw new CustomUserMessageAuthenticationException('login could not be found.');
+            throw new CustomUserMessageAuthenticationException('Login could not be found.');
         }
 
         return $user;
@@ -97,14 +97,19 @@ class AppAuthenticator extends AbstractFormLoginAuthenticator implements Passwor
         }
 
         // définir la page d'atterrissage selon le rôle
-        $landingPage = in_array('ROLE_VISITEUR', 
-        $token->getRoleNames()) ? 'visiteur.homepage.index' : //si connecté
-        'security.login'; // sinon
 
-        return new RedirectResponse($this->urlGenerator->generate($landingPage));
+        if (in_array('ROLE_VISITEUR', $token->getRoleNames())) {
+            $landingPage = 'visiteur.homepage.index';
+        }
+        elseif (in_array('ROLE_COMPTABLE', $token->getRoleNames())) {
+            // $landingPage = 'comptable.homepage.index';
+        }
+        else
+        $landingPage = 'homepage.index';
+        
 
         // For example : return new RedirectResponse($this->urlGenerator->generate('some_route'));
-        //throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);
+        // throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);
     }
 
     protected function getLoginUrl()

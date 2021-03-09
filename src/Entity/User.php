@@ -19,9 +19,9 @@ class User implements UserInterface
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=180)
+     * @ORM\Column(type="string", length=180, unique=true)
      */
-    private $email;
+    private $login;
 
     /**
      * @ORM\Column(type="json")
@@ -35,12 +35,12 @@ class User implements UserInterface
     private $password;
 
     /**
-     * @ORM\Column(type="string", length=40)
+     * @ORM\Column(type="string", length=50)
      */
     private $nom;
 
     /**
-     * @ORM\Column(type="string", length=40)
+     * @ORM\Column(type="string", length=50)
      */
     private $prenom;
 
@@ -50,14 +50,9 @@ class User implements UserInterface
     private $adresse;
 
     /**
-     * @ORM\Column(type="string", length=40)
-     */
-    private $ville;
-
-    /**
      * @ORM\Column(type="string", length=5)
      */
-    private $code_postal;
+    private $codePostal;
 
     /**
      * @ORM\Column(type="date")
@@ -65,23 +60,28 @@ class User implements UserInterface
     private $dateEmbauche;
 
     /**
-     * @ORM\Column(type="string", length=40, unique=true)
+     * @ORM\Column(type="string", length=255)
      */
-    private $login;
+    private $email;
+
+    /**
+     * @ORM\Column(type="string", length=50)
+     */
+    private $ville;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getEmail(): ?string
+    public function getLogin(): ?string
     {
-        return $this->email;
+        return $this->login;
     }
 
-    public function setEmail(string $email): self
+    public function setLogin(string $login): self
     {
-        $this->email = $email;
+        $this->login = $login;
 
         return $this;
     }
@@ -186,26 +186,14 @@ class User implements UserInterface
         return $this;
     }
 
-    public function getVille(): ?string
-    {
-        return $this->ville;
-    }
-
-    public function setVille(string $ville): self
-    {
-        $this->ville = $ville;
-
-        return $this;
-    }
-
     public function getCodePostal(): ?string
     {
-        return $this->code_postal;
+        return $this->codePostal;
     }
 
-    public function setCodePostal(string $code_postal): self
+    public function setCodePostal(string $codePostal): self
     {
-        $this->code_postal = $code_postal;
+        $this->codePostal = $codePostal;
 
         return $this;
     }
@@ -222,14 +210,26 @@ class User implements UserInterface
         return $this;
     }
 
-    public function getLogin(): ?string
+    public function getEmail(): ?string
     {
-        return $this->login;
+        return $this->email;
     }
 
-    public function setLogin(string $login): self
+    public function setEmail(string $email): self
     {
-        $this->login = $login;
+        $this->email = $email;
+
+        return $this;
+    }
+
+    public function getVille(): ?string
+    {
+        return $this->ville;
+    }
+
+    public function setVille(string $ville): self
+    {
+        $this->ville = $ville;
 
         return $this;
     }
