@@ -10,8 +10,15 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class ExpenseForm
 {
+
     /**
      * @ORM\Id
+     * @ORM\GeneratedValue
+     * @ORM\Column(type="integer")
+     */
+    private $id;
+
+    /**
      * @ORM\Column(type="integer")
      * @ORM\ManyToOne(targetEntity=User::class)
      * @ORM\JoinColumn(nullable=false)
@@ -19,7 +26,6 @@ class ExpenseForm
     private $idUser;
 
     /**
-     * @ORM\Id
      * @ORM\Column(type="string", length=7)
      */
     private $mois;
@@ -44,6 +50,11 @@ class ExpenseForm
      * @ORM\JoinColumn(nullable=false)
      */
     private $idEtat;
+
+    public function getId(): ?int
+    {
+        return $this->id;
+    }   
 
     public function getIdUser(): ?User
     {
