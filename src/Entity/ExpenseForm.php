@@ -23,7 +23,7 @@ class ExpenseForm
      * @ORM\ManyToOne(targetEntity=User::class)
      * @ORM\JoinColumn(nullable=false)
      */
-    private $idUser;
+    private $user;
 
     /**
      * @ORM\Column(type="string", length=7)
@@ -49,21 +49,21 @@ class ExpenseForm
      * @ORM\ManyToOne(targetEntity=State::class)
      * @ORM\JoinColumn(nullable=false)
      */
-    private $idEtat;
+    private $state;
 
     public function getId(): ?int
     {
         return $this->id;
     }   
 
-    public function getIdUser(): ?User
+    public function getuser(): ?User
     {
-        return $this->idUser;
+        return $this->user;
     }
 
-    public function setIdUser(?User $idUser): self
+    public function setuser(?User $user): self
     {
-        $this->idUser = $idUser;
+        $this->user = $user;
 
         return $this;
     }
@@ -116,14 +116,14 @@ class ExpenseForm
         return $this;
     }
 
-    public function getIdEtat(): ?State
+    public function getstate(): ?State
     {
-        return $this->idEtat;
+        return $this->state;
     }
 
-    public function setIdEtat(?State $idEtat): self
+    public function setstate(?State $state): self
     {
-        $this->idEtat = $idEtat;
+        $this->state = $state;
 
         return $this;
     }
