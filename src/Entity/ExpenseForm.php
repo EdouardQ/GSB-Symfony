@@ -50,6 +50,11 @@ class ExpenseForm
      */
     private $state;
 
+    /**
+     * @ORM\Column(type="string", length=59)
+     */
+    private $token;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -123,6 +128,18 @@ class ExpenseForm
     public function setState(?State $state): self
     {
         $this->state = $state;
+
+        return $this;
+    }
+
+    public function getToken(): ?string
+    {
+        return $this->token;
+    }
+
+    public function setToken(string $token): self
+    {
+        $this->token = $token;
 
         return $this;
     }

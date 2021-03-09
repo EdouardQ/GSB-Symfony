@@ -17,15 +17,17 @@ class ExpenseFormFixtures extends Fixture implements DependentFixtureInterface
             "nbJustificatifs" => 2,
             "montantValide" => 203.00,
             "dateModif" => '12:00:00 2021-02-28',
-            "state" => "Saisie clôturée"
+            "state" => "Saisie clôturée",
+            "token" => "equilliou_02-2021"
         ],
         [
             "user" => "equilliou",
             "mois" => "01-2021",
             "nbJustificatifs" => 2,
-            "montantValide" => 225,
+            "montantValide" => 225.00,
             "dateModif" => '12:30:49 2021-01-27',
-            "state" => "Remboursée"
+            "state" => "Remboursée",
+            "token" => "equilliou_01-2021"
         ],
         [
             "user" => "agest",
@@ -33,7 +35,8 @@ class ExpenseFormFixtures extends Fixture implements DependentFixtureInterface
             "nbJustificatifs" => 2,
             "montantValide" => 118.00,
             "dateModif" => '12:30:49 2021-01-27',
-            "state" => "Remboursée"
+            "state" => "Remboursée",
+            "token" => "agest_01-2021"
         ],
     ];
 
@@ -46,9 +49,12 @@ class ExpenseFormFixtures extends Fixture implements DependentFixtureInterface
             $entity->setNbJustificatifs($expenseForm["nbJustificatifs"]);
             $entity->setMontantValide($expenseForm["montantValide"]);
             $entity->setDateModif(new DateTime( $expenseForm["dateModif"]));
+            $entity->setToken($expenseForm["token"]);
 
             $entity->setUser($this->getReference($expenseForm['user']));
             $entity->setState($this->getReference($expenseForm['state']));
+
+            $this->addReference($expenseForm['token'], $entity);
 
             $manager->persist($entity);
         }
