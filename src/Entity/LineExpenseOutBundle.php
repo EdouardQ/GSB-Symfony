@@ -36,7 +36,7 @@ class LineExpenseOutBundle
      * @ORM\ManyToOne(targetEntity=ExpenseForm::class)
      * @ORM\JoinColumn(nullable=false)
      */
-    private $idExpenseForm;
+    private $expenseForm;
 
     public function getId(): ?int
     {
@@ -79,14 +79,14 @@ class LineExpenseOutBundle
         return $this;
     }
 
-    public function getIdExpenseForm(): ?ExpenseForm
+    public function getexpenseForm(): ?ExpenseForm
     {
-        return $this->idExpenseForm;
+        return $this->expenseForm;
     }
 
-    public function setIdExpenseForm(?ExpenseForm $idExpenseForm): self
+    public function setexpenseForm(?ExpenseForm $expenseForm): self
     {
-        $this->idExpenseForm = $idExpenseForm;
+        $this->expenseForm = $expenseForm;
 
         return $this;
     }
