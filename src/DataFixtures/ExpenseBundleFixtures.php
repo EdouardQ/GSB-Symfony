@@ -31,8 +31,8 @@ class ExpenseBundleFixtures extends Fixture
     {
         foreach ($this->list as $expenseBundle) {
             $entity = new ExpenseBundle;
-            $entity->setLibelle($expenseBundle("libelle"));
-            $entity->setMontant($expenseBundle("montant"));
+            $entity->setLibelle($expenseBundle["libelle"]);
+            $entity->setMontant($expenseBundle["montant"]);
 
             $this->addReference($expenseBundle['libelle'], $entity);
 

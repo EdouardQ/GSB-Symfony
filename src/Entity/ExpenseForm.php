@@ -19,7 +19,6 @@ class ExpenseForm
     private $id;
 
     /**
-     * @ORM\Column(type="integer")
      * @ORM\ManyToOne(targetEntity=User::class)
      * @ORM\JoinColumn(nullable=false)
      */

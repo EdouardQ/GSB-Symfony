@@ -2,7 +2,7 @@
 
 namespace App\DataFixtures;
 
-use App\Entity\User as EntityUser;
+use App\Entity\User;
 use DateTime;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
@@ -61,22 +61,22 @@ class UserFixtures extends Fixture
     ];
     public function load(ObjectManager $manager)
     {
-        foreach ($this->list as $ListUser) {
-            $user = new EntityUser;
-            $user->setNom($ListUser['nom']);
-            $user->setPrenom(($ListUser['prenom']));
-            $user->setLogin($ListUser['login']);
-            $user->setRoles($ListUser['roles']);
-            $user->setEmail($ListUser['email']);
-            $user->setPassword($ListUser['password']);
-            $user->setAdresse($ListUser['adresse']);
-            $user->setVille($ListUser['ville']);
-            $user->setCodePostal($ListUser['codePostal']);
-            $user->setDateEmbauche(new DateTime( $ListUser['dateEmbauche']));
+        foreach ($this->list as $user) {
+            $entity = new User;
+            $entity->setNom($user['nom']);
+            $entity->setPrenom(($user['prenom']));
+            $entity->setLogin($user['login']);
+            $entity->setRoles($user['roles']);
+            $entity->setEmail($user['email']);
+            $entity->setPassword($user['password']);
+            $entity->setAdresse($user['adresse']);
+            $entity->setVille($user['ville']);
+            $entity->setCodePostal($user['codePostal']);
+            $entity->setDateEmbauche(new DateTime( $user['dateEmbauche']));
 
-            $this->addReference($ListUser['login'], $user);
+            $this->addReference($user['login'], $entity);
             
-            $manager->persist($user);
+            $manager->persist($entity);
         }
         $manager->flush();
     }

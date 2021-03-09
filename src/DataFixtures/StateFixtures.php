@@ -27,7 +27,7 @@ class StateFixtures extends Fixture
     {
         foreach ($this->list as $state) {
             $entity = new State;
-            $entity->setLibelle($state("libelle"));
+            $entity->setLibelle($state["libelle"]);
 
             $this->addReference($state['libelle'], $entity);
 
