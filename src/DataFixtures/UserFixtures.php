@@ -61,6 +61,8 @@ class UserFixtures extends Fixture
             $user->setVille($ListUser['ville']);
             $user->setCodePostal($ListUser['codePostal']);
             $user->setDateEmbauche(new DateTime( $ListUser['dateEmbauche']));
+
+            $this->addReference($ListUser['login'], $user);
             
             $manager->persist($user);
         }
