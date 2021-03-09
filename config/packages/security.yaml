@@ -22,7 +22,7 @@ security:
                 authenticators:
                     - App\Security\AppAuthenticator
             logout:
-                path: app_logout
+                path: security.logout
                 # where to redirect after logout
                 # target: app_any_route
 
