@@ -14,15 +14,18 @@
         </div>
     {% endif %}
 
-    <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-    <label for="inputLogin">Login</label>
-    <input type="text" value="{{ last_username }}" name="login" id="inputLogin" class="form-control" required autofocus>
-    <label for="inputPassword">Password</label>
-    <input type="password" name="password" id="inputPassword" class="form-control" required>
+    <div class="login">
+        <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+        <label for="inputLogin">Login</label>
+        <input type="text" value="{{ last_username }}" name="login" id="inputLogin" class="form-control" required autofocus>
+        <label for="inputPassword">Password</label>
+        <input type="password" name="password" id="inputPassword" class="form-control" required>
 
-    <input type="hidden" name="_csrf_token"
-           value="{{ csrf_token('authenticate') }}"
-    >
+        <input type="hidden" name="_csrf_token"
+            value="{{ csrf_token('authenticate') }}"
+        >
+        <button class="btn_log btn btn-lg btn-danger" type="submit">Sign in</button>
+    </div>
 
     {#
         Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
@@ -35,8 +38,6 @@
         </div>
     #}
 
-    <button class="btn btn-lg btn-primary" type="submit">
-        Sign in
-    </button>
+    
 </form>
 {% endblock %}
