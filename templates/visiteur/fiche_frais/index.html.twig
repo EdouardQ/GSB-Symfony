@@ -1,0 +1,35 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+    
+<div class="row">
+    <div class="col">
+        <h1>Liste des fiches de frais</h1>
+        
+        <p class="d-flex justify-content-end">
+            <a href="#" class="btn btn-primary">Ajouter fiche de frais</a>
+        </p>
+        <table class="table table-striped">
+            <tr>
+                <th>Mois</th>
+                <th>Nb Justificatifs</th>
+                <th>Montant valide</th>
+                <th>Date modification</th>
+            </tr>
+            {% for expense_form in expenseform %}
+                <tr>
+                    <td>{{ expense_form.mois }}</td>
+                    <td>{{ expense_form.nbjustificatifs }}</td>
+                    <td>{{ expense_form.montantValide }}€</td>
+                    <td>{{ expense_form.dateModif|date("m/d/Y") }}</td>
+                    <td>
+                        <a href="#" class="btn btn-warning">Modifier</a>
+                        <a href="#" class="btn btn-danger">Supprimer</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+
+{% endblock %}

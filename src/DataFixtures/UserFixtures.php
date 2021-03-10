@@ -58,6 +58,18 @@ class UserFixtures extends Fixture
             'codePostal' => '75015',
             'dateEmbauche' => '2019-09-01',
         ],
+        [
+            'nom' => 'Baribaud ',
+            'prenom' => 'Marc',
+            'login' => 'devtest',
+            'roles' => ['ROLE_VISITEUR'],
+            'email' => 'm.baribaud@gsb.fr',
+            'password' => '$argon2i$v=19$m=16,t=2,p=1$azNCaWZXT2hNWHhOZzlmNQ$zo2D3acSe7DXyNxXrvWRhQ',
+            'adresse' => '6, Rue du Docteur Lombard',
+            'ville' => 'Issy-les-Moulineaux',
+            'codePostal' => '92130',
+            'dateEmbauche' => '2019-09-01',
+        ]
     ];
     public function load(ObjectManager $manager)
     {
