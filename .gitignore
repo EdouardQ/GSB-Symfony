@@ -4,10 +4,12 @@
 /.env.local.php
 /.env.*.local
 /config/secrets/prod/prod.decrypt.private.php
+/composer.lock
 /public/bundles/
 /var/
 /vendor/
 /.env.dev
 /docker-compose.yml
 /phpdocker/
+/migrations/
 ###< symfony/framework-bundle ###

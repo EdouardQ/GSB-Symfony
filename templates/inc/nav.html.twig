@@ -3,18 +3,30 @@
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+    
+    {#
     <a class="navbar-brand" href="{{ url('homepage.index') }}">Homepage</a>
+    #}
     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+    {#
       <li class="nav-item active">
         <a class="nav-link" href="{{ url('homepage.index') }}">Accueil</a>
       </li>
-      {# 
+       
       <li class="nav-item">
         <a class="nav-link" href="{{ url('game.index') }}">Liste</a>
       </li>
       #}
 
-      {#
+      {% if is_granted('ROLE_VISITEUR') %}
+      <li class="nav-item">
+        <a href="{{ url('visiteur.homepage.index') }}" class="nav-link">Accueil</a>
+      </li>
+      <li class="nav-item">
+        <a href="#" class="nav-link">Voir mes fiches de frais</a>
+      </li>
+      {% endif %}
+
       <li class="nav-item">
         {% if is_granted('IS_AUTHENTICATED_FULLY') %}
           <a href="{{ url('security.logout') }}" class="nav-link">Déconnexion</a>
@@ -22,12 +34,7 @@
           <a href="{{ url('security.login') }}" class="nav-link">Connexion</a>    
         {% endif %}
       </li>
-      {% if is_granted('ROLE_ADMIN') %}
-      <li class="nav-item">
-        <a href="{{ url('admin.homepage.index') }}" class="nav-link">Administration</a>
-      </li>
-      {% endif %}
-#}
+
     </ul>
   </div>
 </nav>
