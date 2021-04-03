@@ -17,7 +17,7 @@
   {% if is_granted('ROLE_COMPTABLE')%}
   <div class="container_role">
     <a href="{{ url('comptable.homepage.index') }}" class=" my-3">Accueil</a>
-    <a href="{{ url('comptable.fiche_frais.liste_fiche_frais_restant') }}" class=" my-3">Consultation fiche à traiter</a>
+    <a href="{{ url('comptable.ficheFrais.listeFicheFraisRestant') }}" class=" my-3">Consultation fiche à traiter</a>
   </div>
   {% endif %}
 

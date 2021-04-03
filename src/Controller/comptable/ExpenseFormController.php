@@ -16,7 +16,8 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Security;
 
 #[Route('/comptable')]
-class ExpenseFormController extends AbstractController{
+class ExpenseFormController extends AbstractController
+{
     private ExpenseFormRepository $expenseFormRepository;
     private RequestStack $requeststack;
     private Request $request;
@@ -41,15 +42,16 @@ class ExpenseFormController extends AbstractController{
         $this->stateRepository = $stateRepository;
     }
 
-    #[Route('/fiche_frais/liste_fiche_frais_restant', name: 'comptable.fiche_frais.liste_fiche_frais_restant')]
-    public function liste_fiche_frais_restant():Response{
+    #[Route('/ficheFrais/listeFicheFraisRestant', name: 'comptable.ficheFrais.listeFicheFraisRestant')]
+    public function listeFicheFraisRestant(): Response
+    {
         $state_cloture = $this->stateRepository->findBy(['libelle' => 'Saisie clôturée']);
 
         // Sélection de tous les fiches frais restant à valider ou refusé
         $expenseformrepository = $this->expenseFormRepository->findBy(['state' => $state_cloture]);
 
         // affichage de la vue
-        return $this->render('comptable/fiche_frais/liste_fiche_frais_restant.html.twig', [
+        return $this->render('comptable/ficheFrais/listeFicheFraisRestant.html.twig', [
             'expenseform' => $expenseformrepository
         ]);
     }
