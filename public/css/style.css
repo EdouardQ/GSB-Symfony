@@ -27,15 +27,34 @@ form .login input{
 
 /******* Partie inc/nav.html.twig ***************/
 
-nav a.logo{
-    margin-right: -15%;
+ul.nav {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: rgb(103, 87, 165);
+  }
+
+li{
+  float: left;
 }
 
-nav a img.logo-nav{
-    width: 25%;
+ul.nav li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
 }
 
-div.vl {
-    border-left: 1px solid rgb(61, 57, 116);
-    height: 40px;
+ul.nav li a.select:hover {
+    background-color: rgb(86, 73, 138);
+}
+
+.nav .logout {
+    float: right;
+}
+
+ul.nav li a img.logo-nav{
+    width: 80px;
 }
