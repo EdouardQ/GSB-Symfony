@@ -8,8 +8,8 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 #[Route('/comptable')]
-class HomepageController extends AbstractController{
-
+class HomepageController extends AbstractController
+{
     private UserRepository $UserRepository;
 
     public function __construct(UserRepository $UserRepository){
@@ -17,7 +17,8 @@ class HomepageController extends AbstractController{
     }
 
     #[Route('/', name: 'comptable.homepage.index')]
-    public function index() :Response{
+    public function index(): Response
+    {
         $user = $this->getUser();
 
         return $this->render("comptable/homepage/index.html.twig", [
