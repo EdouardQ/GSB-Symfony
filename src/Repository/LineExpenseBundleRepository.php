@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use App\Entity\ExpenseForm;
 use App\Entity\LineExpenseBundle;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -17,6 +18,16 @@ class LineExpenseBundleRepository extends ServiceEntityRepository
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, LineExpenseBundle::class);
+    }
+
+    public function findLineExpenseBundleByExpenseForm(ExpenseForm $expenseForm) 
+    {
+        return $this->createQueryBuilder('LineExpenseBundle')
+            ->join('LineExpenseBundle.expenseForm', 'ExpenseForm')
+            ->where("LineExpenseBundle.expenseForm = ".$expenseForm->getId())
+            ->getQuery()
+            ->getResult()
+        ;
     }
 
     // /**
