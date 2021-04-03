@@ -55,18 +55,19 @@ class ExpenseFormController extends AbstractController{
         $user = $this->security->getUser(); // Récupére l'utilisateur actuel
         $month = date("m-Y"); // Récupére la date sous la forme "01-2021"
 
-        $result = $this->expenseFormRepository->findExpenseFormByUserAndMonth($month, $user); // Récupére la derrnière fiche frais du visiteur ou renvoie null
+        $entity = $this->expenseFormRepository->findExpenseFormByUserAndMonth($month, $user); // Récupére la derrnière fiche frais du visiteur ou renvoie null
 
-        if ($result == null) // S'il n'existe pas de fiche frais pour ce mois pour ce visiteur, on en crée un automatiquement
+        if ($entity == null) // S'il n'existe pas de fiche frais pour ce mois pour ce visiteur, on en crée un automatiquement
         {
             $entity = $this->expenseFormCreation->creation($user, $month);
 
             $this->entityManager->persist($entity);
             $this->entityManager->flush();
         }
-        
 
-        return $this->render('visiteur/fiche_frais/fiche_actuelle.html.twig');
+        return $this->render('visiteur/fiche_frais/fiche_actuelle.html.twig', [
+            'fiche_frais' => $entity,
+        ]);
     }
 
 }
