@@ -4,27 +4,27 @@
 
 {% block body %}
 <form method="post">
-    {% if error %}
-        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-    {% endif %}
+    
 
     {% if app.user %}
         <div class="mb-3">
             Vous êtes connecté en tant que{{ app.user.username }}, <a href="{{ path('security.logout') }}">Déconnexion</a>
         </div>
     {% endif %}
-
     <div class="login">
-        <h1 class="h3 mb-3 font-weight-normal">Connectez vous !</h1>
+        <img class="mb-4 mx-auto d-block" src="{{ asset('img/gsb.png') }}" alt="Gsb_logo">
+        {% if error %}
+            <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+        {% endif %}
         <label for="inputLogin">Identifiant</label>
-        <input type="text" value="{{ last_username }}" name="login" id="inputLogin" class="form-control" required autofocus>
+        <input type="text" value="{{ last_username }}" name="login" id="inputLogin" class="form-control text-center" required autofocus>
         <label for="inputPassword">Mot de passe</label>
-        <input type="password" name="password" id="inputPassword" class="form-control" required>
+        <input type="password" name="password" id="inputPassword" class="form-control text-center" required>
 
         <input type="hidden" name="_csrf_token"
             value="{{ csrf_token('authenticate') }}"
         >
-        <button class="btn_log btn btn-lg btn-danger" type="submit">Connexion</button>
+        <button class="btn_log btn btn-lg btn-primary" type="submit">Connexion</button>
     </div>
 
     {#

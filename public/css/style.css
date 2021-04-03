@@ -9,7 +9,7 @@ form .login{
     align-items: center;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 10%;
+    margin-top: 3%;
 }
 
 form .login label{
@@ -19,4 +19,8 @@ form .login label{
 
 form .login .btn_log{
     margin-top: 5%;
+}
+
+form .login input{
+    width: 30%;
 }
