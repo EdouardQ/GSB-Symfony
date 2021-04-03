@@ -1,23 +1,20 @@
-<ul class="nav">
-  <li>
+
+<nav class="navigation">
+  <div class="container_logo">
     <a href="{{ url('visiteur.homepage.index') }}">
-      <img src="{{ asset('img/gsb.png') }}" alt="GSB_logo" class="logo-nav ml-3 my-1">
+        <img src="{{ asset('img/gsb.png') }}" alt="GSB_logo" class="logo-nav ml-3 my-1">
     </a>
-  </li>
-  {% if is_granted('ROLE_VISITEUR') %}
-  <li>
-    <a href="{{ url('visiteur.homepage.index') }}" class="select my-3">Accueil</a>
-  </li>
-  <li>
-    <a href="{{ url('visiteur.fiche_frais.fiche_actuelle') }}" class="select my-3">Création de la fiche frais</a>
-  </li>
-  <li>
-    <a href="{{ url('visiteur.fiche_frais.index') }}" class="select my-3">Voir mes fiches de frais</a>
-  </li>
-  {% endif %}
-  <li class="logout">
+  </div>
+
+  <div class="container_role">
+    <a href="{{ url('visiteur.homepage.index') }}" class=" my-3">Accueil</a>
+    <a href="{{ url('visiteur.fiche_frais.fiche_actuelle') }}" class=" my-3">Création de la fiche frais</a>
+    <a href="{{ url('visiteur.fiche_frais.index') }}" class=" my-3">Voir mes fiches de frais</a>
+  </div>
+
+  <div class="container_logout">
     {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-      <a href="{{ url('security.logout') }}" class="select my-3">Déconnexion</a>
+      <a href="{{ url('security.logout') }}" class=" my-3">Déconnexion</a>
     {% endif %}
-  </li>
-</ul>
+  </div>
+</nav>

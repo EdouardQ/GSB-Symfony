@@ -15,8 +15,9 @@
         {% if is_granted('IS_AUTHENTICATED_FULLY') %}
             {% include "inc/nav.html.twig" %}
         {% endif %}
+        <div class="container">
         {% block body %}{% endblock %}
-
+        </div>
 
         <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
         {% block javascripts %}{% endblock %}
