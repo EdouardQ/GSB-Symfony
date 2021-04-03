@@ -30,3 +30,8 @@ form .login input{
 nav a img.logo-nav{
     width: 100px;
 }
+
+nav .container-nav-item{
+    margin-left: auto;
+    margin-right: auto;
+}
