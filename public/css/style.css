@@ -50,5 +50,10 @@ form .login input{
 
 .navigation .container_logo img.logo-nav{
     width: 80px;
+    margin-left: 5px;
+}
+
+.navigation .container_logout{
+    margin-right: 5px;
 }
 
