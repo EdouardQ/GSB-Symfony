@@ -31,6 +31,19 @@ class ExpenseFormRepository extends ServiceEntityRepository
         ;
     }
 
+    public function findTheLastExpenseFormByUser(User $user)
+    {
+        $month = date("m-Y"); // Récupère la date sous la forme "01-2021"
+
+        return $this->createQueryBuilder('expense_form')
+            ->join('expense_form.user', 'user')
+            ->where("user = ".$user->getId())
+            ->andWhere("expense_form.mois = '$month'")
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
     // /**
     //  * @return ExpenseForm[] Returns an array of ExpenseForm objects
     //  */
