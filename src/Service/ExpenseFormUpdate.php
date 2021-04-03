@@ -27,7 +27,7 @@ class ExpenseFormUpdate
         $this->entityManager = $entityManager;
     }
 
-    public function updateExpenseForm(User $user):void
+    public function updateExpenseForm(User $user): void
     {
         $expenseForm = $this->expenseFormRepository->findTheLastExpenseFormByUser($user)[0]; // [0] car l'objet est dans un tableau
 
@@ -51,7 +51,6 @@ class ExpenseFormUpdate
         $expenseForm->setMontantValide($montantValide);
         $expenseForm->setDateModif(new DateTime(date("H:i:s d-m-Y")));
 
-        $this->entityManager->persist($expenseForm);
         $this->entityManager->flush();
     }
 }

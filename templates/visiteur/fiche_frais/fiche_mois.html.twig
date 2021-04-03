@@ -111,8 +111,8 @@
                                 <td>{{ line.date | date('d-m-Y') }}</td>
                                 <td>{{ line.montant }}</td>
                                 <td>  
-                                    <a href="#" class="btn btn-warning">Modifier</a>
-                                    <a href="#" class="btn btn-danger" onclick="return confirm('Êtes-vous sûr de supprimer : {{ line.libelle }}')">Supprimer</a>                        
+                                    <a href="{{ url('visiteur.ligne_frais.form_hors_forfait', {id:line.id})}}" class="btn btn-warning">Modifier</a>
+                                    <a href="{{ url('visiteur.ligne_frais.delete_hors_forfait', {id:line.id}) }}" class="btn btn-danger" onclick="return confirm('Êtes-vous sûr de supprimer : {{ line.libelle }}')">Supprimer</a>                        
                                 </td>
                             </tr>
                         {% endfor %}

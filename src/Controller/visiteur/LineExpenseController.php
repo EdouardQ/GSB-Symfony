@@ -4,10 +4,12 @@ namespace App\Controller\visiteur;
 
 use DateTime;
 use App\Entity\User;
+use App\Service\ValidationDate;
 use App\Entity\LineExpenseBundle;
 use App\Service\ExpenseFormUpdate;
 use App\Form\LineExpenseBundleType;
 use App\Entity\LineExpenseOutBundle;
+use App\Form\LineExpenseOutBundleType;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Repository\ExpenseFormRepository;
 use Symfony\Component\HttpFoundation\Request;
@@ -32,10 +34,11 @@ class LineExpenseController extends AbstractController
     private Security $security;
     private ExpenseFormRepository $expenseFormRepository; // requêtes de sélection de ExpenseForm
     private ExpenseFormUpdate $expenseFormUpdate;
+    private ValidationDate $validationDate;
 
     public function __construct(LineExpenseBundleRepository $lineExpenseBundleRepository,LineExpenseOutBundleRepository $lineExpenseOutBundleRepository,
         RequestStack $requeststack, EntityManagerInterface $entityManager, Security $security, ExpenseFormRepository $expenseFormRepository,
-        ExpenseFormUpdate $expenseFormUpdate)
+        ExpenseFormUpdate $expenseFormUpdate, ValidationDate $validationDate)
     {
         $this->lineExpenseBundleRepository = $lineExpenseBundleRepository;
         $this->lineExpenseOutBundleRepository = $lineExpenseOutBundleRepository;
@@ -45,13 +48,14 @@ class LineExpenseController extends AbstractController
         $this->security = $security;
         $this->expenseFormRepository = $expenseFormRepository;
         $this->expenseFormUpdate = $expenseFormUpdate;
+        $this->validationDate = $validationDate;    
 
         $this->user = $this->security->getUser(); // Récupère l'utilisateur actuel
     }
 
     #[Route('/ligne_frais/form_forfait/{id}', name: 'visiteur.ligne_frais.form_forfait')]
 
-    public function form_forfait(int $id = null):Response
+    public function form_Forfait(int $id = null): Response
     {   
         $entity = $id ? $this->lineExpenseBundleRepository->find($id) : new LineExpenseBundle;
         // Si la méthode récupère un id, elle charge l'entité reliée à l'id, sinon elle instancie une nouvelle entité
@@ -64,10 +68,8 @@ class LineExpenseController extends AbstractController
         // handleRequest : récupérer la saisie dans la requête HTTP, utilisation du $_POST
         $form->handleRequest($this->request);
 
-        if ($form->isSubmitted() && $form->isValid()) 
-        {
-            if (!isset($id))
-            {
+        if ($form->isSubmitted() && $form->isValid()) {
+            if (!isset($id)) {
                 $currentExpenseForm = $this->expenseFormRepository->findTheLastExpenseFormByUser($this->user); // Récupère la derrnière fiche frais du visiteur
                 $entity->setExpenseForm($currentExpenseForm[0]); // [0] car l'objet est dans un tableau
             }
@@ -108,7 +110,7 @@ class LineExpenseController extends AbstractController
 
     #[Route('/ligne_frais/form_hors_forfait/{id}', name: 'visiteur.ligne_frais.form_hors_forfait')]
 
-    public function form_hors_forfait(int $id = null):Response
+    public function form_hors_forfait(int $id = null): Response
     {
         $entity = $id ? $this->lineExpenseOutBundleRepository->find($id) : new LineExpenseOutBundle;
         // Si la méthode récupère un id, elle charge l'entité reliée à l'id, sinon elle instancie une nouvelle entité
@@ -121,8 +123,21 @@ class LineExpenseController extends AbstractController
         // handleRequest : récupérer la saisie dans la requête HTTP, utilisation du $_POST
         $form->handleRequest($this->request);
 
-        if ($form->isSubmitted() && $form->isValid()) 
-        {
+        $dayMax = cal_days_in_month(CAL_GREGORIAN, date("m", strtotime("now")), date("Y", strtotime("now"))); // jour maximum du mois en cours (int)
+
+        if ($form->isSubmitted() && $form->isValid()) {   
+            $verifInputDate = $this->validationDate->validationDatelineExpenseOutBundleForm($entity); // vérifie si la date entrée dans le formulaire est valide et renvoie un bool
+
+            if (!$verifInputDate) // condition pour la redirection en cas d'erreur dans la date
+            {
+                $this->addFlash('notice',  "La date n'est pas valide"); // envoie le message qui servira de message d'erreur
+                if (isset($id))
+                {
+                    return $this->redirectToRoute('visiteur.ligne_frais.form_hors_forfait', ["id" => $id]); // avec le paramètre id
+                }
+                return $this->redirectToRoute('visiteur.ligne_frais.form_hors_forfait'); // sans le paramètre id
+            }
+
             if (!isset($id))
             {
                 $currentExpenseForm = $this->expenseFormRepository->findTheLastExpenseFormByUser($this->user); // Récupère la derrnière fiche frais du visiteur
@@ -139,8 +154,25 @@ class LineExpenseController extends AbstractController
             return $this->redirectToRoute('visiteur.fiche_frais.fiche_mois');
         }
 
-        return $this->render('visiteur/ligne_frais/form_forfait.html.twig', [
+        return $this->render('visiteur/ligne_frais/form_hors_forfait.html.twig', [
             'form' => $form->createView(),
+            'dayMax' => $dayMax,
         ]);
     }
+
+    #[Route('/ligne_frais/delete_hors_forfait/{id}', name: 'visiteur.ligne_frais.delete_hors_forfait')]
+
+    public function delete_hors_forfait(LineExpenseOutBundle $entity):Response
+    {
+        $this->entityManager->remove($entity);
+        $this->entityManager->flush();
+
+        $this->addFlash('notice', "Le Frais a bien été supprimé");
+
+        $this->expenseFormUpdate->updateExpenseForm($this->user);
+        
+        return $this->redirectToRoute('visiteur.fiche_frais.fiche_mois');
+    }
+
+
 }
