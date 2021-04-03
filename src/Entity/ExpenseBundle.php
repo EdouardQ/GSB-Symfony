@@ -34,12 +34,12 @@ class ExpenseBundle
 
     public function getWording(): ?string
     {
-        return $this->libelle;
+        return $this->wording;
     }
 
-    public function setWording(string $libelle): self
+    public function setWording(string $wording): self
     {
-        $this->libelle = $libelle;
+        $this->wording = $wording;
 
         return $this;
     }
