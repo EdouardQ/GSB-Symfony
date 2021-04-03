@@ -1,39 +1,30 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  {% if is_granted('ROLE_VISITEUR') %}
-    <a href="{{ url('visiteur.homepage.index') }}" class="logo">
-      <img src="{{ asset('img/gsb.png') }}" alt="GSB_logo" class="logo-nav ml-3 my-2">
-    </a>
-  {% endif %}
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarTogglerDemo01">    
-    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-      {% if is_granted('ROLE_VISITEUR') %}
-      <li class="nav-item">
-        <a href="{{ url('visiteur.homepage.index') }}" class="nav-link">Accueil</a>
-      </li>
-      <li class="nav-item">
-        <div class="vl"></div>
-      </li>
-      <li class="nav-item">
-        <a href="{{ url('visiteur.fiche_frais.fiche_actuelle') }}" class="nav-link">Création de la fiche frais</a>
-      </li>
-      <li class="nav-item">
-        <div class="vl"></div>
-      </li>
-      <li class="nav-item">
-        <a href="{{ url('visiteur.fiche_frais.index') }}" class="nav-link">Voir mes fiches de frais</a>
-      </li>
-      {% endif %}
-      <li class="nav-item">
-        <div class="vl"></div>
-      </li>
-      <li class="nav-item">
-        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-          <a href="{{ url('security.logout') }}" class="nav-link">Déconnexion</a>
+    {% if is_granted('ROLE_VISITEUR') %}
+      <a href="{{ url('visiteur.homepage.index') }}" class="">
+        <img src="{{ asset('img/gsb.png') }}" alt="GSB_logo" class="logo-nav ml-3 my-2">
+      </a>
+    {% endif %}
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="  " id="navbarTogglerDemo01">    
+      <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+        {% if is_granted('ROLE_VISITEUR') %}
+        <li class="nav-item">
+          <a href="{{ url('visiteur.homepage.index') }}" class="nav-link">Accueil</a>
+        </li>
+        <li class="nav-item">
+          <a href="{{ url('visiteur.fiche_frais.fiche_actuelle') }}" class="nav-link">Création de la fiche frais</a>
+        </li>
+        <li class="nav-item">
+          <a href="{{ url('visiteur.fiche_frais.index') }}" class="nav-link">Voir mes fiches de frais</a>
+        </li>
         {% endif %}
-      </li>
-    </ul>
-  </div>
+        <li class="nav-item">
+          {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+            <a href="{{ url('security.logout') }}" class="nav-link">Déconnexion</a>
+          {% endif %}
+        </li>
+      </ul>
+    </div>
 </nav>

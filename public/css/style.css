@@ -27,15 +27,6 @@ form .login input{
 
 /******* Partie inc/nav.html.twig ***************/
 
-nav a.logo{
-    margin-right: -15%;
-}
-
 nav a img.logo-nav{
-    width: 25%;
-}
-
-div.vl {
-    border-left: 1px solid rgb(61, 57, 116);
-    height: 40px;
+    width: 100px;
 }

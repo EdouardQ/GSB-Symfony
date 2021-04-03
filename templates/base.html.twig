@@ -12,7 +12,9 @@
         {% block stylesheets %}{% endblock %}
     </head>
     <body>
-        {% include "inc/nav.html.twig" %}
+        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+            {% include "inc/nav.html.twig" %}
+        {% endif %}
         {% block body %}{% endblock %}
 
 
