@@ -91,7 +91,7 @@ class ExpenseForm
 
     public function setNbSupportingDocuments(int $nbSupportingDocuments): self
     {
-        $this->nbJustifnbSupportingDocumentsicatifs = $nbSupportingDocuments;
+        $this->nbSupportingDocuments = $nbSupportingDocuments;
 
         return $this;
     }

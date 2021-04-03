@@ -45,7 +45,7 @@ class ExpenseFormFixtures extends Fixture implements DependentFixtureInterface
             "validAmount" => 118.00,
             "dateUpdate" => '12:30:49 2021-02-27',
             "state" => "Saisie clôturée",
-            "token" => "agest_01-2021"
+            "token" => "agest_02-2021"
         ],
         [
             "user" => "devtest",
@@ -54,7 +54,7 @@ class ExpenseFormFixtures extends Fixture implements DependentFixtureInterface
             "validAmount" => 118.00,
             "dateUpdate" => '12:30:49 2021-03-27',
             "state" => "Saisie clôturée",
-            "token" => "agest_01-2021"
+            "token" => "agest_03-2021"
         ],
     ];
 
