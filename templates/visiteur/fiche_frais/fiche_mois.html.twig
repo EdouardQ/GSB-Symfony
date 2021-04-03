@@ -23,6 +23,12 @@
             <div class="col-md-9 ftco-animate text-center">
                 <h1 class="mb-2 bread">Fiche frais {{ trans_month_hash["now"|date("F")] ~ ' ' ~ "now"|date("Y")}}</h1>
                 <br>
+
+                {# affichage des messages flash: #}
+                {% for message in app.flashes('notice') %}
+                <p class="alert alert-success">{{ message }}</p>
+                {% endfor %}
+                
                 <table class='table table-striped table-bordered' style='width:100%; color: black;' >
                     <thead>
                         <tr>
@@ -72,8 +78,8 @@
                                 <td>{{ line.expenseBundle.montant }}</td>
                                 <td>{{ (line.expenseBundle.montant|number_format(2,'.',',') * line.quantite|number_format(2,'.',','))|number_format(2,'.',',') }}</td>
                                 <td>  
-                                    <a href="#" class="btn btn-warning">Modifier</a>
-                                    <a href="#" class="btn btn-danger" onclick="return confirm('Êtes-vous sûr de supprimer : {{ line.expenseBundle.libelle }}')">Supprimer</a>                        
+                                    <a href="{{ url('visiteur.ligne_frais.form_forfait', {id:line.id})}}" class="btn btn-warning">Modifier</a>
+                                    <a href="{{ url('visiteur.ligne_frais.delete_forfait', {id:line.id}) }}" class="btn btn-danger" onclick="return confirm('Êtes-vous sûr de supprimer : {{ line.expenseBundle.libelle }}')">Supprimer</a>                        
                                 </td>
                             </tr>
                         {% endfor %}
