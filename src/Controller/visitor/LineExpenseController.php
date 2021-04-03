@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller\visiteur;
+namespace App\Controller\visitor;
 
 use DateTime;
 use App\Entity\User;
@@ -21,7 +21,7 @@ use App\Repository\LineExpenseOutBundleRepository;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-#[Route('/visiteur')]
+#[Route('/visitor')]
 
 class LineExpenseController extends AbstractController
 {
@@ -53,7 +53,7 @@ class LineExpenseController extends AbstractController
         $this->user = $this->security->getUser(); // Récupère l'utilisateur actuel
     }
 
-    #[Route('/ligne_frais/form_forfait/{id}', name: 'visiteur.ligne_frais.form_forfait')]
+    #[Route('/lineExpense/form_forfait/{id}', name: 'visitor.lineExpense.form_forfait')]
 
     public function form_Forfait(int $id = null): Response
     {   
@@ -83,17 +83,17 @@ class LineExpenseController extends AbstractController
 
             $this->expenseFormUpdate->updateExpenseForm($this->user);
 
-            return $this->redirectToRoute('visiteur.fiche_frais.fiche_mois');
+            return $this->redirectToRoute('visitor.expenseForm.bundleMonthly');
         }
 
-        return $this->render('visiteur/ligne_frais/form_forfait.html.twig', [
+        return $this->render('visitor/lineExpense/form_forfait.html.twig', [
             'form' => $form->createView(),
         ]);
     }
 
-    #[Route('/ligne_frais/delete_forfait/{id}', name: 'visiteur.ligne_frais.delete_forfait')]
+    #[Route('/lineExpense/deleteBundle/{id}', name: 'visitor.lineExpense.deleteBundle')]
 
-    public function delete_forfait(int $id):Response
+    public function deleteBundle(int $id):Response
     {
         $entity = $this->lineExpenseBundleRepository->find($id);
 
@@ -104,13 +104,13 @@ class LineExpenseController extends AbstractController
 
         $this->expenseFormUpdate->updateExpenseForm($this->user);
         
-        return $this->redirectToRoute('visiteur.fiche_frais.fiche_mois');
+        return $this->redirectToRoute('visitor.expenseForm.bundleMonthly');
     }
 
 
-    #[Route('/ligne_frais/form_hors_forfait/{id}', name: 'visiteur.ligne_frais.form_hors_forfait')]
+    #[Route('/lineExpense/formOutBundle/{id}', name: 'visitor.lineExpense.formOutBundle')]
 
-    public function form_hors_forfait(int $id = null): Response
+    public function formOutBundle(int $id = null): Response
     {
         $entity = $id ? $this->lineExpenseOutBundleRepository->find($id) : new LineExpenseOutBundle;
         // Si la méthode récupère un id, elle charge l'entité reliée à l'id, sinon elle instancie une nouvelle entité
@@ -133,9 +133,9 @@ class LineExpenseController extends AbstractController
                 $this->addFlash('notice',  "La date n'est pas valide"); // envoie le message qui servira de message d'erreur
                 if (isset($id))
                 {
-                    return $this->redirectToRoute('visiteur.ligne_frais.form_hors_forfait', ["id" => $id]); // avec le paramètre id
+                    return $this->redirectToRoute('visitor.lineExpense.formOutBundle', ["id" => $id]); // avec le paramètre id
                 }
-                return $this->redirectToRoute('visiteur.ligne_frais.form_hors_forfait'); // sans le paramètre id
+                return $this->redirectToRoute('visitor.lineExpense.formOutBundle'); // sans le paramètre id
             }
 
             if (!isset($id))
@@ -151,16 +151,16 @@ class LineExpenseController extends AbstractController
 
             $this->expenseFormUpdate->updateExpenseForm($this->user);
 
-            return $this->redirectToRoute('visiteur.fiche_frais.fiche_mois');
+            return $this->redirectToRoute('visitor.expenseForm.bundleMonthly');
         }
 
-        return $this->render('visiteur/ligne_frais/form_hors_forfait.html.twig', [
+        return $this->render('visitor/lineExpense/formOutBundle.html.twig', [
             'form' => $form->createView(),
             'dayMax' => $dayMax,
         ]);
     }
 
-    #[Route('/ligne_frais/delete_hors_forfait/{id}', name: 'visiteur.ligne_frais.delete_hors_forfait')]
+    #[Route('/lineExpense/delete_hors_forfait/{id}', name: 'visitor.lineExpense.delete_hors_forfait')]
 
     public function delete_hors_forfait(LineExpenseOutBundle $entity):Response
     {
@@ -171,7 +171,7 @@ class LineExpenseController extends AbstractController
 
         $this->expenseFormUpdate->updateExpenseForm($this->user);
         
-        return $this->redirectToRoute('visiteur.fiche_frais.fiche_mois');
+        return $this->redirectToRoute('visitor.expenseForm.bundleMonthly');
     }
 
 

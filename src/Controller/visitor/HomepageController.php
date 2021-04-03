@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Controller\visiteur;
+namespace App\Controller\visitor;
 
 use App\Repository\UserRepository;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 
-#[Route('/visiteur')]
+#[Route('/visitor')]
 
 class HomepageController extends AbstractController
 {
@@ -19,13 +19,13 @@ class HomepageController extends AbstractController
         $this->UserRepository = $UserRepository;
     }
     
-    #[Route('/', name: 'visiteur.homepage.index')]
+    #[Route('/', name: 'visitor.homepage.index')]
 
     public function index():Response
     {
         $user = $this->getUser();
 
-        return $this->render("visiteur/homepage/index.html.twig",[
+        return $this->render("visitor/homepage/index.html.twig",[
             'user' => $user
         ]);
     }

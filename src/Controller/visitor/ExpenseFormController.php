@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller\visiteur;
+namespace App\Controller\visitor;
 
 use App\Service\ExpenseFormCreation;
 use Doctrine\ORM\EntityManagerInterface;
@@ -12,7 +12,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use App\Repository\LineExpenseOutBundleRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-#[Route('/visiteur')]
+#[Route('/visitor')]
 
 class ExpenseFormController extends AbstractController{
     private ExpenseFormRepository $expenseFormRepository; // requêtes de sélection de ExpenseForm
@@ -35,7 +35,7 @@ class ExpenseFormController extends AbstractController{
         $this->lineExpenseOutBundleRepository = $lineExpenseOutBundleRepository;
     }
 
-    #[Route('/fiche_frais/index', name: 'visiteur.fiche_frais.index')]
+    #[Route('/expenseForm/index', name: 'visitor.expenseForm.index')]
 
     public function index():Response
     {
@@ -45,12 +45,12 @@ class ExpenseFormController extends AbstractController{
         $expenseformrepository = $this->expenseFormRepository->findBy(['user' => $user]);
 
         // affichage de la vue
-        return $this->render('visiteur/fiche_frais/index.html.twig',[
+        return $this->render('visitor/expenseForm/index.html.twig',[
             'expenseform' => $expenseformrepository
         ]);
     }
 
-    #[Route('/fiche_frais/fiche_mois', name: 'visiteur.fiche_frais.fiche_mois')]
+    #[Route('/expenseForm/bundleMonthly', name: 'visitor.expenseForm.bundleMonthly')]
 
     public function fiche_mois():Response
     {   
@@ -74,7 +74,7 @@ class ExpenseFormController extends AbstractController{
         $lineExpenseBundleArray = $this->lineExpenseBundleRepository->findLineExpenseBundleByExpenseForm($entity);
         $lineExpenseOutBundleArray = $this->lineExpenseOutBundleRepository->findLineExpenseOutBundleByExpenseForm($entity);
         
-        return $this->render('visiteur/fiche_frais/fiche_mois.html.twig', [
+        return $this->render('visitor/expenseForm/bundleMonthly.html.twig', [
             'fiche_frais' => $entity,
             'lineExpenseBundleArray' => $lineExpenseBundleArray,
             'lineExpenseOutBundleArray' => $lineExpenseOutBundleArray,
