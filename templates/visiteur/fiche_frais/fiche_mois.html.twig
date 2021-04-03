@@ -76,7 +76,7 @@
                             <tr>
                                 <td>{{ line.expenseBundle.libelle }}</td>
                                 <td>{{ line.quantite }}</td>
-                                <td>{{ line.expenseBundle.date }}</td>
+                                <td>{{ line.date | date('d-m-Y') }}</td>
                                 <td>{{ line.expenseBundle.montant }}</td>
                                 <td>{{ (line.expenseBundle.montant|number_format(2,'.',',') * line.quantite|number_format(2,'.',','))|number_format(2,'.',',') }}</td>
                                 <td>  
