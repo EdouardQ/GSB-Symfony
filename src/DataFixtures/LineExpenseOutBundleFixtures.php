@@ -12,9 +12,9 @@ class LineExpenseOutBundleFixtures extends Fixture implements DependentFixtureIn
 {
     private array $list =[
         [
-            "libelle" => "invitation au restaurant pdg DSB",
+            "wording" => "invitation au restaurant pdg DSB",
             "date" => "2021-04-16",
-            "montant" => 200.00,
+            "amount" => 200.00,
             "expenseForm" => "equilliou_04-2021"
         ],
     ];
@@ -23,9 +23,9 @@ class LineExpenseOutBundleFixtures extends Fixture implements DependentFixtureIn
     {
         foreach ($this->list as $lineExpenseOutBundle) {
             $entity = new LineExpenseOutBundle;
-            $entity->setLibelle($lineExpenseOutBundle["libelle"]);
+            $entity->setWording($lineExpenseOutBundle["wording"]);
             $entity->setDate(new DateTime( $lineExpenseOutBundle["date"]));
-            $entity->setMontant($lineExpenseOutBundle["montant"]);
+            $entity->setAmount($lineExpenseOutBundle["amount"]);
 
             $entity->setExpenseForm($this->getReference($lineExpenseOutBundle['expenseForm']));
 

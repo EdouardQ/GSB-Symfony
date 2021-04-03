@@ -20,21 +20,21 @@ class State
     /**
      * @ORM\Column(type="string", length=50)
      */
-    private $libelle;
+    private $wording;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getLibelle(): ?string
+    public function getWording(): ?string
     {
-        return $this->libelle;
+        return $this->wording;
     }
 
-    public function setLibelle(string $libelle): self
+    public function setWording(string $wording): self
     {
-        $this->libelle = $libelle;
+        $this->wording = $wording;
 
         return $this;
     }

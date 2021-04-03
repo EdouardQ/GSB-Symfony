@@ -20,38 +20,38 @@ class ExpenseBundle
     /**
      * @ORM\Column(type="string", length=50)
      */
-    private $libelle;
+    private $wording;
 
     /**
      * @ORM\Column(type="decimal", precision=5, scale=2)
      */
-    private $montant;
+    private $amount;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getLibelle(): ?string
+    public function getWording(): ?string
     {
         return $this->libelle;
     }
 
-    public function setLibelle(string $libelle): self
+    public function setWording(string $libelle): self
     {
         $this->libelle = $libelle;
 
         return $this;
     }
 
-    public function getMontant(): ?string
+    public function getAmount(): ?string
     {
-        return $this->montant;
+        return $this->amount;
     }
 
-    public function setMontant(string $montant): self
+    public function setAmount(string $amount): self
     {
-        $this->montant = $montant;
+        $this->amount = $amount;
 
         return $this;
     }

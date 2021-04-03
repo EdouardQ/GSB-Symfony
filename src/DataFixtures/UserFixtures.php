@@ -11,80 +11,80 @@ class UserFixtures extends Fixture
 {
     private array $list = [
         [
-            'nom' => 'Quilliou',
-            'prenom' => 'Edouard',
+            'name' => 'Quilliou',
+            'firstName' => 'Edouard',
             'login' => 'equilliou',
-            'roles' => ['ROLE_VISITEUR'],
+            'roles' => ['ROLE_VISITOR'],
             'email' => 'equilliou@gsb.fr',
             'password' => '$argon2i$v=19$m=16,t=2,p=1$c1o0ZWI0ZkczalB5ODRKQg$q+DWOfcstsq5+NV9+apfpw',
-            'adresse' => '40 av Barth',
-            'ville' => 'paris',
-            'codePostal' => '75015',
-            'dateEmbauche' => '2019-09-01',
+            'adress' => '40 av Barth',
+            'city' => 'paris',
+            'postalCode' => '75015',
+            'hiringDate' => '2019-09-01',
         ],
         [
-            'nom' => 'Gest',
-            'prenom' => 'Alain',
+            'name' => 'Gest',
+            'firstName' => 'Alain',
             'login' => 'agest',
-            'roles' => ['ROLE_COMPTABLE'],
+            'roles' => ['ROLE_ACCOUNTANT'],
             'email' => 'agest@gsb.fr',
             'password' => '$argon2i$v=19$m=16,t=2,p=1$c1o0ZWI0ZkczalB5ODRKQg$q+DWOfcstsq5+NV9+apfpw',
-            'adresse' => '30 avenue de la mer',
-            'ville' => 'Berre',
-            'codePostal' => '13025',
-            'dateEmbauche' => '1985-11-01',
+            'adress' => '30 avenue de la mer',
+            'city' => 'Berre',
+            'postalCode' => '13025',
+            'hiringDate' => '1985-11-01',
         ],
         [
-            'nom' => 'Frémont',
-            'prenom' => 'Fernande',
+            'name' => 'Frémont',
+            'firstName' => 'Fernande',
             'login' => 'ffremont',
-            'roles' => ['ROLE_ADMIN'],
+            'roles' => ['ROLE_VISITOR'],
             'email' => 'ffremont@gsb.fr',
             'password' => '$argon2i$v=19$m=16,t=2,p=1$c1o0ZWI0ZkczalB5ODRKQg$q+DWOfcstsq5+NV9+apfpw',
-            'adresse' => '4 route de la mer',
-            'ville' => 'Allauh',
-            'codePostal' => '13012',
-            'dateEmbauche' => '1998-10-01',
+            'adress' => '4 route de la mer',
+            'city' => 'Allauh',
+            'postalCode' => '13012',
+            'hiringDate' => '1998-10-01',
         ],
         [
-            'nom' => 'Groetschel',
-            'prenom' => 'Jonas',
+            'name' => 'Groetschel',
+            'firstName' => 'Jonas',
             'login' => 'jogroe',
-            'roles' => ['ROLE_VISITEUR'],
+            'roles' => ['ROLE_VISITOR'],
             'email' => 'jogroe@gsb.fr',
             'password' => '$argon2i$v=19$m=16,t=2,p=1$c1o0ZWI0ZkczalB5ODRKQg$q+DWOfcstsq5+NV9+apfpw',
-            'adresse' => '40 av Barth',
-            'ville' => 'paris',
-            'codePostal' => '75015',
-            'dateEmbauche' => '2019-09-01',
+            'adress' => '40 av Barth',
+            'city' => 'paris',
+            'postalCode' => '75015',
+            'hiringDate' => '2019-09-01',
         ],
         [
-            'nom' => 'Baribaud ',
-            'prenom' => 'Marc',
+            'name' => 'Baribaud ',
+            'firstName' => 'Marc',
             'login' => 'devtest',
-            'roles' => ['ROLE_VISITEUR'],
+            'roles' => ['ROLE_VISITOR'],
             'email' => 'm.baribaud@gsb.fr',
             'password' => '$argon2i$v=19$m=16,t=2,p=1$c1o0ZWI0ZkczalB5ODRKQg$q+DWOfcstsq5+NV9+apfpw',
-            'adresse' => '6, Rue du Docteur Lombard',
-            'ville' => 'Issy-les-Moulineaux',
-            'codePostal' => '92130',
-            'dateEmbauche' => '2019-09-01',
+            'adress' => '6, Rue du Docteur Lombard',
+            'city' => 'Issy-les-Moulineaux',
+            'postalCode' => '92130',
+            'hiringDate' => '2019-09-01',
         ]
     ];
     public function load(ObjectManager $manager)
     {
         foreach ($this->list as $user) {
             $entity = new User;
-            $entity->setNom($user['nom']);
-            $entity->setPrenom(($user['prenom']));
+            $entity->setName($user['name']);
+            $entity->setFirstName(($user['firstName']));
             $entity->setLogin($user['login']);
             $entity->setRoles($user['roles']);
             $entity->setEmail($user['email']);
             $entity->setPassword($user['password']);
-            $entity->setAdresse($user['adresse']);
-            $entity->setVille($user['ville']);
-            $entity->setCodePostal($user['codePostal']);
-            $entity->setDateEmbauche(new DateTime( $user['dateEmbauche']));
+            $entity->setAdress($user['adress']);
+            $entity->setCity($user['city']);
+            $entity->setPostalCode($user['postalCode']);
+            $entity->setHiringDate(new DateTime( $user['hiringDate']));
 
             $this->addReference($user['login'], $entity);
             

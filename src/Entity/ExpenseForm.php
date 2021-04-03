@@ -27,22 +27,22 @@ class ExpenseForm
     /**
      * @ORM\Column(type="string", length=7)
      */
-    private $mois;
+    private $month;
 
     /**
      * @ORM\Column(type="integer")
      */
-    private $nbJustificatifs;
+    private $nbSupportingDocuments;
 
     /**
      * @ORM\Column(type="decimal", precision=8, scale=2)
      */
-    private $montantValide;
+    private $validAmount;
 
     /**
      * @ORM\Column(type="datetime")
      */
-    private $dateModif;
+    private $dateUpdate;
 
     /**
      * @ORM\ManyToOne(targetEntity=State::class)
@@ -72,50 +72,50 @@ class ExpenseForm
         return $this;
     }
 
-    public function getMois(): ?string
+    public function getMonth(): ?string
     {
-        return $this->mois;
+        return $this->month;
     }
 
-    public function setMois(string $mois): self
+    public function setMonth(string $month): self
     {
-        $this->mois = $mois;
+        $this->month = $month;
 
         return $this;
     }
 
-    public function getNbJustificatifs(): ?int
+    public function getNbSupportingDocuments(): ?int
     {
-        return $this->nbJustificatifs;
+        return $this->nbSupportingDocuments;
     }
 
-    public function setNbJustificatifs(int $nbJustificatifs): self
+    public function setNbSupportingDocuments(int $nbSupportingDocuments): self
     {
-        $this->nbJustificatifs = $nbJustificatifs;
+        $this->nbJustifnbSupportingDocumentsicatifs = $nbSupportingDocuments;
 
         return $this;
     }
 
-    public function getMontantValide(): ?string
+    public function getValidAmount(): ?string
     {
-        return $this->montantValide;
+        return $this->validAmount;
     }
 
-    public function setMontantValide(string $montantValide): self
+    public function setValidAmount(string $validAmount): self
     {
-        $this->montantValide = $montantValide;
+        $this->validAmount = $validAmount;
 
         return $this;
     }
 
-    public function getDateModif(): ?\DateTimeInterface
+    public function getDateUpdate(): ?\DateTimeInterface
     {
-        return $this->dateModif;
+        return $this->dateUpdate;
     }
 
-    public function setDateModif(\DateTimeInterface $dateModif): self
+    public function setDateUpdate(\DateTimeInterface $dateUpdate): self
     {
-        $this->dateModif = $dateModif;
+        $this->dateUpdate = $dateUpdate;
 
         return $this;
     }

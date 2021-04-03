@@ -37,27 +37,27 @@ class User implements UserInterface
     /**
      * @ORM\Column(type="string", length=50)
      */
-    private $nom;
+    private $name;
 
     /**
      * @ORM\Column(type="string", length=50)
      */
-    private $prenom;
+    private $firstName;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $adresse;
+    private $adress;
 
     /**
      * @ORM\Column(type="string", length=5)
      */
-    private $codePostal;
+    private $postalCode;
 
     /**
      * @ORM\Column(type="date")
      */
-    private $dateEmbauche;
+    private $hiringDate;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -67,7 +67,7 @@ class User implements UserInterface
     /**
      * @ORM\Column(type="string", length=50)
      */
-    private $ville;
+    private $city;
 
     public function getId(): ?int
     {
@@ -148,62 +148,62 @@ class User implements UserInterface
         // $this->plainPassword = null;
     }
 
-    public function getNom(): ?string
+    public function getName(): ?string
     {
-        return $this->nom;
+        return $this->name;
     }
 
-    public function setNom(string $nom): self
+    public function setName(string $name): self
     {
-        $this->nom = $nom;
+        $this->name = $name;
 
         return $this;
     }
 
-    public function getPrenom(): ?string
+    public function getFirstName(): ?string
     {
-        return $this->prenom;
+        return $this->firstName;
     }
 
-    public function setPrenom(string $prenom): self
+    public function setFirstname(string $firstName): self
     {
-        $this->prenom = $prenom;
+        $this->firstName = $firstName;
 
         return $this;
     }
 
-    public function getAdresse(): ?string
+    public function getAdress(): ?string
     {
-        return $this->adresse;
+        return $this->adress;
     }
 
-    public function setAdresse(string $adresse): self
+    public function setAdress(string $adress): self
     {
-        $this->adresse = $adresse;
+        $this->adress = $adress;
 
         return $this;
     }
 
-    public function getCodePostal(): ?string
+    public function getPostalCode(): ?string
     {
-        return $this->codePostal;
+        return $this->postalCode;
     }
 
-    public function setCodePostal(string $codePostal): self
+    public function setPostalCode(string $postalCode): self
     {
-        $this->codePostal = $codePostal;
+        $this->postalCode = $postalCode;
 
         return $this;
     }
 
-    public function getDateEmbauche(): ?\DateTimeInterface
+    public function getHiringDate(): ?\DateTimeInterface
     {
-        return $this->dateEmbauche;
+        return $this->hiringDate;
     }
 
-    public function setDateEmbauche(\DateTimeInterface $dateEmbauche): self
+    public function setHiringDate(\DateTimeInterface $hiringDate): self
     {
-        $this->dateEmbauche = $dateEmbauche;
+        $this->hiringDate = $hiringDate;
 
         return $this;
     }
@@ -220,14 +220,14 @@ class User implements UserInterface
         return $this;
     }
 
-    public function getVille(): ?string
+    public function getCity(): ?string
     {
-        return $this->ville;
+        return $this->city;
     }
 
-    public function setVille(string $ville): self
+    public function setCity(string $city): self
     {
-        $this->ville = $ville;
+        $this->city = $city;
 
         return $this;
     }

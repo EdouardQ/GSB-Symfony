@@ -20,7 +20,7 @@ class LineExpenseBundle
     /**
      * @ORM\Column(type="integer")
      */
-    private $quantite;
+    private $quantity;
 
     /**
      * @ORM\ManyToOne(targetEntity=ExpenseForm::class)
@@ -44,14 +44,14 @@ class LineExpenseBundle
         return $this->id;
     }
 
-    public function getQuantite(): ?int
+    public function getQuantity(): ?int
     {
-        return $this->quantite;
+        return $this->quantity;
     }
 
-    public function setQuantite(int $quantite): self
+    public function setQuantity(int $quantity): self
     {
-        $this->quantite = $quantite;
+        $this->quantity = $quantity;
 
         return $this;
     }
