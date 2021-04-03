@@ -65,6 +65,7 @@
                             <tr>
                                 <th>Libelle</th>
                                 <th>Quantité</th>
+                                <th>Date de saisie</th>
                                 <th>Montant à l'unité</th>
                                 <th>Montant Total</th>
                                 <th><a href="{{ url('visiteur.ligne_frais.form_forfait')}}" class="btn btn-primary">Ajouter un frais forfait</a></th>
@@ -75,6 +76,7 @@
                             <tr>
                                 <td>{{ line.expenseBundle.libelle }}</td>
                                 <td>{{ line.quantite }}</td>
+                                <td>{{ line.expenseBundle.date }}</td>
                                 <td>{{ line.expenseBundle.montant }}</td>
                                 <td>{{ (line.expenseBundle.montant|number_format(2,'.',',') * line.quantite|number_format(2,'.',','))|number_format(2,'.',',') }}</td>
                                 <td>  

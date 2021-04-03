@@ -13,26 +13,31 @@ class LineExpenseBundleFixtures extends Fixture implements DependentFixtureInter
     private array $list =[
         [
             "quantite" => 15,
+            "date" => '2021-04-03',
             "expenseBundle" => "Frais Kilométrique",
             "expenseForm" => "equilliou_04-2021"
         ],
         [
             "quantite" => 1,
+            "date" => '2021-04-03',
             "expenseBundle" => "Forfait Etape",
             "expenseForm" => "equilliou_04-2021"
         ],
         [
             "quantite" => 1,
+            "date" => '2021-01-16',
             "expenseBundle" => "Repas Restaurant",
             "expenseForm" => "equilliou_01-2021"
         ],
         [
             "quantite" => 15,
+            "date" => '2021-01-16',
             "expenseBundle" => "Frais Kilométrique",
             "expenseForm" => "agest_01-2021"
         ],
         [
             "quantite" => 1,
+            "date" => '2021-01-16',
             "expenseBundle" => "Repas Restaurant",
             "expenseForm" => "agest_01-2021"
         ],
@@ -42,7 +47,8 @@ class LineExpenseBundleFixtures extends Fixture implements DependentFixtureInter
     {
         foreach ($this->list as $lineExpenseBundle) {
             $entity = new LineExpenseBundle;
-            $entity->setQuantite($lineExpenseBundle["quantite"]);
+            $entity->setQuantite($lineExpenseBundle['quantite']);
+            $entity->setDate(new DateTime($lineExpenseBundle['date']));
 
             $entity->setExpenseForm($this->getReference($lineExpenseBundle['expenseForm']));
             $entity->setExpenseBundle($this->getReference($lineExpenseBundle['expenseBundle']));

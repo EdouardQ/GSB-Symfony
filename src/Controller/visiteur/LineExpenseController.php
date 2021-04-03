@@ -2,10 +2,12 @@
 
 namespace App\Controller\visiteur;
 
+use DateTime;
 use App\Entity\User;
 use App\Entity\LineExpenseBundle;
 use App\Service\ExpenseFormUpdate;
 use App\Form\LineExpenseBundleType;
+use App\Entity\LineExpenseOutBundle;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Repository\ExpenseFormRepository;
 use Symfony\Component\HttpFoundation\Request;
@@ -64,13 +66,13 @@ class LineExpenseController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) 
         {
-            
-
             if (!isset($id))
             {
                 $currentExpenseForm = $this->expenseFormRepository->findTheLastExpenseFormByUser($this->user); // Récupère la derrnière fiche frais du visiteur
                 $entity->setExpenseForm($currentExpenseForm[0]); // [0] car l'objet est dans un tableau
             }
+
+            $entity->setDate(new DateTime(date("d-m-Y")));
 
             $this->entityManager->persist($entity);
             $this->entityManager->flush();
@@ -108,6 +110,37 @@ class LineExpenseController extends AbstractController
 
     public function form_hors_forfait(int $id = null):Response
     {
-        return $this->render('visiteur/ligne_frais/form_hors_forfait.html.twig');
+        $entity = $id ? $this->lineExpenseOutBundleRepository->find($id) : new LineExpenseOutBundle;
+        // Si la méthode récupère un id, elle charge l'entité reliée à l'id, sinon elle instancie une nouvelle entité
+
+        $type = LineExpenseOutBundleType::class;
+
+        // création du formulaire
+        $form = $this->createForm($type, $entity);
+
+        // handleRequest : récupérer la saisie dans la requête HTTP, utilisation du $_POST
+        $form->handleRequest($this->request);
+
+        if ($form->isSubmitted() && $form->isValid()) 
+        {
+            if (!isset($id))
+            {
+                $currentExpenseForm = $this->expenseFormRepository->findTheLastExpenseFormByUser($this->user); // Récupère la derrnière fiche frais du visiteur
+                $entity->setExpenseForm($currentExpenseForm[0]); // [0] car l'objet est dans un tableau
+            }
+
+            $this->entityManager->persist($entity);
+            $this->entityManager->flush();
+
+            $this->addFlash('notice',  $id ? "Le Frais a bien été modifié" : "Le Frais a bien été enregistré");
+
+            $this->expenseFormUpdate->updateExpenseForm($this->user);
+
+            return $this->redirectToRoute('visiteur.fiche_frais.fiche_mois');
+        }
+
+        return $this->render('visiteur/ligne_frais/form_forfait.html.twig', [
+            'form' => $form->createView(),
+        ]);
     }
 }

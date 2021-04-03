@@ -34,6 +34,11 @@ class LineExpenseBundle
      */
     private $expenseBundle;
 
+    /**
+     * @ORM\Column(type="date", nullable=true)
+     */
+    private $date;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -71,6 +76,18 @@ class LineExpenseBundle
     public function setExpenseBundle(?ExpenseBundle $expenseBundle): self
     {
         $this->expenseBundle = $expenseBundle;
+
+        return $this;
+    }
+
+    public function getDate(): ?\DateTimeInterface
+    {
+        return $this->date;
+    }
+
+    public function setDate(?\DateTimeInterface $date): self
+    {
+        $this->date = $date;
 
         return $this;
     }
