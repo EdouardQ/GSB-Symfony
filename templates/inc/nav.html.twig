@@ -6,11 +6,26 @@
     </a>
   </div>
 
+  {% if is_granted('ROLE_VISITEUR')%}
   <div class="container_role">
     <a href="{{ url('visiteur.homepage.index') }}" class=" my-3">Accueil</a>
     <a href="{{ url('visiteur.fiche_frais.fiche_mois') }}" class=" my-3">Création de la fiche frais</a>
     <a href="{{ url('visiteur.fiche_frais.index') }}" class=" my-3">Voir mes fiches de frais</a>
   </div>
+  {% endif %}
+
+  {% if is_granted('ROLE_COMPTABLE')%}
+  <div class="container_role">
+    <a href="{{ url('comptable.homepage.index') }}" class=" my-3">Accueil</a>
+    <a href="{{ url('comptable.fiche_frais.liste_fiche_frais_restant') }}" class=" my-3">Consultation fiche à traiter</a>
+  </div>
+  {% endif %}
+
+  {% if is_granted('ROLE_ADMIN')%}
+  <div class="container_role">
+    <a href="{{ url('admin.homepage.index') }}" class=" my-3">Accueil</a>
+  </div>
+  {% endif %}
 
   <div class="container_logout">
     {% if is_granted('IS_AUTHENTICATED_FULLY') %}
