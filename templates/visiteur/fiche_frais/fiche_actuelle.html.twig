@@ -1,9 +1,124 @@
 {% extends "base.html.twig" %}
+
+{% set trans_month_hash = { 
+        "January": "de Janvier", 
+        "February": "de Février", 
+        "March": "de Mars", 
+        "April": "d'Avril", 
+        "May": "de Mai", 
+        "June": "de Juin", 
+        "July": "de Juillet",
+        "August": "d'Août", 
+        "September": "de Septembre", 
+        "October": "de Octobre", 
+        "November": "de Novembre", 
+        "December": "de Décembre"
+    } 
+%}
+
 {% block body %}
 
+    <div class="container">
+        <div class="row no-gutters slider-text align-items-center justify-content-center">
+            <div class="col-md-9 ftco-animate text-center">
+                <h1 class="mb-2 bread">Fiche frais {{ trans_month_hash["now"|date("F")] ~ ' ' ~ "now"|date("Y")}}</h1>
+                <br>
+                <table class='table table-striped table-bordered' style='width:100%; color: black;' >
+                    <thead>
+                        <tr>
+                            <th>Statut</th>
+                            <th>Nombre de Justificatifs</th>
+                            <th>Montant Total des Frais</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{{ fiche_frais.state.libelle }}</td>
+                            <td>{{ fiche_frais.nbJustificatifs }}</td>
+                            <td>{{ fiche_frais.montantValide }}</td>
+                        </tr>
+                    </tbody>
+                </table> 
+            </div>
+        </div>
+    </div>
     
-    <h1>Création fiche frais</h1>
+    <br><br>
+     
+    <div class="container">
+        <div class="card-body">
+            <div class="row">
+                <div class="col">
+                    <div class="card-header" style="background-color: #26c4ec";>
+                        <h3 class="card-title" style="text-align: center; color: white;">Frais forfait</h3>
+                    </div>
 
+
+                    <table class='table table-striped table-bordered' style='width:100%; color: black;' >
+                        <thead>
+                            <tr>
+                                <th>Libelle</th>
+                                <th>Quantité</th>
+                                <th>Montant à l'unité</th>
+                                <th>Montant Total</th>
+                                <th><a href="{{ url('visiteur.ligne_frais.form_forfait')}}" class="btn btn-primary">Ajouter un frais forfait</a></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% for line in lineExpenseBundleArray %}
+                            <tr>
+                                <td>{{ line.expenseBundle.libelle }}</td>
+                                <td>{{ line.quantite }}</td>
+                                <td>{{ line.expenseBundle.montant }}</td>
+                                <td>{{ (line.expenseBundle.montant|number_format(2,'.',',') * line.quantite|number_format(2,'.',','))|number_format(2,'.',',') }}</td>
+                                <td>  
+                                    <a href="#" class="btn btn-warning">Modifier</a>
+                                    <a href="#" class="btn btn-danger" onclick="return confirm('Êtes-vous sûr de supprimer : {{ line.expenseBundle.libelle }}')">Supprimer</a>                        
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table> 
+                </div>
+
+                <div class="col">
+                    <div class="card-header" style="background-color: #26c4ec";>
+                        <h3 class="card-title" style="text-align: center; color: white;">Frais hors forfait</h3>
+                    </div>
+
+
+                    <table class='table table-striped table-bordered' style='width:100%; color: black;' >
+                        <thead>
+                            <tr>
+                                <th>Libelle</th>
+                                <th>Date</th>
+                                <th>Montant</th>
+                                <th><a href="{{ url('visiteur.ligne_frais.form_hors_forfait')}}" class="btn btn-primary">Ajouter un frais hors forfait</a></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% for line in lineExpenseOutBundleArray %}
+                            <tr>
+                                <td>{{ line.libelle }}</td>
+                                <td>{{ line.date | date('d-m-Y') }}</td>
+                                <td>{{ line.montant }}</td>
+                                <td>  
+                                    <a href="#" class="btn btn-warning">Modifier</a>
+                                    <a href="#" class="btn btn-danger" onclick="return confirm('Êtes-vous sûr de supprimer : {{ line.libelle }}')">Supprimer</a>                        
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table> 
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
+    
+
+   
     
 
 {% endblock %}

@@ -13,12 +13,12 @@ class ExpenseFormFixtures extends Fixture implements DependentFixtureInterface
     private array $list = [
         [
             "user" => "equilliou",
-            "mois" => "02-2021",
-            "nbJustificatifs" => 2,
-            "montantValide" => 203.00,
-            "dateModif" => '12:00:00 2021-02-28',
-            "state" => "Saisie clôturée",
-            "token" => "equilliou_02-2021"
+            "mois" => "04-2021",
+            "nbJustificatifs" => 3,
+            "montantValide" => 319.30,
+            "dateModif" => '12:00:00 2021-04-3',
+            "state" => "Fiche créée, saisie en cours",
+            "token" => "equilliou_04-2021"
         ],
         [
             "user" => "equilliou",

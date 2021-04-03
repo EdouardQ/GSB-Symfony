@@ -1,6 +1,5 @@
 <?php
-
-
+    
 namespace App\Controller\visiteur;
 
 use App\Service\ExpenseFormCreation;
@@ -73,12 +72,13 @@ class ExpenseFormController extends AbstractController{
             $this->entityManager->persist($entity);
             $this->entityManager->flush();
         }
-        else{
+        else
+        {
             $entity = $entity[0]; // extraction de l'entité du tableau créé par la requête sql
         }
         
         $lineExpenseBundleArray = $this->lineExpenseBundleRepository->findLineExpenseBundleByExpenseForm($entity);
-        $lineExpenseOutBundleArray = $this->lineExpenseBundleRepository->findLineExpenseBundleByExpenseForm($entity);
+        $lineExpenseOutBundleArray = $this->lineExpenseOutBundleRepository->findLineExpenseOutBundleByExpenseForm($entity);
         
         return $this->render('visiteur/fiche_frais/fiche_actuelle.html.twig', [
             'fiche_frais' => $entity,

@@ -12,10 +12,10 @@ class LineExpenseOutBundleFixtures extends Fixture implements DependentFixtureIn
 {
     private array $list =[
         [
-            "libelle" => "invitation ai restaurant pdg DSB",
-            "date" => "2021-01-16",
+            "libelle" => "invitation au restaurant pdg DSB",
+            "date" => "2021-04-16",
             "montant" => 200.00,
-            "expenseForm" => "equilliou_01-2021"
+            "expenseForm" => "equilliou_04-2021"
         ],
     ];
 
