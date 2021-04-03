@@ -2,9 +2,10 @@
 
 namespace App\Repository;
 
+use App\Entity\User;
 use App\Entity\ExpenseForm;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
 /**
  * @method ExpenseForm|null find($id, $lockMode = null, $lockVersion = null)
@@ -17,6 +18,17 @@ class ExpenseFormRepository extends ServiceEntityRepository
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, ExpenseForm::class);
+    }
+
+    public function findExpenseFormByUserAndMonth($month, User $user)
+    {
+        return $this->createQueryBuilder('expense_form')
+            ->join('expense_form.user', 'user')
+            ->where("user = ".$user->getId())
+            ->andWhere("expense_form.mois = '$month'")
+            ->getQuery()
+            ->getResult()
+        ;
     }
 
     // /**

@@ -5,7 +5,9 @@ namespace App\Controller\visiteur;
 
 use Doctrine\ORM\EntityManagerInterface;
 use App\Repository\ExpenseFormRepository;
+use App\Service\ExpenseFormCreation;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Security\Core\Security;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\RequestStack;
@@ -18,13 +20,19 @@ class ExpenseFormController extends AbstractController{
     private RequestStack $requeststack; // requête de symfony
     private Request $request; // requête HTTP du navigateur
     private EntityManagerInterface $entityManager; // permet d'éxécuter insert, delete et update en sql
+    private Security $security;
+    private ExpenseFormCreation $expenseFormCreation;
 
 
-    public function __construct(ExpenseFormRepository $expenseFormRepository, RequestStack $requeststack, EntityManagerInterface $entityManager){
+    public function __construct(
+        ExpenseFormRepository $expenseFormRepository, RequestStack $requeststack, EntityManagerInterface $entityManager, Security $security, ExpenseFormCreation $expenseFormCreation)
+        {
         $this->expenseFormRepository = $expenseFormRepository;
         $this->requeststack = $requeststack;
         $this->request = $this->requeststack->getCurrentRequest();
         $this->entityManager = $entityManager;
+        $this->security = $security;
+        $this->expenseFormCreation = $expenseFormCreation;
     }
 
     #[Route('/fiche_frais/index', name: 'visiteur.fiche_frais.index')]
@@ -40,11 +48,25 @@ class ExpenseFormController extends AbstractController{
         ]);
     }
 
-    #[Route('/fiche_frais/form', name: 'visiteur.fiche_frais.form')]
+    #[Route('/fiche_frais/fiche_actuelle', name: 'visiteur.fiche_frais.fiche_actuelle')]
 
-    public function form():Response
-    {
-        return $this->render('visiteur/fiche_frais/form.html.twig');
+    public function fiche_actuelle():Response
+    {   
+        $user = $this->security->getUser(); // Récupére l'utilisateur actuel
+        $month = date("m-Y"); // Récupére la date sous la forme "01-2021"
+
+        $result = $this->expenseFormRepository->findExpenseFormByUserAndMonth($month, $user); // Récupére la derrnière fiche frais du visiteur ou renvoie null
+
+        if ($result == null) // S'il n'existe pas de fiche frais pour ce mois pour ce visiteur, on en crée un automatiquement
+        {
+            $entity = $this->expenseFormCreation->creation($user, $month);
+
+            $this->entityManager->persist($entity);
+            $this->entityManager->flush();
+        }
+        
+
+        return $this->render('visiteur/fiche_frais/fiche_actuelle.html.twig');
     }
 
 }
