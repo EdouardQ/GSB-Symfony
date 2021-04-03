@@ -13,9 +13,9 @@
             You are logged in as {{ app.user.username }}, <a href="{{ path('security.logout') }}">Logout</a>
         </div>
     {% endif %}
-
     <div class="login">
-        <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+        <img class="mb-2 mx-auto d-block" src="{{ asset('img/gsb.png') }}" alt="Gsb_logo">
+        <h1 class="h3 mb-3 font-weight-normal text-primary">Please sign in</h1>
         <label for="inputLogin">Login</label>
         <input type="text" value="{{ last_username }}" name="login" id="inputLogin" class="form-control" required autofocus>
         <label for="inputPassword">Password</label>
