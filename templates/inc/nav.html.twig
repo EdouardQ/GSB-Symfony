@@ -1,35 +1,29 @@
-
 <nav class="navigation">
   <div class="container_logo">
-    <a href="{{ url('visiteur.homepage.index') }}">
+    <a href="{{ url('visitor.homepage.index') }}">
         <img src="{{ asset('img/gsb.png') }}" alt="GSB_logo" class="logo-nav ml-3 my-1">
     </a>
   </div>
 
-  {% if is_granted('ROLE_VISITEUR')%}
+  {% if is_granted('ROLE_VISITOR')%}
   <div class="container_role">
-    <a href="{{ url('visiteur.homepage.index') }}" class=" my-3">Accueil</a>
-    <a href="{{ url('visiteur.fiche_frais.fiche_mois') }}" class=" my-3">Création de la fiche frais</a>
-    <a href="{{ url('visiteur.fiche_frais.index') }}" class=" my-3">Voir mes fiches de frais</a>
+    <a href="{{ url('visitor.homepage.index') }}" class="my-3">Accueil</a>
+    <a href="{{ url('visitor.expenseForm.bundleMonthly') }}" class="my-3">Création de la fiche frais</a>
+    <a href="{{ url('visitor.expenseForm.index') }}" class="my-3">Voir mes fiches de frais</a>
   </div>
   {% endif %}
 
-  {% if is_granted('ROLE_COMPTABLE')%}
+  {% if is_granted('ROLE_ACCOUNTANT')%}
   <div class="container_role">
-    <a href="{{ url('comptable.homepage.index') }}" class=" my-3">Accueil</a>
-    <a href="{{ url('comptable.ficheFrais.listeFicheFraisRestant') }}" class=" my-3">Consultation fiche à traiter</a>
-  </div>
-  {% endif %}
-
-  {% if is_granted('ROLE_ADMIN')%}
-  <div class="container_role">
-    <a href="{{ url('admin.homepage.index') }}" class=" my-3">Accueil</a>
+    <a href="{{ url('accountant.homepage.index') }}" class="my-3">Accueil</a>
+    <a href="{{ url('accountant.expenseForm.listExpenseFormLeft') }}" class="my-3">Consultation fiche restant</a>
+    <a href="#" class="my-3">Consultation fiche traité</a>
   </div>
   {% endif %}
 
   <div class="container_logout">
     {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-      <a href="{{ url('security.logout') }}" class=" my-3">Déconnexion</a>
+      <a href="{{ url('security.logout') }}" class="my-3">Déconnexion</a>
     {% endif %}
   </div>
 </nav>
