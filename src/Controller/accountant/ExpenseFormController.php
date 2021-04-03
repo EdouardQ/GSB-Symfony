@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller\comptable;
+namespace App\Controller\accountant;
 
 use App\Repository\ExpenseFormRepository;
 use App\Repository\LineExpenseBundleRepository;
@@ -15,7 +15,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Security;
 
-#[Route('/comptable')]
+#[Route('/accountant')]
 class ExpenseFormController extends AbstractController
 {
     private ExpenseFormRepository $expenseFormRepository;
@@ -42,8 +42,8 @@ class ExpenseFormController extends AbstractController
         $this->stateRepository = $stateRepository;
     }
 
-    #[Route('/ficheFrais/listeFicheFraisRestant', name: 'comptable.ficheFrais.listeFicheFraisRestant')]
-    public function listeFicheFraisRestant(): Response
+    #[Route('/expenseForm/listExpenseFormLeft', name: 'accountant.expenseForm.listExpenseFormLeft')]
+    public function listExpenseFormLeft(): Response
     {
         $state_cloture = $this->stateRepository->findBy(['libelle' => 'Saisie clôturée']);
 
@@ -51,7 +51,7 @@ class ExpenseFormController extends AbstractController
         $expenseformrepository = $this->expenseFormRepository->findBy(['state' => $state_cloture]);
 
         // affichage de la vue
-        return $this->render('comptable/ficheFrais/listeFicheFraisRestant.html.twig', [
+        return $this->render('accountant/expenseForm/listExpenseFormLeft.html.twig', [
             'expenseform' => $expenseformrepository
         ]);
     }

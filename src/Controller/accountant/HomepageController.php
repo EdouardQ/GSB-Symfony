@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Controller\comptable;
+namespace App\Controller\accountant;
 
 use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route('/comptable')]
+#[Route('/accountant')]
 class HomepageController extends AbstractController
 {
     private UserRepository $UserRepository;
@@ -16,12 +16,12 @@ class HomepageController extends AbstractController
         $this->UserRepository = $UserRepository;
     }
 
-    #[Route('/', name: 'comptable.homepage.index')]
+    #[Route('/', name: 'accountant.homepage.index')]
     public function index(): Response
     {
         $user = $this->getUser();
 
-        return $this->render("comptable/homepage/index.html.twig", [
+        return $this->render("accountant/homepage/index.html.twig", [
             'user' => $user
         ]);
     }     

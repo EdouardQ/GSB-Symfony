@@ -30,12 +30,30 @@ class ExpenseFormFixtures extends Fixture implements DependentFixtureInterface
             "token" => "equilliou_01-2021"
         ],
         [
-            "user" => "agest",
+            "user" => "devtest",
             "month" => "01-2021",
             "nbSupportingDocuments" => 2,
             "validAmount" => 118.00,
             "dateUpdate" => '12:30:49 2021-01-27',
-            "state" => "Remboursée",
+            "state" => "Saisie clôturée",
+            "token" => "agest_01-2021"
+        ],
+        [
+            "user" => "devtest",
+            "month" => "02-2021",
+            "nbSupportingDocuments" => 2,
+            "validAmount" => 118.00,
+            "dateUpdate" => '12:30:49 2021-02-27',
+            "state" => "Saisie clôturée",
+            "token" => "agest_01-2021"
+        ],
+        [
+            "user" => "devtest",
+            "month" => "03-2021",
+            "nbSupportingDocuments" => 2,
+            "validAmount" => 118.00,
+            "dateUpdate" => '12:30:49 2021-03-27',
+            "state" => "Saisie clôturée",
             "token" => "agest_01-2021"
         ],
     ];
