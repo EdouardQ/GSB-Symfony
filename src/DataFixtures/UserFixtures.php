@@ -64,7 +64,7 @@ class UserFixtures extends Fixture
             'login' => 'devtest',
             'roles' => ['ROLE_VISITEUR'],
             'email' => 'm.baribaud@gsb.fr',
-            'password' => '$argon2i$v=19$m=16,t=2,p=1$azNCaWZXT2hNWHhOZzlmNQ$zo2D3acSe7DXyNxXrvWRhQ',
+            'password' => '$argon2i$v=19$m=16,t=2,p=1$c1o0ZWI0ZkczalB5ODRKQg$q+DWOfcstsq5+NV9+apfpw',
             'adresse' => '6, Rue du Docteur Lombard',
             'ville' => 'Issy-les-Moulineaux',
             'codePostal' => '92130',
