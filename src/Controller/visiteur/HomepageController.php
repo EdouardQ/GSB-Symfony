@@ -7,6 +7,8 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 
+#[Route('/visiteur')]
+
 class HomepageController extends AbstractController
 {
     
@@ -17,9 +19,8 @@ class HomepageController extends AbstractController
         $this->UserRepository = $UserRepository;
     }
     
-    #[Route('/visiteur/', name: 'visiteur.homepage.index')]
+    #[Route('/', name: 'visiteur.homepage.index')]
 
-    
     public function index():Response
     {
         $user = $this->getUser();

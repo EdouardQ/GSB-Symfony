@@ -104,12 +104,14 @@ class AppAuthenticator extends AbstractFormLoginAuthenticator implements Passwor
         }
         elseif (in_array('ROLE_COMPTABLE', $token->getRoleNames())) 
         {
-            // $landingPage = 'comptable.homepage.index';
+            $landingPage = 'comptable.homepage.index';
         }
         else
         {
-        $landingPage = 'homepage.index';
+            $landingPage = 'homepage.index';
         }
+
+        return new RedirectResponse($this->urlGenerator->generate($landingPage));
 
         // For example : return new RedirectResponse($this->urlGenerator->generate('some_route'));
         // throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);
