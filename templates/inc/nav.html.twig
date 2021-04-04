@@ -1,12 +1,20 @@
 <div class="sidebar bar-block carte animate-left" style="display:none" id="maSidebar">
   <button class="bar-item bouton large" onclick="fermer()">Fermer &times;</button>
-  <a href="{{ url('visitor.homepage.index') }}" class="bar-item bouton">Accueil</a>
-  <a href="" class="bar-item bouton">Comptes-Rendus</a>
-  <a href="{{ url('visitor.expense_form.bundle_monthly') }}" class="bar-item bouton">Création de la fiche frais</a>
-  <a href="{{ url('visitor.expense_form.index') }}" class="bar-item bouton">Voir mes fiches de frais</a>
-  <a href="" class="bar-item bouton">Liste des practiciens</a>
-  <a href="" class="bar-item bouton">Liste des visteurs</a>
-  <a href="" class="bar-item bouton">Liste des médicaments</a>
+  {% if is_granted('ROLE_VISITOR')%}
+    <a href="{{ url('visitor.homepage.index') }}" class="bar-item bouton">Accueil</a>
+    <a href="" class="bar-item bouton">Comptes-Rendus</a>
+    <a href="{{ url('visitor.expense_form.bundle_monthly') }}" class="bar-item bouton">Création de la fiche frais</a>
+    <a href="{{ url('visitor.expense_form.index') }}" class="bar-item bouton">Voir mes fiches de frais</a>
+    <a href="" class="bar-item bouton">Liste des practiciens</a>
+    <a href="" class="bar-item bouton">Liste des visteurs</a>
+    <a href="" class="bar-item bouton">Liste des médicaments</a>
+  {% endif %}
+  {% if is_granted('ROLE_ACCOUNTANT')%}
+    <a href="{{ url('accountant.homepage.index') }}" class="bar-item bouton">Accueil</a>
+    <a href="" class="bar-item bouton">Comptes-Rendus</a>
+    <a href="{{ url('accountant.expense_form.list_expense_form_left') }}" class="bar-item bouton">Consultation fiche restant</a>
+    <a href="{{ url('accountant.expense_form.list_expense_form_treated') }}" class="bar-item bouton">Consultation fiche traité</a>
+  {% endif %}
 </div>
 
 <div id="main">
