@@ -45,7 +45,7 @@ class ExpenseFormController extends AbstractController
     #[Route('/expenseForm/listExpenseFormLeft', name: 'accountant.expenseForm.listExpenseFormLeft')]
     public function listExpenseFormLeft(): Response
     {
-        $state_cloture = $this->stateRepository->findBy(['libelle' => 'Saisie clôturée']);
+        $state_cloture = $this->stateRepository->findBy(['wording' => 'Saisie clôturée']);
 
         // Sélection de tous les fiches frais restant à valider ou refusé
         $expenseformrepository = $this->expenseFormRepository->findBy(['state' => $state_cloture]);
