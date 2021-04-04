@@ -48,7 +48,7 @@ class LineExpenseOutBundle
         return $this->wording;
     }
 
-    public function setWording(string $wording): self
+    public function setWording(?string $wording): self
     {
         $this->wording = $wording;
 

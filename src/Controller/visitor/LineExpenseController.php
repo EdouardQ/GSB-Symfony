@@ -14,6 +14,7 @@ use App\Repository\LineExpenseBundleRepository;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Repository\LineExpenseOutBundleRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 
 #[Route('/visitor')]
 
@@ -35,7 +36,7 @@ class LineExpenseController extends AbstractController
 
     #[Route('/lineExpense/formBundle/{id}', name: 'visitor.lineExpense.formBundle')]
 
-    public function formBundle(int $id = null): Response
+    public function formBundle(int $id = null, Request $request): Response
     {   
         // Si la méthode récupère un id, elle charge l'entité reliée à l'id, sinon elle instancie une nouvelle entité
         $entity = $id ? $this->lineExpenseBundleRepository->find($id) : new LineExpenseBundle;
@@ -45,7 +46,7 @@ class LineExpenseController extends AbstractController
 
         // handleRequest : récupérer la saisie dans la requête HTTP, utilisation du $_POST
         // getCurrentRequest vient de AbstractController
-        $form->handleRequest($this->container->get('request_stack')->getCurrentRequest());
+        $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             if (!isset($id)) {
@@ -56,7 +57,7 @@ class LineExpenseController extends AbstractController
             $entity->setDate(new DateTime(date("d-m-Y")));
 
             $entityManager = $this->getDoctrine()->getManager();
-
+            
             $entityManager->persist($entity);
             $entityManager->flush();
 
@@ -74,7 +75,7 @@ class LineExpenseController extends AbstractController
 
     #[Route('/lineExpense/deleteBundle/{id}', name: 'visitor.lineExpense.deleteBundle')]
 
-    public function deleteBundle(LineExpenseBundle $entity):Response
+    public function deleteBundle(LineExpenseBundle $entity): Response
     {
         $entityManager = $this->getDoctrine()->getManager();
 
@@ -133,7 +134,7 @@ class LineExpenseController extends AbstractController
 
     #[Route('/lineExpense/deleteOutBundle/{id}', name: 'visitor.lineExpense.deleteOutBundle')]
 
-    public function deleteOutBundle(LineExpenseOutBundle $entity):Response
+    public function deleteOutBundle(LineExpenseOutBundle $entity): Response
     {
         $entityManager = $this->getDoctrine()->getManager();
 

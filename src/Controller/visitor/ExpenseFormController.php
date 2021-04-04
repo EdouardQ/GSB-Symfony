@@ -33,7 +33,7 @@ class ExpenseFormController extends AbstractController{
 
     #[Route('/expenseForm/index', name: 'visitor.expenseForm.index')]
 
-    public function index():Response
+    public function index(): Response
     {
         $user = $this->getUser(); // Récupère l'utilisateur actuel
 
@@ -48,7 +48,7 @@ class ExpenseFormController extends AbstractController{
 
     #[Route('/expenseForm/bundleMonthly', name: 'visitor.expenseForm.bundleMonthly')]
 
-    public function bundleMonthly():Response
+    public function bundleMonthly(): Response
     {   
         $user = $this->getUser(); // Récupère l'utilisateur actuel
         $month = date("m-Y"); // Récupère la date sous la forme "01-2021"

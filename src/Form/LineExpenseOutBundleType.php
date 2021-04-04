@@ -13,7 +13,6 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
-use Symfony\Component\Validator\Constraints\NotNull;
 
 class LineExpenseOutBundleType extends AbstractType
 {
@@ -23,9 +22,6 @@ class LineExpenseOutBundleType extends AbstractType
             ->add('wording', TextareaType::class, [
                 'constraints' => [
                     new NotBlank([
-                        'message' => "Veuillez rentrer un libelle.",
-                    ]),
-                    new NotNull([
                         'message' => "Veuillez rentrer un libelle.",
                     ]),
                     new Length([

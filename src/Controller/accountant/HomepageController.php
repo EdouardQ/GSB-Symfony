@@ -10,11 +10,6 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/accountant')]
 class HomepageController extends AbstractController
 {
-    private UserRepository $UserRepository;
-
-    public function __construct(UserRepository $UserRepository){
-        $this->UserRepository = $UserRepository;
-    }
 
     #[Route('/', name: 'accountant.homepage.index')]
     public function index(): Response

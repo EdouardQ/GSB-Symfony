@@ -7,35 +7,21 @@ use App\Repository\LineExpenseBundleRepository;
 use App\Repository\LineExpenseOutBundleRepository;
 use App\Repository\StateRepository;
 use App\Service\ExpenseFormCreation;
-use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Security\Core\Security;
 
 #[Route('/accountant')]
 class ExpenseFormController extends AbstractController
 {
     private ExpenseFormRepository $expenseFormRepository;
-    private RequestStack $requeststack;
-    private Request $request;
-    private EntityManagerInterface $entityManager;
-    private Security $security;
-    private ExpenseFormCreation $expenseFormCreation;
-    private LineExpenseBundleRepository $lineExpenseBundleRepository;
-    private LineExpenseOutBundleRepository $lineExpenseOutBundleRepository;
     private StateRepository $stateRepository;
 
-    public function __construct(ExpenseFormRepository $expenseFormRepository, RequestStack $requeststack, EntityManagerInterface $entityManager, Security $security,
-        ExpenseFormCreation $expenseFormCreation, LineExpenseBundleRepository $lineExpenseBundleRepository, LineExpenseOutBundleRepository $lineExpenseOutBundleRepository, StateRepository $stateRepository)
+    public function __construct(ExpenseFormRepository $expenseFormRepository,ExpenseFormCreation $expenseFormCreation, 
+        LineExpenseBundleRepository $lineExpenseBundleRepository, LineExpenseOutBundleRepository $lineExpenseOutBundleRepository,
+        StateRepository $stateRepository)
         {
         $this->expenseFormRepository = $expenseFormRepository;
-        $this->requeststack = $requeststack;
-        $this->request = $this->requeststack->getCurrentRequest();
-        $this->entityManager = $entityManager;
-        $this->security = $security;
         $this->expenseFormCreation = $expenseFormCreation;
         $this->lineExpenseBundleRepository = $lineExpenseBundleRepository;
         $this->lineExpenseOutBundleRepository = $lineExpenseOutBundleRepository;

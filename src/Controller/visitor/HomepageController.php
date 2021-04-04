@@ -13,7 +13,7 @@ class HomepageController extends AbstractController
 {    
     #[Route('/', name: 'visitor.homepage.index')]
 
-    public function index():Response
+    public function index(): Response
     {
         $user = $this->getUser();
 

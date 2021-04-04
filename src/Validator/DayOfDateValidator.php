@@ -28,17 +28,13 @@ class DayOfDateValidator extends ConstraintValidator
 
         $dateVerif = new DateTime(); // crée une date pour faire la vérification de la date
 
-        if ($value->format('Y-m') != $dateVerif->format('Y-m')) {
+        if ($value->format('Y-m') !== $dateVerif->format('Y-m')) {
             // compare si le mois et la date du formulaire sont conforme à ceux d'aujourd'hui
             $this->context->buildViolation($constraint->message)
                 ->setParameter('{{ DateTime }}', $value->format('Y-m-d'))
                 ->addViolation();
         } 
     }
-
-
-
-
 
     public function validationDatelineExpenseOutBundleForm(LineExpenseOutBundle $entity): bool
     {
