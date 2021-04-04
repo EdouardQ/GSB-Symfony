@@ -14,7 +14,7 @@ class ExpenseFormFixtures extends Fixture implements DependentFixtureInterface
         [
             "user" => "equilliou",
             "month" => "04-2021",
-            "nbSupportingDocuments" => 3,
+            "nbSupportingDocuments" => 0,
             "validAmount" => 319.30,
             "dateUpdate" => '12:00:00 2021-04-3',
             "state" => "Fiche créée, saisie en cours",
@@ -23,7 +23,7 @@ class ExpenseFormFixtures extends Fixture implements DependentFixtureInterface
         [
             "user" => "equilliou",
             "month" => "01-2021",
-            "nbSupportingDocuments" => 2,
+            "nbSupportingDocuments" => 0,
             "validAmount" => 225.00,
             "dateUpdate" => '12:30:49 2021-01-27',
             "state" => "Remboursée",
@@ -32,7 +32,7 @@ class ExpenseFormFixtures extends Fixture implements DependentFixtureInterface
         [
             "user" => "devtest",
             "month" => "01-2021",
-            "nbSupportingDocuments" => 2,
+            "nbSupportingDocuments" => 0,
             "validAmount" => 118.00,
             "dateUpdate" => '12:30:49 2021-01-27',
             "state" => "Saisie clôturée",
@@ -41,7 +41,7 @@ class ExpenseFormFixtures extends Fixture implements DependentFixtureInterface
         [
             "user" => "devtest",
             "month" => "02-2021",
-            "nbSupportingDocuments" => 2,
+            "nbSupportingDocuments" => 0,
             "validAmount" => 118.00,
             "dateUpdate" => '12:30:49 2021-02-27',
             "state" => "Saisie clôturée",
@@ -50,7 +50,7 @@ class ExpenseFormFixtures extends Fixture implements DependentFixtureInterface
         [
             "user" => "devtest",
             "month" => "03-2021",
-            "nbSupportingDocuments" => 2,
+            "nbSupportingDocuments" => 0,
             "validAmount" => 118.00,
             "dateUpdate" => '12:30:49 2021-03-27',
             "state" => "Saisie clôturée",
