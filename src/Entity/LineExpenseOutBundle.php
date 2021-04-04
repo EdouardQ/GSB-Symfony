@@ -38,6 +38,16 @@ class LineExpenseOutBundle
      */
     private $expenseForm;
 
+    /**
+     * @ORM\Column(type="string", length=100, nullable=true)
+     */
+    private $supportingDocument;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $valid;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -87,6 +97,30 @@ class LineExpenseOutBundle
     public function setExpenseForm(?ExpenseForm $expenseForm): self
     {
         $this->expenseForm = $expenseForm;
+
+        return $this;
+    }
+
+    public function getSupportingDocument(): ?string
+    {
+        return $this->supportingDocument;
+    }
+
+    public function setSupportingDocument(?string $supportingDocument): self
+    {
+        $this->supportingDocument = $supportingDocument;
+
+        return $this;
+    }
+
+    public function getValid(): ?bool
+    {
+        return $this->valid;
+    }
+
+    public function setValid(bool $valid): self
+    {
+        $this->valid = $valid;
 
         return $this;
     }

@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20210404154424 extends AbstractMigration
+final class Version20210404161501 extends AbstractMigration
 {
     public function getDescription() : string
     {
@@ -23,7 +23,7 @@ final class Version20210404154424 extends AbstractMigration
         $this->addSql('CREATE TABLE expense_bundle (id INT AUTO_INCREMENT NOT NULL, wording VARCHAR(50) NOT NULL, amount NUMERIC(5, 2) NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE expense_form (id INT AUTO_INCREMENT NOT NULL, user_id INT NOT NULL, state_id INT NOT NULL, month VARCHAR(7) NOT NULL, nb_supporting_documents INT NOT NULL, valid_amount NUMERIC(8, 2) NOT NULL, date_update DATETIME NOT NULL, token VARCHAR(59) NOT NULL, INDEX IDX_E62FB32DA76ED395 (user_id), INDEX IDX_E62FB32D5D83CC1 (state_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE line_expense_bundle (id INT AUTO_INCREMENT NOT NULL, expense_form_id INT NOT NULL, expense_bundle_id INT NOT NULL, quantity INT NOT NULL, date DATE DEFAULT NULL, INDEX IDX_5722D10032EDD047 (expense_form_id), INDEX IDX_5722D100355DF2A9 (expense_bundle_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
-        $this->addSql('CREATE TABLE line_expense_out_bundle (id INT AUTO_INCREMENT NOT NULL, expense_form_id INT NOT NULL, wording VARCHAR(255) NOT NULL, date DATE NOT NULL, amount NUMERIC(9, 2) NOT NULL, INDEX IDX_770EF1D532EDD047 (expense_form_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
+        $this->addSql('CREATE TABLE line_expense_out_bundle (id INT AUTO_INCREMENT NOT NULL, expense_form_id INT NOT NULL, wording VARCHAR(255) NOT NULL, date DATE NOT NULL, amount NUMERIC(9, 2) NOT NULL, supporting_document VARCHAR(100) DEFAULT NULL, valid TINYINT(1) NOT NULL, INDEX IDX_770EF1D532EDD047 (expense_form_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE medication (id INT AUTO_INCREMENT NOT NULL, code VARCHAR(10) NOT NULL, name VARCHAR(50) NOT NULL, family VARCHAR(150) NOT NULL, composition VARCHAR(255) NOT NULL, side_effects LONGTEXT DEFAULT NULL, contraindications LONGTEXT DEFAULT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE practitioner (id INT AUTO_INCREMENT NOT NULL, workplace_id INT NOT NULL, name VARCHAR(50) NOT NULL, first_name VARCHAR(50) NOT NULL, adress VARCHAR(255) NOT NULL, postal_code VARCHAR(5) NOT NULL, city VARCHAR(50) NOT NULL, coeff_reputation NUMERIC(7, 2) NOT NULL, INDEX IDX_17323CBCAC25FB46 (workplace_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE report (id INT AUTO_INCREMENT NOT NULL, user_id INT NOT NULL, practitioner_id INT NOT NULL, date DATE NOT NULL, reason_visit VARCHAR(255) NOT NULL, summary LONGTEXT NOT NULL, INDEX IDX_C42F7784A76ED395 (user_id), INDEX IDX_C42F77841121EA2C (practitioner_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');

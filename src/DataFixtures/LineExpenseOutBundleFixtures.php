@@ -15,7 +15,8 @@ class LineExpenseOutBundleFixtures extends Fixture implements DependentFixtureIn
             "wording" => "invitation au restaurant pdg DSB",
             "date" => "2021-04-16",
             "amount" => 200.00,
-            "expenseForm" => "equilliou_04-2021"
+            "expenseForm" => "equilliou_04-2021",
+            "valid" => True,
         ],
     ];
 
@@ -26,9 +27,9 @@ class LineExpenseOutBundleFixtures extends Fixture implements DependentFixtureIn
             $entity->setWording($lineExpenseOutBundle["wording"]);
             $entity->setDate(new DateTime( $lineExpenseOutBundle["date"]));
             $entity->setAmount($lineExpenseOutBundle["amount"]);
+            $entity->setValid($lineExpenseOutBundle["valid"]);
 
             $entity->setExpenseForm($this->getReference($lineExpenseOutBundle['expenseForm']));
-
 
             $manager->persist($entity);
         }
@@ -36,7 +37,7 @@ class LineExpenseOutBundleFixtures extends Fixture implements DependentFixtureIn
         $manager->flush();
     }
     
-    public function getDependencies():array
+    public function getDependencies(): array
     {
         // liste des fixtures dépendantes
         return [
