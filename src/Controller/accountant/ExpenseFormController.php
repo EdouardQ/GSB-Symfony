@@ -49,7 +49,7 @@ class ExpenseFormController extends AbstractController
     #[Route('expenseForm/listExpenseFormTreated', name: 'accountant.expense_form.list_expense_form_treated')]
     public function listExpenseFormTreated(): Response
     {
-        // Sélection de tous les fiches frais restant à valider ou refusé
+        // Sélection de tous les fiches frais traité
         $expenseformrepository = $this->expenseFormRepository->getExpenseFormTreated();
 
         // affichage de la vue
@@ -61,6 +61,7 @@ class ExpenseFormController extends AbstractController
     #[Route('expenseForm/consultExpenseForm/{id}', name:"accountant.expense_form.consult_expense_form")]
     public function consultExpenseForm(ExpenseForm $entity): Response
     {
+        // Sélection des lignes frais forfait et hors forfait
         $lineExpenseBundleArray = $this->lineExpenseBundleRepository->findLineExpenseBundleByExpenseForm($entity);
         $lineExpenseOutBundleArray = $this->lineExpenseOutBundleRepository->findLineExpenseOutBundleByExpenseForm($entity);
         

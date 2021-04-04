@@ -83,10 +83,11 @@
                                 <td>{{ line.date | date('d-m-Y') }}</td>
                                 <td>{{ line.amount }}</td>
                                 <td>
-                                    <a href="{{ url('accountant.expense_form.toggle_valid', {id:line.id})}}" class="btn btn-success" onclick="return confirm('Êtes-vous sûr de modifier le statut du frais suivant : {{ line.wording }}')">
                                         {% if line.valid %}
+                                        <a href="{{ url('accountant.expense_form.toggle_valid', {id:line.id})}}" class="btn btn-danger" onclick="return confirm('Êtes-vous sûr de modifier le statut du frais suivant : {{ line.wording }}')">
                                             Refuser
                                         {% else %}
+                                        <a href="{{ url('accountant.expense_form.toggle_valid', {id:line.id})}}" class="btn btn-success" onclick="return confirm('Êtes-vous sûr de modifier le statut du frais suivant : {{ line.wording }}')">
                                             Accepter    
                                         {% endif %}
                                     </a>                        
