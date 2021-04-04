@@ -23,7 +23,7 @@
   <div class="site-section">
     <div class="container">
         <p>
-            <span class="mr-2"><h5><a href="{{ url('visiteur.fiche_frais.fiche_mois') }}">Retour <i class="ion-ios-arrow-forward"></i></a></h5></span>
+            <span class="mr-2"><h5><a href="{{ url('visitor.expenseForm.bundleMonthly') }}">Retour <i class="ion-ios-arrow-forward"></i></a></h5></span>
         </p>
      
       <div class="row">
@@ -33,8 +33,8 @@
             <div class="p-3 p-lg-5 border">
               <div class="form-group row">
                 <div class="col-md-6">
-                    {{ form_label(form.libelle, 'Libelle :', {'label_attr': {'class': 'text-black'}}) }}
-                    {{ form_widget(form.libelle) }}
+                    {{ form_label(form.wording, 'Libelle :', {'label_attr': {'class': 'text-black'}}) }}
+                    {{ form_widget(form.wording) }}
                 </div>
                 <div class="col-md-6">
                   {# affichage des messages flash: #}
@@ -45,8 +45,8 @@
                   {{ form_widget(form.date, {'attr': {'min': "now"|date("Y-m"~"-01"), 'max': "now"|date("Y-m")~"-"~dayMax}}) }}
                 </div>
                 <div class="col-md-6">
-                  {{ form_label(form.montant, 'Montant :', {'label_attr': {'class': 'text-black'}}) }}
-                  {{ form_widget(form.montant, {'attr': {'min': '1'}}) }}
+                  {{ form_label(form.amount, 'Montant :', {'label_attr': {'class': 'text-black'}}) }}
+                  {{ form_widget(form.amount, {'attr': {'min': '1'}}) }}
                 </div>
               </div><br><br>
                 <div class="form-group row">

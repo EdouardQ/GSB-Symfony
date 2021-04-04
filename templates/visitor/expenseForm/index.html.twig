@@ -15,11 +15,11 @@
             </tr>
             {% for expense_form in expenseform %}
                 <tr>
-                    <td>{{ expense_form.mois }}</td>
-                    <td>{{ expense_form.nbjustificatifs }}</td>
-                    <td>{{ expense_form.montantValide }}€</td>
-                    <td>{{ expense_form.dateModif|date("m/d/Y") }}</td>
-                    <td>{{ expense_form.state.libelle }}</td>
+                    <td>{{ expense_form.month }}</td>
+                    <td>{{ expense_form.nbSupportingDocuments }}</td>
+                    <td>{{ expense_form.validAmount }}€</td>
+                    <td>{{ expense_form.dateUpdate|date("m/d/Y") }}</td>
+                    <td>{{ expense_form.state.wording }}</td>
                 </tr>
             {% endfor %}
         </table>
