@@ -45,7 +45,9 @@ class ExpenseFormUpdate
             if ($lineExpenseOutBundle->getSupportingDocument() !== null) {
                 $nbJustificatifs += 1;
             }
-            $montantValide += floatval($lineExpenseOutBundle->getAmount());
+            if ($lineExpenseOutBundle->getValid()) {
+                $montantValide += floatval($lineExpenseOutBundle->getAmount());
+            }
         }
 
         $expenseForm->setNbSupportingDocuments($nbJustificatifs);

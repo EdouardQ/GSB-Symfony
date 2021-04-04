@@ -16,3 +16,4 @@
 /.env
 /symfony.lock
 /composer.lock
+/src/SupportingDocuments/
