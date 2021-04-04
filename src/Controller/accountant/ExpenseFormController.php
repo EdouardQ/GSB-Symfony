@@ -56,4 +56,17 @@ class ExpenseFormController extends AbstractController
         ]);
     }
 
+    #[Route('expenseForm/listExpenseFormTreated', name: 'accountant.expenseForm.listExpenseFormTreated')]
+    public function listExpenseFormTreated(): Response
+    {
+
+        // Sélection de tous les fiches frais restant à valider ou refusé
+        $expenseformrepository = $this->expenseFormRepository->getExpenseFormTreated();
+
+        // affichage de la vue
+        return $this->render('accountant/expenseForm/listExpenseFormTreated.html.twig', [
+            'expenseform' => $expenseformrepository
+        ]);
+    }
+
 }

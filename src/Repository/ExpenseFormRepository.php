@@ -44,6 +44,17 @@ class ExpenseFormRepository extends ServiceEntityRepository
         ;
     }
 
+    public function getExpenseFormTreated()
+    {
+        return $this->createQueryBuilder('expense_form')
+            ->join('expense_form.state', 'state')
+            ->where("state.id = 1")
+            ->orWhere("state.id = 4")
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
     // /**
     //  * @return ExpenseForm[] Returns an array of ExpenseForm objects
     //  */
