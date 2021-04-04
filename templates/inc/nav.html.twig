@@ -7,6 +7,14 @@
   <a href="" class="bar-item bouton">Liste des practiciens</a>
   <a href="" class="bar-item bouton">Liste des visteurs</a>
   <a href="" class="bar-item bouton">Liste des médicaments</a>
+  {% if is_granted('ROLE_ACCOUNTANT')%}
+  <div class="container_role">
+    <a href="{{ url('accountant.homepage.index') }}" class="bar-item bouton">Accueil</a>
+    <a href="" class="bar-item bouton">Comptes-Rendus</a>
+    <a href="{{ url('accountant.expense_form.list_expense_form_left') }}" class="bar-item bouton">Consultation fiche restant</a>
+    <a href="{{ url('accountant.expense_form.list_expense_form_treated') }}" class="bar-item bouton">Consultation fiche traité</a>
+  </div>
+  {% endif %}
 </div>
 
 <div id="main">

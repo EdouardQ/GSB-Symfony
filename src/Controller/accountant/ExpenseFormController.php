@@ -2,13 +2,16 @@
 
 namespace App\Controller\accountant;
 
+use App\Entity\ExpenseForm;
 use App\Repository\StateRepository;
+use App\Entity\LineExpenseOutBundle;
 use App\Service\ExpenseFormCreation;
 use App\Repository\ExpenseFormRepository;
 use Symfony\Component\HttpFoundation\Response;
 use App\Repository\LineExpenseBundleRepository;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Repository\LineExpenseOutBundleRepository;
+use App\Service\ExpenseFormUpdate;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 #[Route('/accountant')]
@@ -16,15 +19,17 @@ class ExpenseFormController extends AbstractController
 {
     private ExpenseFormRepository $expenseFormRepository;
     private StateRepository $stateRepository;
+    private ExpenseFormUpdate $expenseFormUpdate;
 
     public function __construct(ExpenseFormRepository $expenseFormRepository,ExpenseFormCreation $expenseFormCreation,
-    LineExpenseBundleRepository $lineExpenseBundleRepository, LineExpenseOutBundleRepository $lineExpenseOutBundleRepository, StateRepository $stateRepository)
+    LineExpenseBundleRepository $lineExpenseBundleRepository, LineExpenseOutBundleRepository $lineExpenseOutBundleRepository, StateRepository $stateRepository, ExpenseFormUpdate $expenseFormUpdate)
     {
         $this->expenseFormRepository = $expenseFormRepository;
         $this->expenseFormCreation = $expenseFormCreation;
         $this->lineExpenseBundleRepository = $lineExpenseBundleRepository;
         $this->lineExpenseOutBundleRepository = $lineExpenseOutBundleRepository;
         $this->stateRepository = $stateRepository;
+        $this->expenseFormUpdate = $expenseFormUpdate;
     }
 
     #[Route('/expenseForm/listExpenseFormLeft', name: 'accountant.expense_form.list_expense_form_left')]
@@ -44,7 +49,6 @@ class ExpenseFormController extends AbstractController
     #[Route('expenseForm/listExpenseFormTreated', name: 'accountant.expense_form.list_expense_form_treated')]
     public function listExpenseFormTreated(): Response
     {
-
         // Sélection de tous les fiches frais restant à valider ou refusé
         $expenseformrepository = $this->expenseFormRepository->getExpenseFormTreated();
 
@@ -54,4 +58,39 @@ class ExpenseFormController extends AbstractController
         ]);
     }
 
+    #[Route('expenseForm/consultExpenseForm/{id}', name:"accountant.expense_form.consult_expense_form")]
+    public function consultExpenseForm(ExpenseForm $entity): Response
+    {
+        $lineExpenseBundleArray = $this->lineExpenseBundleRepository->findLineExpenseBundleByExpenseForm($entity);
+        $lineExpenseOutBundleArray = $this->lineExpenseOutBundleRepository->findLineExpenseOutBundleByExpenseForm($entity);
+        
+        return $this->render('accountant/expenseForm/consultExpenseForm.html.twig', [
+            'bundleMonthly' => $entity,
+            'lineExpenseBundleArray' => $lineExpenseBundleArray,
+            'lineExpenseOutBundleArray' => $lineExpenseOutBundleArray,
+        ]);
+    }
+
+    #[Route('expenseForm/toggleValid/{id}', name:'accountant.expense_form.toggle_valid')]
+    public function toggleValid(LineExpenseOutBundle $entity): Response
+    {
+        $entity->setValid(!$entity->getValid());
+
+        $this->expenseFormUpdate->updateExpenseFormAmount($entity->getExpenseForm());
+
+        $this->getDoctrine()->getManager()->flush($entity);
+
+        return $this->redirectToRoute('accountant.expense_form.consult_expense_form', ['id' => $entity->getExpenseForm()->getId()]);
+    }
+
+    #[Route('expenseForm/formTreatment/{id}', name:'accountant.expense_form.form_treatment')]
+    public function formTreatment(ExpenseForm $entity): Response
+    {
+
+        $entity->setState($this->stateRepository->findBy(['wording' => 'Validée et mise en paiement'])[0]);
+
+        $this->getDoctrine()->getManager()->flush($entity);
+
+        return $this->redirectToRoute('accountant.expense_form.list_expense_form_left');
+    }
 }
