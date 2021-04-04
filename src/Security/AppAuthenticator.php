@@ -98,13 +98,13 @@ class AppAuthenticator extends AbstractFormLoginAuthenticator implements Passwor
 
         // définir la page d'atterrissage selon le rôle
 
-        if (in_array('ROLE_VISITEUR', $token->getRoleNames())) 
+        if (in_array('ROLE_VISITOR', $token->getRoleNames())) 
         {
-            $landingPage = 'visiteur.homepage.index';
+            $landingPage = 'visitor.homepage.index';
         }
-        elseif (in_array('ROLE_COMPTABLE', $token->getRoleNames())) 
+        elseif (in_array('ROLE_ACCOUNTANT', $token->getRoleNames())) 
         {
-            $landingPage = 'comptable.homepage.index';
+            $landingPage = 'accountant.homepage.index';
         }
         else
         {
