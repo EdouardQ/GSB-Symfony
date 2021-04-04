@@ -17,7 +17,7 @@ class LineExpenseBundleType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('quantite', IntegerType::class, [
+            ->add('quantity', IntegerType::class, [
                 'constraints' => [
                     new Positive([
                         'message' => "La quantité doit être strictement supérieure à 0."
@@ -26,7 +26,7 @@ class LineExpenseBundleType extends AbstractType
             ])
             ->add('expenseBundle', EntityType::class, [
                 'class' => ExpenseBundle::class,
-                'choice_label' => 'libelle',
+                'choice_label' => 'wording',
             ])
         ;
     }

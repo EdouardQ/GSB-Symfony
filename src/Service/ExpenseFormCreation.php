@@ -20,7 +20,7 @@ class ExpenseFormCreation
     {
         // Récupération de l'état de fiche de frais "Fiche créée, saisie en cours" et extraction de la requete dans uen variable
         $stateOnCreation = $this->stateRepository->findBy([
-            'libelle' => "Fiche créée, saisie en cours",
+            'wording' => "Fiche créée, saisie en cours",
         ])[0]; // [0] car l'objet est dans un tableau
 
         $entity = new ExpenseForm;
