@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\LineExpenseOutBundleRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
  * @ORM\Entity(repositoryClass=LineExpenseOutBundleRepository::class)
@@ -101,12 +102,12 @@ class LineExpenseOutBundle
         return $this;
     }
 
-    public function getSupportingDocument(): ?string
+    public function getSupportingDocument(): null|string|UploadedFile
     {
         return $this->supportingDocument;
     }
 
-    public function setSupportingDocument(?string $supportingDocument): self
+    public function setSupportingDocument(null|string|UploadedFile $supportingDocument): self
     {
         $this->supportingDocument = $supportingDocument;
 

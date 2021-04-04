@@ -2,15 +2,17 @@
 
 namespace App\Form;
 
-use App\Entity\LineExpenseOutBundle;
 use App\Validator\DayOfDate;
+use App\Entity\LineExpenseOutBundle;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Validator\Constraints\File;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints\Positive;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
@@ -47,9 +49,23 @@ class LineExpenseOutBundleType extends AbstractType
                     ]),
                 ]
             ])
+            ->add('supportingDocument', FileType::class, [
+                'data_class' => null, //nécessaire pour éviter une erreur sur les champs de type file
+                'constraints' => [
+                    new File([
+                        'mimeTypes' => [
+                            "application/pdf",
+                            'application/x-pdf',
+                        ],
+                        'mimeTypesMessage' => "Le justificatif doit être un fichier pdf.",
+                        'maxSize' => '5M',
+                        'maxSizeMessage' => "Le fichier est trop lourd ({{ 5 }} {{ MegaOctet }}). La taille maximum autorisée est de {{ limit }} {{ suffix }}."
+                    ]),
+                ],
+            ])
         ;
     }
-
+	
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([

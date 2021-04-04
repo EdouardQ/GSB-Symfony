@@ -260,6 +260,9 @@
             "ref": "fadbfe33303a76e25cb63401050439aa9b1a9c7f"
         }
     },
+    "symfony/mime": {
+        "version": "v5.2.6"
+    },
     "symfony/monolog-bridge": {
         "version": "v5.2.3"
     },
@@ -288,6 +291,9 @@
         "version": "v1.22.1"
     },
     "symfony/polyfill-intl-icu": {
+        "version": "v1.22.1"
+    },
+    "symfony/polyfill-intl-idn": {
         "version": "v1.22.1"
     },
     "symfony/polyfill-intl-normalizer": {

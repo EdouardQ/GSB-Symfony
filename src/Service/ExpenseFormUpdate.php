@@ -38,12 +38,13 @@ class ExpenseFormUpdate
         $montantValide = 0;
 
         foreach ($lineExpenseBundleArray as $lineExpenseBundle) {
-            $nbJustificatifs += 1;
             $montantValide += floatval($lineExpenseBundle->getQuantity()) * floatval($lineExpenseBundle->getExpenseBundle()->getAmount());
         }
 
         foreach ($lineExpenseOutBundleArray as $lineExpenseOutBundle) {
-            $nbJustificatifs += 1;
+            if ($lineExpenseOutBundle->getSupportingDocument() !== null) {
+                $nbJustificatifs += 1;
+            }
             $montantValide += floatval($lineExpenseOutBundle->getAmount());
         }
 

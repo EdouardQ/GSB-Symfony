@@ -21,6 +21,7 @@
         "symfony/form": "5.2.*",
         "symfony/framework-bundle": "5.2.*",
         "symfony/maker-bundle": "^1.29",
+        "symfony/mime": "5.2.*",
         "symfony/monolog-bundle": "^3.0",
         "symfony/proxy-manager-bridge": "5.2.*",
         "symfony/security-bundle": "5.2.*",
