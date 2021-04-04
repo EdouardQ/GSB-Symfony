@@ -13,4 +13,6 @@
 /docker-compose.yml
 /phpdocker/
 ###< symfony/framework-bundle ###
-.env
+/.env
+/symfony.lock
+/composer.lock

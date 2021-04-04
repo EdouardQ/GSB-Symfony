@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\LineExpenseOutBundleRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
  * @ORM\Entity(repositoryClass=LineExpenseOutBundleRepository::class)
@@ -37,6 +38,16 @@ class LineExpenseOutBundle
      * @ORM\JoinColumn(nullable=false)
      */
     private $expenseForm;
+
+    /**
+     * @ORM\Column(type="string", length=100, nullable=true)
+     */
+    private $supportingDocument;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $valid;
 
     public function getId(): ?int
     {
@@ -87,6 +98,30 @@ class LineExpenseOutBundle
     public function setExpenseForm(?ExpenseForm $expenseForm): self
     {
         $this->expenseForm = $expenseForm;
+
+        return $this;
+    }
+
+    public function getSupportingDocument(): null|string|UploadedFile
+    {
+        return $this->supportingDocument;
+    }
+
+    public function setSupportingDocument(null|string|UploadedFile $supportingDocument): self
+    {
+        $this->supportingDocument = $supportingDocument;
+
+        return $this;
+    }
+
+    public function getValid(): ?bool
+    {
+        return $this->valid;
+    }
+
+    public function setValid(bool $valid): self
+    {
+        $this->valid = $valid;
 
         return $this;
     }
