@@ -2,12 +2,16 @@
 
 namespace App\Controller\visitor;
 
+use App\Entity\LineExpenseOutBundle;
 use App\Service\ExpenseFormCreation;
 use App\Repository\ExpenseFormRepository;
 use Symfony\Component\HttpFoundation\Response;
 use App\Repository\LineExpenseBundleRepository;
+use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpKernel\KernelInterface;
 use App\Repository\LineExpenseOutBundleRepository;
+use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 #[Route('/visitor')]
@@ -74,4 +78,13 @@ class ExpenseFormController extends AbstractController{
         ]);
     }
 
+    #[Route('/expenseForm/bundleMonthly/displaySupportingDocument/{supportingDocument}', name: 'visitor.expense_form.bundle_monthly.display_supporting_document')]
+    public function displaySupportingDocument(LineExpenseOutBundle $entity, KernelInterface $kernelInterface): Response
+    {   
+        // charge le fichier depuis le dossier racine du projet à son emplacement dans un objet File
+        $file = new File($kernelInterface->getProjectDir().'/src/SupportingDocuments/'.$entity->getSupportingDocument());
+
+        // Affiche le contenu du fichier et ne ne force pas le téléchargement par le navigateur
+        return $this->file($file, null, ResponseHeaderBag::DISPOSITION_INLINE);
+    }
 }
