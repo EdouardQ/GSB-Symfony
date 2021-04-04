@@ -10,15 +10,7 @@ use Symfony\Component\HttpFoundation\Response;
 #[Route('/visitor')]
 
 class HomepageController extends AbstractController
-{
-    
-    private UserRepository $UserRepository;
-
-    public function __construct(UserRepository $UserRepository)
-    {
-        $this->UserRepository = $UserRepository;
-    }
-    
+{    
     #[Route('/', name: 'visitor.homepage.index')]
 
     public function index():Response

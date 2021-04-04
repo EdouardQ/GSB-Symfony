@@ -3,9 +3,9 @@
 namespace App\Controller\visitor;
 
 use App\Service\ExpenseFormCreation;
-use Doctrine\ORM\EntityManagerInterface;
+
 use App\Repository\ExpenseFormRepository;
-use Symfony\Component\Security\Core\Security;
+
 use Symfony\Component\HttpFoundation\Response;
 use App\Repository\LineExpenseBundleRepository;
 use Symfony\Component\Routing\Annotation\Route;
@@ -16,20 +16,16 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class ExpenseFormController extends AbstractController{
     private ExpenseFormRepository $expenseFormRepository; // requêtes de sélection de ExpenseForm
-    private EntityManagerInterface $entityManager; // permet d'éxécuter insert, delete et update en sql
-    private Security $security;
     private ExpenseFormCreation $expenseFormCreation;
     private LineExpenseBundleRepository $lineExpenseBundleRepository;
     private LineExpenseOutBundleRepository $lineExpenseOutBundleRepository;
 
 
     public function __construct(
-        ExpenseFormRepository $expenseFormRepository, EntityManagerInterface $entityManager, Security $security,
+        ExpenseFormRepository $expenseFormRepository,
         ExpenseFormCreation $expenseFormCreation, LineExpenseBundleRepository $lineExpenseBundleRepository, LineExpenseOutBundleRepository $lineExpenseOutBundleRepository)
         {
         $this->expenseFormRepository = $expenseFormRepository;
-        $this->entityManager = $entityManager;
-        $this->security = $security;
         $this->expenseFormCreation = $expenseFormCreation;
         $this->lineExpenseBundleRepository = $lineExpenseBundleRepository;
         $this->lineExpenseOutBundleRepository = $lineExpenseOutBundleRepository;
@@ -39,7 +35,7 @@ class ExpenseFormController extends AbstractController{
 
     public function index():Response
     {
-        $user = $this->security->getUser(); // Récupère l'utilisateur actuel
+        $user = $this->getUser(); // Récupère l'utilisateur actuel
 
         // sélection de tous les fiches frais
         $expenseformrepository = $this->expenseFormRepository->findBy(['user' => $user]);
@@ -52,9 +48,9 @@ class ExpenseFormController extends AbstractController{
 
     #[Route('/expenseForm/bundleMonthly', name: 'visitor.expenseForm.bundleMonthly')]
 
-    public function fiche_mois():Response
+    public function bundleMonthly():Response
     {   
-        $user = $this->security->getUser(); // Récupère l'utilisateur actuel
+        $user = $this->getUser(); // Récupère l'utilisateur actuel
         $month = date("m-Y"); // Récupère la date sous la forme "01-2021"
 
         $entity = $this->expenseFormRepository->findExpenseFormByUserAndMonth($month, $user); // Récupère la derrnière fiche frais du visiteur ou renvoie null
@@ -63,8 +59,10 @@ class ExpenseFormController extends AbstractController{
         {
             $entity = $this->expenseFormCreation->creation($user, $month);
 
-            $this->entityManager->persist($entity);
-            $this->entityManager->flush();
+            $entityManager = $this->getDoctrine()->getManager();
+
+            $entityManager->persist($entity);
+            $entityManager->flush();
         }
         else
         {
@@ -75,7 +73,7 @@ class ExpenseFormController extends AbstractController{
         $lineExpenseOutBundleArray = $this->lineExpenseOutBundleRepository->findLineExpenseOutBundleByExpenseForm($entity);
         
         return $this->render('visitor/expenseForm/bundleMonthly.html.twig', [
-            'fiche_frais' => $entity,
+            'bundleMonthly' => $entity,
             'lineExpenseBundleArray' => $lineExpenseBundleArray,
             'lineExpenseOutBundleArray' => $lineExpenseOutBundleArray,
         ]);

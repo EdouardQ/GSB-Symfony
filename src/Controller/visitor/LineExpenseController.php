@@ -53,9 +53,9 @@ class LineExpenseController extends AbstractController
         $this->user = $this->security->getUser(); // Récupère l'utilisateur actuel
     }
 
-    #[Route('/lineExpense/form_forfait/{id}', name: 'visitor.lineExpense.form_forfait')]
+    #[Route('/lineExpense/formBundle/{id}', name: 'visitor.lineExpense.formBundle')]
 
-    public function form_Forfait(int $id = null): Response
+    public function formBundle(int $id = null): Response
     {   
         $entity = $id ? $this->lineExpenseBundleRepository->find($id) : new LineExpenseBundle;
         // Si la méthode récupère un id, elle charge l'entité reliée à l'id, sinon elle instancie une nouvelle entité
@@ -160,9 +160,9 @@ class LineExpenseController extends AbstractController
         ]);
     }
 
-    #[Route('/lineExpense/delete_hors_forfait/{id}', name: 'visitor.lineExpense.delete_hors_forfait')]
+    #[Route('/lineExpense/deleteOutBundle/{id}', name: 'visitor.lineExpense.deleteOutBundle')]
 
-    public function delete_hors_forfait(LineExpenseOutBundle $entity):Response
+    public function deleteOutBundle(LineExpenseOutBundle $entity):Response
     {
         $this->entityManager->remove($entity);
         $this->entityManager->flush();

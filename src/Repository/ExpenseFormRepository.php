@@ -25,7 +25,7 @@ class ExpenseFormRepository extends ServiceEntityRepository
         return $this->createQueryBuilder('expense_form')
             ->join('expense_form.user', 'user')
             ->where("user = ".$user->getId())
-            ->andWhere("expense_form.mois = '$month'")
+            ->andWhere("expense_form.month = '$month'")
             ->getQuery()
             ->getResult()
         ;
@@ -38,7 +38,7 @@ class ExpenseFormRepository extends ServiceEntityRepository
         return $this->createQueryBuilder('expense_form')
             ->join('expense_form.user', 'user')
             ->where("user = ".$user->getId())
-            ->andWhere("expense_form.mois = '$month'")
+            ->andWhere("expense_form.month = '$month'")
             ->getQuery()
             ->getResult()
         ;
