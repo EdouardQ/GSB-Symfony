@@ -17,7 +17,7 @@ Outil pour la gestion du projet :
 Compostion du groupe : 
     - Edouard Quilliou
     - Jonas Groetschel
-    - Marc Baribaud
+    - Marc Baribaud (devFendrix)
 
 
 Nous exploitons des packages, et voici les instructions que nous avons éxécutés :
