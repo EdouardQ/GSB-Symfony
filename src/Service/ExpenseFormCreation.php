@@ -25,10 +25,10 @@ class ExpenseFormCreation
 
         $entity = new ExpenseForm;
         $entity->setUser($user);
-        $entity->setMois($month);
-        $entity->setNbJustificatifs(0);
-        $entity->setMontantValide(0);
-        $entity->setDateModif(new DateTime(date("H:i:s d-m-Y")));
+        $entity->setMonth($month);
+        $entity->setNbSupportingDocuments(0);
+        $entity->setValidAmount(0);
+        $entity->setDateUpdate(new DateTime(date("H:i:s d-m-Y")));
         $entity->setState($stateOnCreation);
         $entity->setToken($user->getLogin().'_'.$month);
 

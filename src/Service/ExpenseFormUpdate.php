@@ -39,17 +39,17 @@ class ExpenseFormUpdate
 
         foreach ($lineExpenseBundleArray as $lineExpenseBundle) {
             $nbJustificatifs += 1;
-            $montantValide += floatval($lineExpenseBundle->getQuantite()) * floatval($lineExpenseBundle->getExpenseBundle()->getMontant());
+            $montantValide += floatval($lineExpenseBundle->getQuantity()) * floatval($lineExpenseBundle->getExpenseBundle()->getAmount());
         }
 
         foreach ($lineExpenseOutBundleArray as $lineExpenseOutBundle) {
             $nbJustificatifs += 1;
-            $montantValide += floatval($lineExpenseOutBundle->getMontant());
+            $montantValide += floatval($lineExpenseOutBundle->getAmount());
         }
 
-        $expenseForm->setNbJustificatifs($nbJustificatifs);
-        $expenseForm->setMontantValide($montantValide);
-        $expenseForm->setDateModif(new DateTime(date("H:i:s d-m-Y")));
+        $expenseForm->setNbSupportingDocuments($nbJustificatifs);
+        $expenseForm->setValidAmount($montantValide);
+        $expenseForm->setDateUpdate(new DateTime(date("H:i:s d-m-Y")));
 
         $this->entityManager->flush();
     }
