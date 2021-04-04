@@ -27,14 +27,98 @@ form .login input{
 
 /******* Partie inc/nav.html.twig ***************/
 
+.sidebar {
+    height:100%;
+    width:200px;
+    background-color:rgb(81, 107, 177);
+    position:fixed!important;
+    z-index:1;
+    overflow:auto;
+}
 
-.navigation{
+.carte { 
+    box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
+}
+
+.animated-left {
+    position:relative;
+    animation:animateleft 0.4s}@keyframes animateleft{from{left:-300px;opacity:0} to{left:0;opacity:1};
+}
+
+.bar-block .bar-item {
+    width:100%;display:block;
+    padding:8px 16px;
+    text-align:left;
+    border:none;
+    white-space:normal;
+    float:none;
+    outline:0;
+}
+
+.bouton {
+    border:none;
+    display:inline-block;
+    padding:8px 16px;
+    vertical-align:middle;
+    overflow:hidden;
+    text-decoration:none;
+    color:white;
+    background-color:inherit;
+    text-align:center;
+    cursor:pointer;
+    white-space:nowrap;
+
+    -webkit-touch-callout:none;
+    -webkit-user-select:none;
+    -khtml-user-select:none;
+    -moz-user-select:none;
+    -ms-user-select:none;
+    user-select:none;
+}
+
+.teal .bouton-side:hover {
+    background-color: rgb(46, 80, 173)!important;
+    transition: 0.5s!important;
+}
+
+.large {
+    font-size:18px!important;
+}
+
+.xlarge {
+    font-size:24px!important}.w3-xxlarge{font-size:36px!important}.w3-xxxlarge{font-size:48px!important}.w3-jumbo{font-size:64px!important;
+}
+
+.teal {
+    color:#fff!important;
+    background-color:rgb(81, 107, 177)!important;
+}
+
+.conteneur {
+    padding:0.01em 16px}.w3-panel{margin-top:16px;margin-bottom:16px;
+}
+
+.conteneur:after, .conteneur:before {
+    content:"";
+    display:table;
+    clear:both;
+}
+
+.teal .logo-nav {
+    width: 80px;
+    margin-left: 1%;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+
+/*.navigation{
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin: 0;
     padding: 0;
-    background-color: rgb(103, 87, 165);
+    background-color: rgb(81, 107, 177);
 }
 .navigation a{
     display: inline-block;
@@ -48,12 +132,24 @@ form .login input{
     margin-right: 5px;
 }
 
+.navigation .container_role a:hover{
+    background-color: rgb(46, 80, 173);
+    border-radius:  20px;
+    transition: 0.5s;
+}
+
 .navigation .container_logo img.logo-nav{
     width: 80px;
-    margin-left: 5px;
+    margin-left: 30px;
 }
 
 .navigation .container_logout{
-    margin-right: 5px;
+    margin-right: 30px;
 }
+
+.navigation .container_logout:hover{
+    background-color: rgb(173, 46, 46);
+    border-radius:  20px;
+    transition: 0.5s;
+}*/
 

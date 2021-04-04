@@ -1,0 +1,34 @@
+<nav class="navigation">
+  <div class="container_logo">
+    <a href="{{ url('visitor.homepage.index') }}">
+        <img src="{{ asset('img/gsb.png') }}" alt="GSB_logo" class="logo-nav ml-3 my-1">
+    </a>
+  </div>
+
+  {% if is_granted('ROLE_VISITOR')%}
+  <div class="container_role">
+    <a href="{{ url('visitor.homepage.index') }}" class="my-3">Accueil</a>
+    <a href="" class="my-3">Comptes-Rendus</a>
+    <a href="{{ url('visitor.expense_form.bundle_monthly') }}" class="my-3">Création de la fiche frais</a>
+    <a href="{{ url('visitor.expense_form.index') }}" class="my-3">Voir mes fiches de frais</a>
+    <a href="" class="my-3">Liste des practiciens</a>
+    <a href="" class="my-3">Liste des visteurs</a>
+    <a href="" class="my-3">Liste des médicaments</a>
+  </div>
+  {% endif %}
+
+  {% if is_granted('ROLE_ACCOUNTANT')%}
+  <div class="container_role">
+    <a href="{{ url('accountant.homepage.index') }}" class="my-3">Accueil</a>
+    <a href="" class="my-3">Comptes-Rendus</a>
+    <a href="{{ url('accountant.expense_form.list_expense_form_left') }}" class="my-3">Consultation fiche restant</a>
+    <a href="{{ url('accountant.expense_form.list_expense_form_treated') }}" class="my-3">Consultation fiche traité</a>
+  </div>
+  {% endif %}
+
+  <div class="container_logout">
+    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+      <a href="{{ url('security.logout') }}" class="my-3">Déconnexion</a>
+    {% endif %}
+  </div>
+</nav>

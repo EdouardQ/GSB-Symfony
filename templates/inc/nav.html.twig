@@ -1,29 +1,35 @@
-<nav class="navigation">
-  <div class="container_logo">
-    <a href="{{ url('visitor.homepage.index') }}">
-        <img src="{{ asset('img/gsb.png') }}" alt="GSB_logo" class="logo-nav ml-3 my-1">
-    </a>
+<div class="sidebar bar-block carte animate-left" style="display:none" id="maSidebar">
+  <button class="bar-item bouton large" onclick="fermer()">Fermer &times;</button>
+  <a href="{{ url('visitor.homepage.index') }}" class="bar-item bouton">Accueil</a>
+  <a href="" class="bar-item bouton">Comptes-Rendus</a>
+  <a href="{{ url('visitor.expense_form.bundle_monthly') }}" class="bar-item bouton">Création de la fiche frais</a>
+  <a href="{{ url('visitor.expense_form.index') }}" class="bar-item bouton">Voir mes fiches de frais</a>
+  <a href="" class="bar-item bouton">Liste des practiciens</a>
+  <a href="" class="bar-item bouton">Liste des visteurs</a>
+  <a href="" class="bar-item bouton">Liste des médicaments</a>
+</div>
+
+<div id="main">
+
+  <div class="teal">
+    <button id="ouvrirNav" class="bouton bouton-side teal xlarge" onclick="ouvrir()">&#9776;</button>
+    <img class="logo-nav" src="{{ asset('img/gsb.png') }}" alt="">
+    <a href="{{ url('security.logout') }}" class="bouton bouton-side">Déconnexion</a>
   </div>
 
-  {% if is_granted('ROLE_VISITOR')%}
-  <div class="container_role">
-    <a href="{{ url('visitor.homepage.index') }}" class="my-3">Accueil</a>
-    <a href="{{ url('visitor.expense_form.bundle_monthly') }}" class="my-3">Création de la fiche frais</a>
-    <a href="{{ url('visitor.expense_form.index') }}" class="my-3">Voir mes fiches de frais</a>
-  </div>
-  {% endif %}
 
-  {% if is_granted('ROLE_ACCOUNTANT')%}
-  <div class="container_role">
-    <a href="{{ url('accountant.homepage.index') }}" class="my-3">Accueil</a>
-    <a href="{{ url('accountant.expense_form.list_expense_form_left') }}" class="my-3">Consultation fiche restant</a>
-    <a href="{{ url('accountant.expense_form.list_expense_form_treated') }}" class="my-3">Consultation fiche traité</a>
-  </div>
-  {% endif %}
 
-  <div class="container_logout">
-    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-      <a href="{{ url('security.logout') }}" class="my-3">Déconnexion</a>
-    {% endif %}
-  </div>
-</nav>
+<script>
+  function ouvrir() {
+    document.getElementById("main").style.marginLeft = "20%";
+    document.getElementById("maSidebar").style.width = "20%";
+    document.getElementById("maSidebar").style.marginLeft = "block";
+    document.getElementById("maSidebar").style.display = "block";
+    document.getElementById("ouvrirNav").style.display = "none";
+  }
+  function fermer() {
+    document.getElementById("main").style.marginLeft = "0%";
+    document.getElementById("maSidebar").style.display = "none";
+    document.getElementById("ouvrirNav").style.display = "inline-block";
+  }
+</script>
