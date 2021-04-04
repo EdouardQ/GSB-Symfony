@@ -8,16 +8,16 @@
   {% if is_granted('ROLE_VISITOR')%}
   <div class="container_role">
     <a href="{{ url('visitor.homepage.index') }}" class="my-3">Accueil</a>
-    <a href="{{ url('visitor.expenseForm.bundleMonthly') }}" class="my-3">Création de la fiche frais</a>
-    <a href="{{ url('visitor.expenseForm.index') }}" class="my-3">Voir mes fiches de frais</a>
+    <a href="{{ url('visitor.expense_form.bundle_monthly') }}" class="my-3">Création de la fiche frais</a>
+    <a href="{{ url('visitor.expense_form.index') }}" class="my-3">Voir mes fiches de frais</a>
   </div>
   {% endif %}
 
   {% if is_granted('ROLE_ACCOUNTANT')%}
   <div class="container_role">
     <a href="{{ url('accountant.homepage.index') }}" class="my-3">Accueil</a>
-    <a href="{{ url('accountant.expenseForm.listExpenseFormLeft') }}" class="my-3">Consultation fiche restant</a>
-    <a href="{{ url('accountant.expenseForm.listExpenseFormTreated') }}" class="my-3">Consultation fiche traité</a>
+    <a href="{{ url('accountant.expense_form.list_expense_form_left') }}" class="my-3">Consultation fiche restant</a>
+    <a href="{{ url('accountant.expense_form.list_expense_form_treated') }}" class="my-3">Consultation fiche traité</a>
   </div>
   {% endif %}
 

@@ -9,12 +9,12 @@ use App\Form\LineExpenseBundleType;
 use App\Entity\LineExpenseOutBundle;
 use App\Form\LineExpenseOutBundleType;
 use App\Repository\ExpenseFormRepository;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use App\Repository\LineExpenseBundleRepository;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Repository\LineExpenseOutBundleRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Request;
 
 #[Route('/visitor')]
 
@@ -34,7 +34,7 @@ class LineExpenseController extends AbstractController
         $this->expenseFormUpdate = $expenseFormUpdate;
     }
 
-    #[Route('/lineExpense/formBundle/{id}', name: 'visitor.lineExpense.formBundle')]
+    #[Route('/lineExpense/formBundle/{id}', name: 'visitor.line_expense.form_bundle')]
 
     public function formBundle(int $id = null, Request $request): Response
     {   
@@ -73,7 +73,7 @@ class LineExpenseController extends AbstractController
         ]);
     }
 
-    #[Route('/lineExpense/deleteBundle/{id}', name: 'visitor.lineExpense.deleteBundle')]
+    #[Route('/lineExpense/deleteBundle/{id}', name: 'visitor.line_expense.delete_bundle')]
 
     public function deleteBundle(LineExpenseBundle $entity): Response
     {
@@ -90,7 +90,7 @@ class LineExpenseController extends AbstractController
     }
 
 
-    #[Route('/lineExpense/formOutBundle/{id}', name: 'visitor.lineExpense.formOutBundle')]
+    #[Route('/lineExpense/formOutBundle/{id}', name: 'visitor.line_expense.form_out_bundle')]
 
     public function formOutBundle(int $id = null): Response
     {
@@ -132,7 +132,7 @@ class LineExpenseController extends AbstractController
         ]);
     }
 
-    #[Route('/lineExpense/deleteOutBundle/{id}', name: 'visitor.lineExpense.deleteOutBundle')]
+    #[Route('/lineExpense/deleteOutBundle/{id}', name: 'visitor.line_expense.delete_out_bundle')]
 
     public function deleteOutBundle(LineExpenseOutBundle $entity): Response
     {

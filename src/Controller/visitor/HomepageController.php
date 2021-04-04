@@ -2,7 +2,6 @@
 
 namespace App\Controller\visitor;
 
-use App\Repository\UserRepository;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -15,10 +14,6 @@ class HomepageController extends AbstractController
 
     public function index(): Response
     {
-        $user = $this->getUser();
-
-        return $this->render("visitor/homepage/index.html.twig",[
-            'user' => $user
-        ]);
+        return $this->render("visitor/homepage/index.html.twig");
     }
 }

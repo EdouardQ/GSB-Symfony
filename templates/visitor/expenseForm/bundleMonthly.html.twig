@@ -68,7 +68,7 @@
                                 <th>Date de saisie</th>
                                 <th>Montant à l'unité</th>
                                 <th>Montant Total</th>
-                                <th><a href="{{ url('visitor.lineExpense.formBundle')}}" class="btn btn-primary">Ajouter un frais forfait</a></th>
+                                <th><a href="{{ url('visitor.line_expense.form_bundle')}}" class="btn btn-primary">Ajouter un frais forfait</a></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -80,8 +80,8 @@
                                 <td>{{ line.expenseBundle.amount }}</td>
                                 <td>{{ (line.expenseBundle.amount|number_format(2,'.',',') * line.quantity|number_format(2,'.',','))|number_format(2,'.',',') }}</td>
                                 <td>  
-                                    <a href="{{ url('visitor.lineExpense.formBundle', {id:line.id})}}" class="btn btn-warning">Modifier</a>
-                                    <a href="{{ url('visitor.lineExpense.deleteBundle', {id:line.id}) }}" class="btn btn-danger" onclick="return confirm('Êtes-vous sûr de supprimer : {{ line.expenseBundle.wording }}')">Supprimer</a>                        
+                                    <a href="{{ url('visitor.line_expense.form_bundle', {id:line.id})}}" class="btn btn-warning">Modifier</a>
+                                    <a href="{{ url('visitor.line_expense.delete_bundle', {id:line.id}) }}" class="btn btn-danger" onclick="return confirm('Êtes-vous sûr de supprimer : {{ line.expenseBundle.wording }}')">Supprimer</a>                        
                                 </td>
                             </tr>
                         {% endfor %}
@@ -101,7 +101,7 @@
                                 <th>Libelle</th>
                                 <th>Date</th>
                                 <th>Montant</th>
-                                <th><a href="{{ url('visitor.lineExpense.formOutBundle')}}" class="btn btn-primary">Ajouter un frais hors forfait</a></th>
+                                <th><a href="{{ url('visitor.line_expense.form_out_bundle')}}" class="btn btn-primary">Ajouter un frais hors forfait</a></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -111,8 +111,8 @@
                                 <td>{{ line.date | date('d-m-Y') }}</td>
                                 <td>{{ line.amount }}</td>
                                 <td>  
-                                    <a href="{{ url('visitor.lineExpense.formOutBundle', {id:line.id})}}" class="btn btn-warning">Modifier</a>
-                                    <a href="{{ url('visitor.lineExpense.deleteOutBundle', {id:line.id}) }}" class="btn btn-danger" onclick="return confirm('Êtes-vous sûr de supprimer : {{ line.wording }}')">Supprimer</a>                        
+                                    <a href="{{ url('visitor.line_expense.form_out_bundle', {id:line.id})}}" class="btn btn-warning">Modifier</a>
+                                    <a href="{{ url('visitor.line_expense.delete_out_bundle', {id:line.id}) }}" class="btn btn-danger" onclick="return confirm('Êtes-vous sûr de supprimer : {{ line.wording }}')">Supprimer</a>                        
                                 </td>
                             </tr>
                         {% endfor %}

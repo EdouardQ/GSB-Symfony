@@ -2,14 +2,14 @@
 
 namespace App\Controller\accountant;
 
-use App\Repository\ExpenseFormRepository;
-use App\Repository\LineExpenseBundleRepository;
-use App\Repository\LineExpenseOutBundleRepository;
 use App\Repository\StateRepository;
 use App\Service\ExpenseFormCreation;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Repository\ExpenseFormRepository;
 use Symfony\Component\HttpFoundation\Response;
+use App\Repository\LineExpenseBundleRepository;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Repository\LineExpenseOutBundleRepository;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 #[Route('/accountant')]
 class ExpenseFormController extends AbstractController
@@ -17,10 +17,9 @@ class ExpenseFormController extends AbstractController
     private ExpenseFormRepository $expenseFormRepository;
     private StateRepository $stateRepository;
 
-    public function __construct(ExpenseFormRepository $expenseFormRepository,ExpenseFormCreation $expenseFormCreation, 
-        LineExpenseBundleRepository $lineExpenseBundleRepository, LineExpenseOutBundleRepository $lineExpenseOutBundleRepository,
-        StateRepository $stateRepository)
-        {
+    public function __construct(ExpenseFormRepository $expenseFormRepository,ExpenseFormCreation $expenseFormCreation,
+    LineExpenseBundleRepository $lineExpenseBundleRepository, LineExpenseOutBundleRepository $lineExpenseOutBundleRepository, StateRepository $stateRepository)
+    {
         $this->expenseFormRepository = $expenseFormRepository;
         $this->expenseFormCreation = $expenseFormCreation;
         $this->lineExpenseBundleRepository = $lineExpenseBundleRepository;
@@ -28,7 +27,7 @@ class ExpenseFormController extends AbstractController
         $this->stateRepository = $stateRepository;
     }
 
-    #[Route('/expenseForm/listExpenseFormLeft', name: 'accountant.expenseForm.listExpenseFormLeft')]
+    #[Route('/expenseForm/listExpenseFormLeft', name: 'accountant.expense_form.list_expense_form_left')]
     public function listExpenseFormLeft(): Response
     {
         $state_cloture = $this->stateRepository->findBy(['wording' => 'Saisie clôturée']);
@@ -42,7 +41,7 @@ class ExpenseFormController extends AbstractController
         ]);
     }
 
-    #[Route('expenseForm/listExpenseFormTreated', name: 'accountant.expenseForm.listExpenseFormTreated')]
+    #[Route('expenseForm/listExpenseFormTreated', name: 'accountant.expense_form.list_expense_form_treated')]
     public function listExpenseFormTreated(): Response
     {
 
