@@ -2,6 +2,7 @@
 
 namespace App\Service;
 
+use App\Entity\ExpenseForm;
 use DateTime;
 use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
@@ -45,14 +46,35 @@ class ExpenseFormUpdate
             if ($lineExpenseOutBundle->getSupportingDocument() !== null) {
                 $nbJustificatifs += 1;
             }
-            if ($lineExpenseOutBundle->getValid()) {
-                $montantValide += floatval($lineExpenseOutBundle->getAmount());
-            }
+            $montantValide += floatval($lineExpenseOutBundle->getAmount());
         }
 
         $expenseForm->setNbSupportingDocuments($nbJustificatifs);
         $expenseForm->setValidAmount($montantValide);
         $expenseForm->setDateUpdate(new DateTime(date("H:i:s d-m-Y")));
+
+        $this->entityManager->flush();
+    }
+
+    public function updateExpenseFormAmount(ExpenseForm $entity): void
+    {
+        $lineExpenseBundleArray = $this->lineExpenseBundleRepository->findLineExpenseBundleByExpenseForm($entity);
+        $lineExpenseOutBundleArray = $this->lineExpenseOutBundleRepository->findLineExpenseOutBundleByExpenseForm($entity);
+
+        $montantValide = 0;
+
+        foreach ($lineExpenseBundleArray as $lineExpenseBundle) {
+            $montantValide += floatval($lineExpenseBundle->getQuantity()) * floatval($lineExpenseBundle->getExpenseBundle()->getAmount());
+        }
+
+        foreach ($lineExpenseOutBundleArray as $lineExpenseOutBundle) {
+            if ($lineExpenseOutBundle->getValid()) {
+                $montantValide += floatval($lineExpenseOutBundle->getAmount());
+            }
+        }
+
+        $entity->setValidAmount($montantValide);
+        $entity->setDateUpdate(new DateTime(date("H:i:s d-m-Y")));
 
         $this->entityManager->flush();
     }
