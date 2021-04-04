@@ -121,6 +121,19 @@ form .login input{
     margin-top: 10px;
 }
 
+.test {
+    margin-top: 6rem;
+    margin-left:80px;
+    text-align: center;
+    font-weight: 100;
+    font-size: 4rem;
+    text-transform:uppercase;
+    color:rgb(81, 107, 177);
+    letter-spacing:6px;
+    text-shadow:10px 10px 10px rgba(0,0,0,.3);
+}
+
+
 
 /*.navigation{
     display: flex;
