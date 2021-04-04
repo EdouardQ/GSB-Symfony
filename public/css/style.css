@@ -55,6 +55,7 @@ form .login input{
     outline:0;
 }
 
+
 .bouton {
     border:none;
     display:inline-block;
@@ -67,6 +68,7 @@ form .login input{
     text-align:center;
     cursor:pointer;
     white-space:nowrap;
+    transition: all 0.5s ease-out;
 
     -webkit-touch-callout:none;
     -webkit-user-select:none;
@@ -76,10 +78,18 @@ form .login input{
     user-select:none;
 }
 
+.bouton:hover, .bouton:focus {
+    color: white;
+    background-color: rgb(20, 60, 170);
+}
+
+
+
 .teal .bouton-side:hover {
     background-color: rgb(46, 80, 173)!important;
     transition: 0.5s!important;
 }
+
 
 .large {
     font-size:18px!important;
