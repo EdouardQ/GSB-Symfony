@@ -81,7 +81,7 @@
                                 <td>{{ (line.expenseBundle.amount|number_format(2,'.',',') * line.quantity|number_format(2,'.',','))|number_format(2,'.',',') }}</td>
                                 <td>  
                                     <a href="{{ url('visitor.line_expense.form_bundle', {id:line.id})}}" class="btn btn-warning">Modifier</a>
-                                    <a href="{{ url('visitor.line_expense.delete_bundle', {id:line.id}) }}" class="btn btn-danger" onclick="return confirm('Êtes-vous sûr de supprimer : {{ line.expenseBundle.wording }}')">Supprimer</a>                        
+                                    <a href="{{ url('visitor.line_expense.delete_bundle', {id:line.id}) }}" class="btn btn-danger" onclick="return confirm('Êtes-vous sûr de supprimer le frais {{ line.expenseBundle.wording }} du {{ line.date | date('d-m-Y') }}')">Supprimer</a>                        
                                 </td>
                             </tr>
                         {% endfor %}
@@ -101,6 +101,7 @@
                                 <th>Libelle</th>
                                 <th>Date</th>
                                 <th>Montant</th>
+                                <th>Justificatif</th>
                                 <th><a href="{{ url('visitor.line_expense.form_out_bundle')}}" class="btn btn-primary">Ajouter un frais hors forfait</a></th>
                             </tr>
                         </thead>
@@ -110,9 +111,14 @@
                                 <td>{{ line.wording }}</td>
                                 <td>{{ line.date | date('d-m-Y') }}</td>
                                 <td>{{ line.amount }}</td>
+                                {% if line.supportingDocument != null %}
+                                    <td><a href="{{ url('visitor.expense_form.bundle_monthly.display_supporting_document', {supportingDocument: line.supportingDocument}) }}" target='_blank' class="btn btn-primary">Consulter</a></td>
+                                {% else %}
+                                    <td>Aucun justificatif donné</td>
+                                {% endif %}
                                 <td>  
                                     <a href="{{ url('visitor.line_expense.form_out_bundle', {id:line.id})}}" class="btn btn-warning">Modifier</a>
-                                    <a href="{{ url('visitor.line_expense.delete_out_bundle', {id:line.id}) }}" class="btn btn-danger" onclick="return confirm('Êtes-vous sûr de supprimer : {{ line.wording }}')">Supprimer</a>                        
+                                    <a href="{{ url('visitor.line_expense.delete_out_bundle', {id:line.id}) }}" class="btn btn-danger" onclick="return confirm('Êtes-vous sûr de supprimer le frais {{ line.wording }} du {{ line.date | date('d-m-Y') }}')">Supprimer</a>                   
                                 </td>
                             </tr>
                         {% endfor %}
