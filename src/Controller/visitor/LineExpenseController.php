@@ -25,6 +25,7 @@ class LineExpenseController extends AbstractController
     private ExpenseFormUpdate $expenseFormUpdate;
 
     public function __construct(LineExpenseBundleRepository $lineExpenseBundleRepository,LineExpenseOutBundleRepository $lineExpenseOutBundleRepository,
+        ExpenseFormRepository $expenseFormRepository, ExpenseFormUpdate $expenseFormUpdate)
     {
         $this->lineExpenseBundleRepository = $lineExpenseBundleRepository;
         $this->lineExpenseOutBundleRepository = $lineExpenseOutBundleRepository;
