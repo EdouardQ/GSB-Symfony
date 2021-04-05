@@ -46,8 +46,9 @@ form .login input{
 }
 
 .bar-block .bar-item {
-    width:100%;display:block;
-    padding:8px 16px;
+    width:100%;
+    display:block;
+    padding:20px 16px;
     text-align:left;
     border:none;
     white-space:normal;
@@ -69,26 +70,42 @@ form .login input{
     cursor:pointer;
     white-space:nowrap;
     transition: all 0.5s ease-out;
-
-    -webkit-touch-callout:none;
-    -webkit-user-select:none;
-    -khtml-user-select:none;
-    -moz-user-select:none;
-    -ms-user-select:none;
-    user-select:none;
 }
 
 .bouton:hover, .bouton:focus {
     color: white;
     background-color: rgb(20, 60, 170);
+    padding-left: 30px;
 }
 
+.bouton-side {
+    border:none;
+    padding:16px 16px;
+    vertical-align:middle;
+}
 
-
-.teal .bouton-side:hover {
+.bouton-side:hover {
     background-color: rgb(46, 80, 173)!important;
     transition: 0.5s!important;
 }
+
+.bouton-deco {
+    text-decoration:none;
+    color: white;
+    float: right;
+    padding:20px 20px;
+}
+
+.bouton-deco:hover {
+    color: white;
+    background-color: rgb(173, 36, 36);
+    border-radius: 20px;
+    margin-top: 5px;
+    padding-top: -5px;
+    transition: 0.5s;
+}
+
+
 
 
 .large {
@@ -121,6 +138,7 @@ form .login input{
     margin-top: 10px;
 }
 
+/********css des menus d'accueil********/
 .bienvenue {
     margin-top: 6rem;
     margin-left:80px;
@@ -132,47 +150,3 @@ form .login input{
     letter-spacing:6px;
     text-shadow:10px 10px 10px rgba(0,0,0,.3);
 }
-
-
-
-/*.navigation{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: 0;
-    padding: 0;
-    background-color: rgb(81, 107, 177);
-}
-.navigation a{
-    display: inline-block;
-    color: white;
-    text-decoration: none;
-}
-
-.navigation .container_role a{
-    padding: 14px 16px;
-    margin-left: 5px;
-    margin-right: 5px;
-}
-
-.navigation .container_role a:hover{
-    background-color: rgb(46, 80, 173);
-    border-radius:  20px;
-    transition: 0.5s;
-}
-
-.navigation .container_logo img.logo-nav{
-    width: 80px;
-    margin-left: 30px;
-}
-
-.navigation .container_logout{
-    margin-right: 30px;
-}
-
-.navigation .container_logout:hover{
-    background-color: rgb(173, 46, 46);
-    border-radius:  20px;
-    transition: 0.5s;
-}*/
-
