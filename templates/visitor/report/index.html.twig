@@ -16,6 +16,7 @@
                 <th>Date</th>
                 <th>Praticien</th>
                 <th>Raison de la Visite</th>
+                <th>Échantillon(s) offert(s)</th>
                 <th></th>
             </tr>
             {% for report in reportArray %}
@@ -23,6 +24,13 @@
                     <td>{{ report.date|date("m/d/Y") }}</td>
                     <td>{{ report.practitioner.name }} {{ report.practitioner.firstName }}</td>
                     <td>{{ report.reasonVisit }}</td>
+                    <td>
+                        {% if report.id in samplesOfferFromAllReportArray|keys %}
+                            Oui
+                        {% else %}
+                            Non
+                        {% endif %}
+                    </td>
                     <td><a href="{{ url('visitor.report.consult', {id:report.id}) }}" class="btn btn-primary">Consulter</a></td>
                 </tr>
             {% endfor %}

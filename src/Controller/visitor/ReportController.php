@@ -32,8 +32,18 @@ class ReportController extends AbstractController
     {
         $reportArray = $this->reportRepository->findby(['user' => $this->getUser()]);
 
+        // Pour afficher Oui ou Non dans la vue
+        $samplesOfferFromAllReportArray =[];
+
+        foreach ($reportArray as $report) {
+            foreach ($report->getSamplesOffers() as $samplesOffer) {
+                $samplesOfferFromAllReportArray[$report->getId()] = True;
+            }
+        }
+
         return $this->render('visitor/report/index.html.twig', [
             'reportArray' => $reportArray,
+            'samplesOfferFromAllReportArray' => $samplesOfferFromAllReportArray,
         ]);
     }
 
