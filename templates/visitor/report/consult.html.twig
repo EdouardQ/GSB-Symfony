@@ -5,9 +5,9 @@
 <section>
     <div class="row">
         <div class="col">
-            <h1>Compte-rendu numéro {{ report.id }}</h1>
-            <table class="table table-striped">
-                <tr>
+            <h1 class="mt-4 mb-4 bread text-center">Compte-rendu numéro {{ report.id }}</h1>
+            <table class="table table-striped rounded text-center">
+                <tr class="text-white table-primary">
                     <th>Praticien visité</th>
                     <th>Date</th>
                     <th>Reason de la visiste</th>
@@ -20,19 +20,19 @@
             </table>
         </div>
     </div>
-    <div class="row">
+    <div class="row mt-4">
         <div class="col">
             <h4>Bilan :</h4>
-            <p>{{ report.summary }}</p>
+            <p class="card card-body">{{ report.summary }}</p>
         </div>
     </div>
     
     {% if samplesOfferArray != null %}
-        <div class="row">
+        <div class="row mt-4">
             <div class="col">
-                <table class="table table-striped">
-                    <h4>Échantillon(s) offert(s) :</h4>
-                    <tr>
+                <table class="table table-striped rounded text-center">
+                    <h4 class="mb-2">Échantillon(s) offert(s) :</h4>
+                    <tr class="text-white table-primary">
                         <th>Nom</th>
                         <th>Code</th>
                         <th>Famille</th>
@@ -54,7 +54,7 @@
     {% endif %}
 
     <p>
-        <span class="mr-2"><h5><a href="{{ url('visitor.report.index') }}">Retour <i class="ion-ios-arrow-forward"></i></a></h5></span>
+        <span class="mr-2"><h5><a href="{{ url('visitor.report.index') }}" class="btn btn-primary">&lt; Retour <i class="ion-ios-arrow-forward"></i></a></h5></span>
     </p>
 </section>
 
