@@ -17,3 +17,4 @@
 /symfony.lock
 /composer.lock
 /src/SupportingDocuments/
+!/vendor/symfony/twig-bridge/Resources/views/Form/bootstrap_4_layout.html.twig
