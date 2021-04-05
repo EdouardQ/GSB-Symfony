@@ -1,0 +1,34 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+    
+<div class="row">
+    <div class="col">
+        <h1>Liste des Praticiens</h1>
+
+        <table class="table table-striped">
+            <tr>
+                <th>Nom</th>
+                <th>Prénom</th>
+                <th>Adresse</th>
+                <th>Ville</th>
+                <th>Code Postal</th>
+                <th>Coefficient de réputation</th>
+                <th>Lieu de travail</th>
+            </tr>
+            {% for practitioner in practitionerArray %}
+                <tr>
+                    <td>{{ practitioner.name }}</td>
+                    <td>{{ practitioner.firstName }}</td>
+                    <td>{{ practitioner.adress }}</td>
+                    <td>{{ practitioner.city }}</td>
+                    <td>{{ practitioner.postalCode }}</td>
+                    <td>{{ practitioner.coeffReputation }}</td>
+                    <td>{{ practitioner.workplace.wording }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+
+{% endblock %}

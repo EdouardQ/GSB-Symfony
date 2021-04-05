@@ -22,9 +22,9 @@ class LineExpenseBundleRepository extends ServiceEntityRepository
 
     public function findLineExpenseBundleByExpenseForm(ExpenseForm $expenseForm) 
     {
-        return $this->createQueryBuilder('Line_expense_bundle')
-            ->join('Line_expense_bundle.expense_form', 'expense_form')
-            ->where("Line_expense_bundle.expense_form = id_expenseForm")
+        return $this->createQueryBuilder('line_expense_bundle')
+            ->join('line_expense_bundle.expenseForm', 'expenseForm')
+            ->where("line_expense_bundle.expenseForm = :id_expenseForm")
             ->setParameter('id_expenseForm', $expenseForm->getId())
             ->getQuery()
             ->getResult()

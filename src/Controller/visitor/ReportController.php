@@ -34,7 +34,7 @@ class ReportController extends AbstractController
         ]);
     }
 
-    #[Route('/report/create', name: 'visitor.report.index')]
+    #[Route('/report/create', name: 'visitor.report.create')]
 
     public function create(Request $request): Response
     {
@@ -52,6 +52,8 @@ class ReportController extends AbstractController
 
             $entityManager->persist($entity);
             $entityManager->flush();
+
+            $this->addFlash('notice', "Le compte-rendu a bien été enregistré.");
 
             return $this->redirectToRoute('visitor.report.samples_offer_form', ['id'=> $entity->getId()]);      
         }
@@ -81,7 +83,7 @@ class ReportController extends AbstractController
             $entityManager->persist($entity);
             $entityManager->flush();
 
-            $this->addFlash('notice', "Le compte-rendu a bien été enregistré");
+            $this->addFlash('noticeBis', "La saisie des échantillons a bien été enregistrée.");
 
             return $this->redirectToRoute('visitor.report.samples_offer_form', ['id'=> $report->getId()]);     
         }

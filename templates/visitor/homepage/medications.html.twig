@@ -1,0 +1,32 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+    
+<div class="row">
+    <div class="col">
+        <h1>Liste des Medicaments</h1>
+
+        <table class="table table-striped">
+            <tr>
+                <th>Code</th>
+                <th>Nom</th>
+                <th>Famille</th>
+                <th>Composition</th>
+                <th>Effets secondaires</th>
+                <th>Contre indication</th>
+            </tr>
+            {% for medication in medicationArray %}
+                <tr>
+                    <td>{{ medication.code }}</td>
+                    <td>{{ medication.name }}</td>
+                    <td>{{ medication.family }}</td>
+                    <td>{{ medication.composition }}</td>
+                    <td>{{ medication.sideEffects }}</td>
+                    <td>{{ medication.contraindications }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+
+{% endblock %}
