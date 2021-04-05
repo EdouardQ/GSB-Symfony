@@ -1,6 +1,6 @@
 # GSB-Symfony
 
-Informations générales directement accesible depuis le dossier "\description".
+Ce projet réunie le dévellopement d'une application de gestion de comptes-rendus et de fiche de frais de visites (PPE2 + PPE3).
 
 ## Pré-requis
 
