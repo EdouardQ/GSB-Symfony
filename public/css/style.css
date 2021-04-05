@@ -150,3 +150,11 @@ form .login input{
     letter-spacing:6px;
     text-shadow:10px 10px 10px rgba(0,0,0,.3);
 }
+
+
+/************frais forfait*************/
+
+.frais {
+    padding-right: 10%;
+    padding-left: 10%;
+}

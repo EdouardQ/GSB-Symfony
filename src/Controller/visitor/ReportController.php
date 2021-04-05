@@ -14,7 +14,11 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 #[Route('/visitor')]
-
+/**
+ * Class ReportController
+ *
+ * Contrôleur pour toutes les pages lié aux rapports de la partie visiteur
+ */
 class ReportController extends AbstractController
 {
     private ReportRepository $reportRepository;
@@ -27,7 +31,7 @@ class ReportController extends AbstractController
     }
 
     #[Route('/report', name: 'visitor.report.index')]
-
+    // Génère et renvoie la page de la liste des comptes-rendu
     public function index(): Response
     {
         $reportArray = $this->reportRepository->findby(['user' => $this->getUser()]);
@@ -48,7 +52,7 @@ class ReportController extends AbstractController
     }
 
     #[Route('/report/create', name: 'visitor.report.create')]
-
+    // Génère et renvoie la page de création d'un rapport
     public function create(Request $request): Response
     {
         $entity = new Report;
@@ -77,7 +81,7 @@ class ReportController extends AbstractController
     }
 
     #[Route('/report/create/samplesOfferForm/{id}', name: 'visitor.report.samples_offer_form')]
-
+    // Génère et renvoie la page d'ajout d'échantillon au rapport
     public function samplesOfferForm(Report $report, Request $request): Response
     {
         $entity = new SamplesOffer;
@@ -108,7 +112,7 @@ class ReportController extends AbstractController
     }
 
     #[Route('/report/consult/{id}', name: 'visitor.report.consult')]
-
+    // Génère et renvoie la page de détail d'un compte rendu
     public function consult(Report $entity): Response
     {
         if($entity->getUser() === $this->getUser()) {

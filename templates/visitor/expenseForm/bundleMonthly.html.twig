@@ -41,7 +41,7 @@
                         <tr class="">
                             <td>{{ bundleMonthly.state.wording }}</td>
                             <td>{{ bundleMonthly.nbSupportingDocuments }}</td>
-                            <td>{{ bundleMonthly.validAmount }}</td>
+                            <td>{{ bundleMonthly.validAmount }} €</td>
                         </tr>
                     </tbody>
                 </table> 
@@ -51,16 +51,16 @@
     
     <br><br>
      
-    <div class="container">
+    <div class="">
         <div class="card-body">
             <div class="row">
-                <div class="col">
+                <div class="frais mb-4">
                     <div class="card-header" style="background-color: #26c4ec";>
                         <h3 class="card-title" style="text-align: center; color: white;">Frais forfait</h3>
                     </div>
 
 
-                    <table class='table table-striped table-bordered' style='width:100%; color: black;' >
+                    <table class='table table-striped table-bordered text-center' style='width:100%; color: black;' >
                         <thead>
                             <tr>
                                 <th>Libelle</th>
@@ -77,8 +77,8 @@
                                 <td>{{ line.expenseBundle.wording }}</td>
                                 <td>{{ line.quantity }}</td>
                                 <td>{{ line.date | date('d-m-Y') }}</td>
-                                <td>{{ line.expenseBundle.amount }}</td>
-                                <td>{{ (line.expenseBundle.amount|number_format(2,'.',',') * line.quantity|number_format(2,'.',','))|number_format(2,'.',',') }}</td>
+                                <td>{{ line.expenseBundle.amount }} €</td>
+                                <td>{{ (line.expenseBundle.amount|number_format(2,'.',',') * line.quantity|number_format(2,'.',','))|number_format(2,'.',',') }} €</td>
                                 <td>  
                                     <a href="{{ url('visitor.line_expense.form_bundle', {id:line.id})}}" class="btn btn-warning">Modifier</a>
                                     <a href="{{ url('visitor.line_expense.delete_bundle', {id:line.id}) }}" class="btn btn-danger" onclick="return confirm('Êtes-vous sûr de supprimer le frais {{ line.expenseBundle.wording }} du {{ line.date | date('d-m-Y') }}')">Supprimer</a>                        
@@ -89,13 +89,13 @@
                     </table> 
                 </div>
 
-                <div class="col">
+                <div class="frais">
                     <div class="card-header" style="background-color: #26c4ec";>
                         <h3 class="card-title" style="text-align: center; color: white;">Frais hors forfait</h3>
                     </div>
 
 
-                    <table class='table table-striped table-bordered' style='width:100%; color: black;' >
+                    <table class='table table-striped table-bordered text-center' style='width:100%; color: black;' >
                         <thead>
                             <tr>
                                 <th>Libelle</th>
@@ -110,7 +110,7 @@
                             <tr>
                                 <td>{{ line.wording }}</td>
                                 <td>{{ line.date | date('d-m-Y') }}</td>
-                                <td>{{ line.amount }}</td>
+                                <td>{{ line.amount }} €</td>
                                 {% if line.supportingDocument != null %}
                                     <td><a href="{{ url('visitor.expense_form.bundle_monthly.display_supporting_document', {supportingDocument: line.supportingDocument}) }}" target='_blank' class="btn btn-primary">Consulter</a></td>
                                 {% else %}
