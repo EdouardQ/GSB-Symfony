@@ -85,13 +85,15 @@ class ExpenseFormController extends AbstractController
 
     #[Route('expenseForm/toggleValid/{id}', name:'accountant.expense_form.toggle_valid')]
     // Génère et renvoie la page détail d'un frais forfait en fonction de son id
-    public function toggleValid(LineExpenseOutBundle $entity): Response
+    public function toggleValid(int $id = null, LineExpenseOutBundle $entity): Response
     {
         $entity->setValid(!$entity->getValid());
 
         $this->expenseFormUpdate->updateExpenseFormAmount($entity->getExpenseForm());
 
         $this->getDoctrine()->getManager()->flush($entity);
+
+        $this->addFlash('noticeExpenseForm',  $id ? "Le frais hors forfait a bien été accepté" : "Le frais hors forfait a bien été refusé");
 
         return $this->redirectToRoute('accountant.expense_form.consult_expense_form', ['id' => $entity->getExpenseForm()->getId()]);
     }
