@@ -37,4 +37,4 @@ security:
     access_control:
         - { path: ^/visitor, roles: ROLE_VISITOR }
         - { path: ^/accountant, roles: ROLE_ACCOUNTANT }
-        # - { path: ^/admin, roles: ROLE_ADMIN }
+        - { path: ^/admin, roles: ROLE_ADMIN }

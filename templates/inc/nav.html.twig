@@ -1,6 +1,6 @@
 <div class="sidebar bar-block carte animate-left" style="display:none" id="maSidebar">
   <button class="bar-item bouton large" onclick="fermer()">Fermer &times;</button>
-  {% if is_granted('ROLE_VISITOR')%}
+  {% if is_granted('ROLE_VISITOR') %}
     <a href="{{ url('visitor.homepage.index') }}" class="bar-item bouton">Accueil</a>
     <a href="{{ url('visitor.report.index') }}" class="bar-item bouton">Consulter mes comptes-rendus</a>
     <a href="{{ url('visitor.report.create') }}" class="bar-item bouton">Créer un compte-rendu</a>
@@ -10,10 +10,13 @@
     <a href="{{ url('visitor.homepage.list_visitors') }}" class="bar-item bouton">Liste des visteurs</a>
     <a href="{{ url('visitor.homepage.list_medications') }}" class="bar-item bouton">Liste des médicaments</a>
   {% endif %}
-  {% if is_granted('ROLE_ACCOUNTANT')%}
+  {% if is_granted('ROLE_ACCOUNTANT') %}
     <a href="{{ url('accountant.homepage.index') }}" class="bar-item bouton">Accueil</a>
     <a href="{{ url('accountant.expense_form.list_expense_form_left') }}" class="bar-item bouton">Consultation fiches restantes</a>
     <a href="{{ url('accountant.expense_form.list_expense_form_treated') }}" class="bar-item bouton">Consultation fiches traitées</a>
+  {% endif %}
+  {% if is_granted('ROLE_ADMIN') %}
+    <a href="{{ url('admin.homepage.index') }}" class="bar-item bouton">Accueil</a>
   {% endif %}
 </div>
 
@@ -21,6 +24,12 @@
 
   <div class="teal">
     <button id="ouvrirNav" class="bouton-side teal xlarge" onclick="ouvrir()">&#9776;</button>
-    <img class="logo-nav" src="{{ asset('img/gsb.png') }}" alt="gsb.png">
+    {% if is_granted('ROLE_VISITOR') %}
+    <a href="{{ url('visitor.homepage.index') }}"><img class="logo-nav" src="{{ asset('img/gsb.png') }}" alt="gsb.png"></a>
+    {% elseif is_granted('ROLE_ACCOUNTANT') %}
+    <a href="{{ url('accountant.homepage.index') }}"><img class="logo-nav" src="{{ asset('img/gsb.png') }}" alt="gsb.png"></a>
+    {% elseif is_granted('ROLE_ADMIN') %}
+    <a href="{{ url('admin.homepage.index') }}"><img class="logo-nav" src="{{ asset('img/gsb.png') }}" alt="gsb.png"></a>
+    {% endif %}
     <a href="{{ url('security.logout') }}" class="bouton-deco">Déconnexion</a>
   </div>
