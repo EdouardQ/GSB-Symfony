@@ -15,11 +15,7 @@ use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 #[Route('/visitor')]
-/**
- * Class ExpenseFormController
- *
- * Contrôleur pour toutes les pages lié aux fiches frais de la partie visiteur
- */
+
 class ExpenseFormController extends AbstractController{
     private ExpenseFormRepository $expenseFormRepository;
     private ExpenseFormCreation $expenseFormCreation;
@@ -37,7 +33,7 @@ class ExpenseFormController extends AbstractController{
     }
 
     #[Route('/expenseForm/index', name: 'visitor.expense_form.index')]
-    // Génère et renvoie la page de la liste des fiches de frais
+
     public function index(): Response
     {
         // sélection de tous les fiches frais
@@ -50,7 +46,7 @@ class ExpenseFormController extends AbstractController{
     }
 
     #[Route('/expenseForm/bundleMonthly', name: 'visitor.expense_form.bundle_monthly')]
-    // Génère et renvoie la page de création de fiche de frais pour le mois actuel
+
     public function bundleMonthly(): Response
     {   
         $user = $this->getUser(); // Récupère l'utilisateur actuel
@@ -83,7 +79,6 @@ class ExpenseFormController extends AbstractController{
     }
 
     #[Route('/expenseForm/bundleMonthly/displaySupportingDocument/{supportingDocument}', name: 'visitor.expense_form.bundle_monthly.display_supporting_document')]
-    // Génère la page du justificatif dans un nouvel onglet
     public function displaySupportingDocument(LineExpenseOutBundle $entity, KernelInterface $kernelInterface): Response
     {   
         // charge le fichier depuis le dossier racine du projet à son emplacement dans un objet File

@@ -15,11 +15,6 @@ use App\Service\ExpenseFormUpdate;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 #[Route('/accountant')]
-/**
- * Class ExpenseFormController
- *
- * Contrôleur pour toutes les pages lié aux fiches frais de la partie comptable
- */
 class ExpenseFormController extends AbstractController
 {
     private ExpenseFormRepository $expenseFormRepository;
@@ -38,7 +33,6 @@ class ExpenseFormController extends AbstractController
     }
 
     #[Route('/expenseForm/listExpenseFormLeft', name: 'accountant.expense_form.list_expense_form_left')]
-    // Génère et renvoie la page des fiche frais restant à traiter
     public function listExpenseFormLeft(): Response
     {
         $state_cloture = $this->stateRepository->findBy(['wording' => 'Saisie clôturée']);
@@ -53,7 +47,6 @@ class ExpenseFormController extends AbstractController
     }
 
     #[Route('expenseForm/listExpenseFormTreated', name: 'accountant.expense_form.list_expense_form_treated')]
-    // Génère et renvoie la page des fiche frais traité
     public function listExpenseFormTreated(): Response
     {
         $stateReimbursed = $this->stateRepository->findBy(['wording' => "Remboursée"])[0];
@@ -69,7 +62,6 @@ class ExpenseFormController extends AbstractController
     }
 
     #[Route('expenseForm/consultExpenseForm/{id}', name:"accountant.expense_form.consult_expense_form")]
-    // Génère et renvoie la page détail d'un frais forfait en fonction de son id
     public function consultExpenseForm(ExpenseForm $entity): Response
     {
         // Sélection des lignes frais forfait et hors forfait
@@ -84,7 +76,6 @@ class ExpenseFormController extends AbstractController
     }
 
     #[Route('expenseForm/toggleValid/{id}', name:'accountant.expense_form.toggle_valid')]
-    // Mets à jour la prise en compte des frais rembourser, et redirige sur la même page
     public function toggleValid(LineExpenseOutBundle $entity): Response
     {
         $entity->setValid(!$entity->getValid());
@@ -96,9 +87,7 @@ class ExpenseFormController extends AbstractController
         return $this->redirectToRoute('accountant.expense_form.consult_expense_form', ['id' => $entity->getExpenseForm()->getId()]);
     }
 
-    
     #[Route('expenseForm/formTreatment/{id}', name:'accountant.expense_form.form_treatment')]
-    // Mets à jour l'état de la fiche frais et renvoie vers la page des fiche frais traitées
     public function formTreatment(ExpenseForm $entity): Response
     {
 
