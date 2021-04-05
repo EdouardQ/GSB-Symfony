@@ -96,7 +96,7 @@ class LineExpenseController extends AbstractController
 
     #[Route('/lineExpense/formOutBundle/{id}', name: 'visitor.line_expense.form_out_bundle')]
 
-    public function formOutBundle(int $id = null): Response
+    public function formOutBundle(int $id = null, Request $request): Response
     {
         // Si la méthode récupère un id, elle charge l'entité reliée à l'id, sinon elle instancie une nouvelle entité
         $entity = $id ? $this->lineExpenseOutBundleRepository->find($id) : new LineExpenseOutBundle;
@@ -109,7 +109,7 @@ class LineExpenseController extends AbstractController
 
         // handleRequest : récupérer la saisie dans la requête HTTP, utilisation du $_POST
         // getCurrentRequest vient de AbstractController
-        $form->handleRequest($this->container->get('request_stack')->getCurrentRequest());
+        $form->handleRequest($request);
 
         $dayMax = cal_days_in_month(CAL_GREGORIAN, date("m", strtotime("now")), date("Y", strtotime("now"))); // jour maximum du mois en cours (int)
 

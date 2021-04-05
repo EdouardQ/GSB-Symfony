@@ -44,9 +44,11 @@ class ExpenseFormController extends AbstractController
     #[Route('expenseForm/listExpenseFormTreated', name: 'accountant.expense_form.list_expense_form_treated')]
     public function listExpenseFormTreated(): Response
     {
+        $stateReimbursed = $this->stateRepository->findBy(['wording' => "Remboursée"])[0];
+        $stateValidated = $this->stateRepository->findBy(['wording' => "Validée et mise en paiement"])[0];
 
         // Sélection de tous les fiches frais restant à valider ou refusé
-        $expenseformrepository = $this->expenseFormRepository->getExpenseFormTreated();
+        $expenseformrepository = $this->expenseFormRepository->getExpenseFormTreated($stateReimbursed, $stateValidated);
 
         // affichage de la vue
         return $this->render('accountant/expenseForm/listExpenseFormTreated.html.twig', [

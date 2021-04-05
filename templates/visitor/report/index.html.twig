@@ -1,0 +1,33 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+    
+<div class="row">
+    <div class="col">
+        <h1>Liste des comptes-rendus</h1>
+
+        {# affichage des messages flash: #}
+        {% for message in app.flashes('notice') %}
+            <p class="alert alert-success">{{ message }}</p>
+        {% endfor %}
+
+        <table class="table table-striped">
+            <tr>
+                <th>Date</th>
+                <th>Praticien</th>
+                <th>Raison de la Visite</th>
+                <th></th>
+            </tr>
+            {% for report in reportArray %}
+                <tr>
+                    <td>{{ report.date|date("m/d/Y") }}</td>
+                    <td>{{ report.practitioner.name }} {{ report.practitioner.firstName }}</td>
+                    <td>{{ report.reasonVisit }}</td>
+                    <td><a href="#" class="btn btn-primary">Consulter</a></td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+
+{% endblock %}

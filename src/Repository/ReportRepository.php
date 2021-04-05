@@ -2,9 +2,10 @@
 
 namespace App\Repository;
 
+use App\Entity\User;
 use App\Entity\Report;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
 /**
  * @method Report|null find($id, $lockMode = null, $lockVersion = null)
@@ -17,6 +18,18 @@ class ReportRepository extends ServiceEntityRepository
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Report::class);
+    }
+
+    public function findTheLastReportFromUser(User $user)
+    {
+        return $this->createQueryBuilder('report')
+            ->where('report.user = :user')
+            ->setParameter('user', $user)
+            ->orderBy('report.id', 'DESC')
+            ->setMaxResults(1)
+            ->getQuery()
+            ->getResult()
+        ;
     }
 
     // /**

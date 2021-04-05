@@ -33,15 +33,15 @@ class LineExpenseOutBundleType extends AbstractType
                 ],
             ])
             ->add('date', DateType::class, [
-            'widget' => 'single_text',
-            'empty_data' => null,
-            'constraints' => [
-                new NotBlank([
-                    'message' => "Veuillez rentrer une date.",
-                ]),
-                new DayOfDate(),
-            ],
-        ])
+                'widget' => 'single_text',
+                'empty_data' => null,
+                'constraints' => [
+                    new NotBlank([
+                        'message' => "Veuillez rentrer une date.",
+                    ]),
+                    new DayOfDate(),
+                ],
+            ])
             ->add('amount', IntegerType::class, [
                 'constraints' => [
                     new Positive([

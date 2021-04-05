@@ -1,0 +1,55 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+<br><br>
+<section class="hero-wrap hero-wrap-2" data-stellar-background-ratio="0.5">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row no-gutters slider-text align-items-center justify-content-center">
+        <div class="col-md-9 ftco-animate text-center">
+            <h1 class="mb-2 bread">Echantillons du compte-rendu numéro {{ numReport }}</h1>
+        </div>
+      </div>
+    </div>
+  </section>
+      
+  <br><br>
+
+  <div class="site-section">
+    <div class="container">  
+      <div class="row">
+        <div class="col-md-12">
+
+          {{ form_start(form, { attr: { novalidate: 'novalidate' } }) }}    
+            <div class="p-3 p-lg-5 border">
+              <div class="form-group row">
+                <div class="col-md-6">
+                  {{ form_label(form.medication, 'Médicament :', {'label_attr': {'class': 'text-black'}}) }}
+                  {{ form_widget(form.medication) }}
+                </div>
+                <div class="col-md-6">
+                  {{ form_label(form.quantity, 'Quantity :', {'label_attr': {'class': 'text-black'}}) }}
+                  {{ form_widget(form.quantity, {'attr': {'min': 1}}) }}
+                </div>
+              </div><br><br>
+                <div class="form-group row">
+                  <div class="col-lg-12">
+                    <input type="submit" class="btn btn-primary btn-lg btn-block" value="Envoyer">
+                  </div>
+                </div>
+              </div>
+            </div>
+          {{ form_end(form) }}          
+        </div>
+      </div>
+    </div>
+    <br>
+    <p style="text-align: center;">
+        <a href="{{ url('visitor.report.index') }}" class="btn btn-danger" onclick="return confirm('Êtes-vous sûr de vouloir arrêter la saisie des échantillons offerts')">Arrêter la saisie d'échantillon</a>
+    </p>
+         
+  </div>
+
+  <br><br><br><br><br>
+
+{% endblock %}

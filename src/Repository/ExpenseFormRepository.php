@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\User;
 use App\Entity\ExpenseForm;
+use App\Entity\State;
 use Doctrine\Persistence\ManagerRegistry;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
@@ -24,8 +25,12 @@ class ExpenseFormRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('expense_form')
             ->join('expense_form.user', 'user')
-            ->where("user = ".$user->getId())
-            ->andWhere("expense_form.month = '$month'")
+            ->where("user = :user")
+            ->andWhere("expense_form.month = :month")
+            ->setParameters([
+                'user' => $user->getId(),
+                'month' => $month, 
+            ])
             ->getQuery()
             ->getResult()
         ;
@@ -36,20 +41,28 @@ class ExpenseFormRepository extends ServiceEntityRepository
         $month = date("m-Y"); // Récupère la date sous la forme "01-2021"
 
         return $this->createQueryBuilder('expense_form')
-            ->join('expense_form.user', 'user')
-            ->where("user = ".$user->getId())
-            ->andWhere("expense_form.month = '$month'")
-            ->getQuery()
-            ->getResult()
-        ;
+        ->join('expense_form.user', 'user')
+        ->where("user = :user")
+        ->andWhere("expense_form.month = :month")
+        ->setParameters([
+            'user' => $user->getId(),
+            'month' => $month, 
+        ])
+        ->getQuery()
+        ->getResult()
+    ;
     }
 
-    public function getExpenseFormTreated()
+    public function getExpenseFormTreated(State $stateReimbursed, State $stateValidated)
     {
         return $this->createQueryBuilder('expense_form')
             ->join('expense_form.state', 'state')
-            ->where("state.id = 1")
-            ->orWhere("state.id = 4")
+            ->where("state.id = :id_state_reimbursed")
+            ->orWhere("state.id = :id_stater_validated")
+            ->setParameters([
+                'id_state_reimbursed' => $stateReimbursed->getId(),
+                'id_stater_validated' => $stateValidated->getId(), 
+            ])
             ->getQuery()
             ->getResult()
         ;
