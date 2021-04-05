@@ -1,5 +1,7 @@
 {% extends "base.html.twig" %}
 
+{% form_theme form "form/custom_bootstrap_4_layout.html.twig" %}
+
 {% block body %}
 <br><br>
 <section class="hero-wrap hero-wrap-2" data-stellar-background-ratio="0.5">
@@ -31,10 +33,12 @@
                 <div class="col-md-6">
                   {{ form_label(form.medication, 'Médicament :', {'label_attr': {'class': 'text-black'}}) }}
                   {{ form_widget(form.medication) }}
+                  {{ form_errors(form.medication) }}
                 </div>
                 <div class="col-md-6">
                   {{ form_label(form.quantity, 'Quantity :', {'label_attr': {'class': 'text-black'}}) }}
                   {{ form_widget(form.quantity, {'attr': {'min': 1}}) }}
+                  {{ form_errors(form.quantity) }}
                 </div>
               </div><br><br>
                 <div class="form-group row">

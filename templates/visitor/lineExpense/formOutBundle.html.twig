@@ -1,5 +1,7 @@
 {% extends "base.html.twig" %}
 
+{% form_theme form "form/custom_bootstrap_4_layout.html.twig" %}
+
 {% block body %}
 
 <section class="hero-wrap hero-wrap-2" data-stellar-background-ratio="0.5">
@@ -35,18 +37,22 @@
                 <div class="col-md-6">
                     {{ form_label(form.wording, 'Libelle :', {'label_attr': {'class': 'text-black'}}) }}
                     {{ form_widget(form.wording) }}
+                    {{ form_errors(form.wording) }}
                 </div>
                 <div class="col-md-6">
                   {{ form_label(form.date, 'Date :', {'label_attr': {'class': 'text-black'}}) }}
                   {{ form_widget(form.date, {'attr': {'min': "now"|date("Y-m"~"-01"), 'max': "now"|date("Y-m")~"-"~dayMax}}) }}
+                  {{ form_errors(form.date) }}
                 </div>
                 <div class="col-md-6">
                   {{ form_label(form.amount, 'Montant :', {'label_attr': {'class': 'text-black'}}) }}
                   {{ form_widget(form.amount, {'attr': {'min': '1'}}) }}
+                  {{ form_errors(form.amount) }}
                 </div>
                 <div class="col-md-6">
                   {{ form_label(form.supportingDocument, 'Justificatif (optionnel) :', {'label_attr': {'class': 'text-black'}}) }}
                   {{ form_widget(form.supportingDocument) }}
+                  {{ form_errors(form.supportingDocument) }}
                 </div>
               </div><br><br>
                 <div class="form-group row">

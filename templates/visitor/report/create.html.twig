@@ -1,5 +1,7 @@
 {% extends "base.html.twig" %}
 
+{% form_theme form "form/custom_bootstrap_4_layout.html.twig" %}
+
 {% block body %}
 
 <section class="hero-wrap hero-wrap-2" data-stellar-background-ratio="0.5">
@@ -26,18 +28,22 @@
                 <div class="col-md-6">
                   {{ form_label(form.practitioner, 'Praticien :', {'label_attr': {'class': 'text-black'}}) }}
                   {{ form_widget(form.practitioner) }}
+                  {{ form_errors(form.practitioner) }}
                 </div>
                 <div class="col-md-6">
                   {{ form_label(form.date, 'Date :', {'label_attr': {'class': 'text-black'}}) }}
                   {{ form_widget(form.date) }}
+                  {{ form_errors(form.date) }}
                 </div>
                 <div class="col-md-6">
                   {{ form_label(form.reasonVisit, 'Motif de la visite :', {'label_attr': {'class': 'text-black'}}) }}
                   {{ form_widget(form.reasonVisit) }}
+                  {{ form_errors(form.reasonVisit) }}
                 </div>
                 <div class="col-md-6">
                   {{ form_label(form.summary, 'Bilan :', {'label_attr': {'class': 'text-black'}}) }}
                   {{ form_widget(form.summary, {'attr': {'cols': '20', 'rows': '7'}}) }}
+                  {{ form_errors(form.summary) }}
                 </div>
               </div><br><br>
                 <div class="form-group row">
