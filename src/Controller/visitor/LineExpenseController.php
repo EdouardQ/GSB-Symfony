@@ -39,7 +39,7 @@ class LineExpenseController extends AbstractController
     }
 
     #[Route('/lineExpense/formBundle/{id}', name: 'visitor.line_expense.form_bundle')]
-
+    // Génère et renvoie la page de l'ajout d'un frais forfait
     public function formBundle(int $id = null, Request $request): Response
     {   
         // Si la méthode récupère un id, elle charge l'entité reliée à l'id, sinon elle instancie une nouvelle entité
@@ -78,7 +78,7 @@ class LineExpenseController extends AbstractController
     }
 
     #[Route('/lineExpense/deleteBundle/{id}', name: 'visitor.line_expense.delete_bundle')]
-
+    // Permets la suppression d'une ligne frais forfait
     public function deleteBundle(LineExpenseBundle $entity): Response
     {
         $entityManager = $this->getDoctrine()->getManager();
@@ -95,7 +95,7 @@ class LineExpenseController extends AbstractController
 
 
     #[Route('/lineExpense/formOutBundle/{id}', name: 'visitor.line_expense.form_out_bundle')]
-
+    // Génère et renvoie la page d'ajout d'un frais hors forfait
     public function formOutBundle(int $id = null, Request $request): Response
     {
         // Si la méthode récupère un id, elle charge l'entité reliée à l'id, sinon elle instancie une nouvelle entité
@@ -158,7 +158,7 @@ class LineExpenseController extends AbstractController
     }
 
     #[Route('/lineExpense/deleteOutBundle/{id}', name: 'visitor.line_expense.delete_out_bundle')]
-
+    // Permets la suppression d'une ligne hors forfait
     public function deleteOutBundle(LineExpenseOutBundle $entity): Response
     {
         $entityManager = $this->getDoctrine()->getManager();
