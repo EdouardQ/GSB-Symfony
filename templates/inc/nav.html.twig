@@ -12,8 +12,8 @@
   {% endif %}
   {% if is_granted('ROLE_ACCOUNTANT')%}
     <a href="{{ url('accountant.homepage.index') }}" class="bar-item bouton">Accueil</a>
-    <a href="{{ url('accountant.expense_form.list_expense_form_left') }}" class="bar-item bouton">Consultation fiche restant</a>
-    <a href="{{ url('accountant.expense_form.list_expense_form_treated') }}" class="bar-item bouton">Consultation fiche traité</a>
+    <a href="{{ url('accountant.expense_form.list_expense_form_left') }}" class="bar-item bouton">Consultation fiches restantes</a>
+    <a href="{{ url('accountant.expense_form.list_expense_form_treated') }}" class="bar-item bouton">Consultation fiches traitées</a>
   {% endif %}
 </div>
 
@@ -21,6 +21,6 @@
 
   <div class="teal">
     <button id="ouvrirNav" class="bouton-side teal xlarge" onclick="ouvrir()">&#9776;</button>
-    <img class="logo-nav" src="{{ asset('img/gsb.png') }}" alt="">
+    <img class="logo-nav" src="{{ asset('img/gsb.png') }}" alt="gsb.png">
     <a href="{{ url('security.logout') }}" class="bouton-deco">Déconnexion</a>
   </div>
