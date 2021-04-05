@@ -22,6 +22,7 @@ class ReportType extends AbstractType
             ->add('date', DateType::class, [
                 'widget' => 'single_text',
                 'empty_data' => null,
+                'invalid_message' => 'Veuillez renseigner la date.',
                 'constraints' => [
                     new NotBlank([
                         'message' => "Veuillez rentrer une date.",
