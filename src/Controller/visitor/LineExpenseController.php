@@ -65,7 +65,7 @@ class LineExpenseController extends AbstractController
             $entityManager->persist($entity);
             $entityManager->flush();
 
-            $this->addFlash('notice',  $id ? "Le Frais a bien été modifié" : "Le Frais a bien été enregistré");
+            $this->addFlash('noticeExpenseBundle',  $id ? "Le Frais a bien été modifié" : "Le Frais a bien été enregistré");
 
             $this->expenseFormUpdate->updateExpenseForm($this->getUser());
 
@@ -86,7 +86,7 @@ class LineExpenseController extends AbstractController
         $entityManager->remove($entity);
         $entityManager->flush();
 
-        $this->addFlash('notice', "Le Frais a bien été supprimé");
+        $this->addFlash('noticeExpenseBundle', "Le Frais a bien été supprimé");
 
         $this->expenseFormUpdate->updateExpenseForm($this->getUser());
         
@@ -144,7 +144,7 @@ class LineExpenseController extends AbstractController
             $entityManager->persist($entity);
             $entityManager->flush();
 
-            $this->addFlash('notice',  $id ? "Le Frais a bien été modifié" : "Le Frais a bien été enregistré");
+            $this->addFlash('noticeExpenseBundle',  $id ? "Le Frais a bien été modifié" : "Le Frais a bien été enregistré");
 
             $this->expenseFormUpdate->updateExpenseForm($this->getUser());
 
@@ -170,7 +170,7 @@ class LineExpenseController extends AbstractController
         $entityManager->remove($entity);
         $entityManager->flush();
 
-        $this->addFlash('notice', "Le Frais a bien été supprimé");
+        $this->addFlash('noticeExpenseBundle', "Le Frais a bien été supprimé");
 
         $this->expenseFormUpdate->updateExpenseForm($this->getUser());
         

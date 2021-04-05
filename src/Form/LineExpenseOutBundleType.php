@@ -45,7 +45,10 @@ class LineExpenseOutBundleType extends AbstractType
             ->add('amount', IntegerType::class, [
                 'constraints' => [
                     new Positive([
-                        'message' => "Le montant doit être strictement supérieur à 0."
+                        'message' => "Le montant doit être strictement supérieur à 0.",
+                    ]),
+                    new NotBlank([
+                        'message' => "Le montant doit être strictement supérieur à 0.",
                     ]),
                 ]
             ])

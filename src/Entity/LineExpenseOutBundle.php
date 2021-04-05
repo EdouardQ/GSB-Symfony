@@ -83,7 +83,7 @@ class LineExpenseOutBundle
         return $this->amount;
     }
 
-    public function setAmount(string $amount): self
+    public function setAmount(?string $amount): self
     {
         $this->amount = $amount;
 

@@ -25,7 +25,7 @@
                 <br>
 
                 {# affichage des messages flash: #}
-                {% for message in app.flashes('notice') %}
+                {% for message in app.flashes('noticeExpenseBundle') %}
                 <p class="alert alert-success">{{ message }}</p>
                 {% endfor %}
                 
