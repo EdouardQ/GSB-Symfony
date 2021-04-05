@@ -7,7 +7,7 @@
         <h1>Liste des comptes-rendus</h1>
 
         {# affichage des messages flash: #}
-        {% for message in app.flashes('notice') %}
+        {% for message in app.flashes('noticeReport') %}
             <p class="alert alert-success">{{ message }}</p>
         {% endfor %}
 
@@ -23,7 +23,7 @@
                     <td>{{ report.date|date("m/d/Y") }}</td>
                     <td>{{ report.practitioner.name }} {{ report.practitioner.firstName }}</td>
                     <td>{{ report.reasonVisit }}</td>
-                    <td><a href="#" class="btn btn-primary">Consulter</a></td>
+                    <td><a href="{{ url('visitor.report.consult', {id:report.id}) }}" class="btn btn-primary">Consulter</a></td>
                 </tr>
             {% endfor %}
         </table>

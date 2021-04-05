@@ -37,10 +37,6 @@
                     {{ form_widget(form.wording) }}
                 </div>
                 <div class="col-md-6">
-                  {# affichage des messages flash: #}
-                  {% for message in app.flashes('notice') %}
-                    <p class="alert alert-danger">{{ message }}</p>
-                  {% endfor %}
                   {{ form_label(form.date, 'Date :', {'label_attr': {'class': 'text-black'}}) }}
                   {{ form_widget(form.date, {'attr': {'min': "now"|date("Y-m"~"-01"), 'max': "now"|date("Y-m")~"-"~dayMax}}) }}
                 </div>

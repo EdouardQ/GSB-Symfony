@@ -3,24 +3,27 @@
 namespace App\Controller\visitor;
 
 use App\Entity\Report;
-use App\Entity\SamplesOffer;
 use App\Form\ReportType;
+use App\Entity\SamplesOffer;
 use App\Form\SamplesOfferType;
 use App\Repository\ReportRepository;
+use App\Repository\SamplesOfferRepository;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Request;
 
 #[Route('/visitor')]
 
 class ReportController extends AbstractController
 {
     private ReportRepository $reportRepository;
+    private SamplesOfferRepository $samplesOfferRepository;
 
-    public function __construct(ReportRepository $reportRepository)
+    public function __construct(ReportRepository $reportRepository, SamplesOfferRepository $samplesOfferRepository)
     {
-        $this->reportRepository = $reportRepository;    
+        $this->reportRepository = $reportRepository;
+        $this->samplesOfferRepository = $samplesOfferRepository;
     }
 
     #[Route('/report', name: 'visitor.report.index')]
@@ -53,7 +56,7 @@ class ReportController extends AbstractController
             $entityManager->persist($entity);
             $entityManager->flush();
 
-            $this->addFlash('notice', "Le compte-rendu a bien été enregistré.");
+            $this->addFlash('noticeReport', "Le compte-rendu a bien été enregistré.");
 
             return $this->redirectToRoute('visitor.report.samples_offer_form', ['id'=> $entity->getId()]);      
         }
@@ -92,6 +95,22 @@ class ReportController extends AbstractController
             'form' => $form->createView(),
             'numReport' => $report->getId(),
         ]);
+    }
+
+    #[Route('/report/consult/{id}', name: 'visitor.report.consult')]
+
+    public function consult(Report $entity): Response
+    {
+        if($entity->getUser() === $this->getUser()) {
+
+            $samplesOfferArray = $this->samplesOfferRepository->findBy(['report' => $entity]);
+
+            return $this->render('visitor/report/consult.html.twig', [
+                'report' => $entity,
+                'samplesOfferArray' => $samplesOfferArray,
+            ]);
+        }
+        return $this->redirectToRoute('visitor.report.index');
     }
 
 }
