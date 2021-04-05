@@ -6,11 +6,7 @@
 <form method="post">
     
 
-    {% if app.user %}
-        <div class="mb-3">
-            Vous êtes connecté en tant que{{ app.user.username }}, <a href="{{ path('security.logout') }}">Déconnexion</a>
-        </div>
-    {% endif %}
+    
     <div class="login">
         <img class="mb-4 mx-auto d-block" src="{{ asset('img/gsb.png') }}" alt="Gsb_logo">
         {% if error %}
