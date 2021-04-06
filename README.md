@@ -18,3 +18,8 @@ Nous vous invitons à exécuter les commandes suivantes :
 * **Edouard** **Quilliou** _alias_ [@EdouardQ](https://github.com/EdouardQ)
 * **Jonas** **Groetschel** _alias_ [@Jogroe](https://github.com/Jogroe)
 * **Marc** **Baribaud** _alias_ [@devFendrix](https://github.com/devFendrix)
+
+## Note
+
+Pour update la version prod, rentrer la commande suivante:
+APP_ENV=prod APP_DEBUG=0 php bin/console cache:clear

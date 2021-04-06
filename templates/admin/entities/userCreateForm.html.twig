@@ -1,0 +1,97 @@
+{% extends "base.html.twig" %}
+
+{% form_theme form "form/custom_bootstrap_4_layout.html.twig" %}
+
+{% block body %}
+
+<section class="hero-wrap hero-wrap-2" data-stellar-background-ratio="0.5">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row no-gutters slider-text align-items-center justify-content-center">
+        <div class="col-md-9 ftco-animate text-center">
+            <h1 class="mt-4 mb-4 bread text-center">Ajout d'un utilisateur</h1>
+        </div>
+      </div>
+    </div>
+  </section>
+      
+  <br><br>
+
+  <div class="site-section">
+    <div class="container">
+    <p>
+        <span class="mr-2"><h5><a href="{{ app.request.headers.get('referer') }}" class="btn btn-primary">&lt; Retour <i class="ion-ios-arrow-forward"></i></a></h5></span>
+    </p>
+      <div class="row">
+        <div class="col-md-12">
+
+          {{ form_start(form, { attr: { novalidate: 'novalidate' } }) }}    
+            <div class="p-3 p-lg-5 border border-2 border-primary rounded">
+              <div class="form-group row">
+                <div class="col-md-6">
+                  {{ form_label(form.name, 'Noms :', {'label_attr': {'class': 'text-primary mb-1'}}) }}
+                  {{ form_widget(form.name, {'attr': {'class': 'border border-primary rounded'}}) }}
+                  {{ form_errors(form.name) }}
+                </div>
+                <div class="col-md-6">
+                  {{ form_label(form.firstName, 'Prénoms :', {'label_attr': {'class': 'text-primary mb-1'}}) }}
+                  {{ form_widget(form.firstName, {'attr': {'class': 'border border-primary rounded'}}) }}
+                  {{ form_errors(form.firstName) }}
+                </div>
+                <div class="col-md-6 mt-3">
+                  {{ form_label(form.login, 'Login :', {'label_attr': {'class': 'text-primary mb-1'}}) }}
+                  {{ form_widget(form.login, {'attr': {'class': 'border border-primary rounded'}}) }}
+                  {{ form_errors(form.login) }}
+                </div>
+                <div class="col-md-6 mt-3">
+                  {{ form_label(form.email, 'Email :', {'label_attr': {'class': 'text-primary mb-1'}}) }}
+                  {{ form_widget(form.email, {'attr': {'cols': '20', 'rows': '7', 'class': 'border border-primary rounded'}}) }}
+                  {{ form_errors(form.email) }}
+                </div>
+                 <div class="col-md-6 mt-3">
+                  {{ form_label(form.adress, 'Adresse :', {'label_attr': {'class': 'text-primary mb-1'}}) }}
+                  {{ form_widget(form.adress, {'attr': {'cols': '20', 'rows': '7', 'class': 'border border-primary rounded'}}) }}
+                  {{ form_errors(form.adress) }}
+                </div>
+                 <div class="col-md-6 mt-3">
+                  {{ form_label(form.city, 'Ville :', {'label_attr': {'class': 'text-primary mb-1'}}) }}
+                  {{ form_widget(form.city, {'attr': {'cols': '20', 'rows': '7', 'class': 'border border-primary rounded'}}) }}
+                  {{ form_errors(form.city) }}
+                </div>
+                <div class="col-md-6 mt-3">
+                  {{ form_label(form.postalCode, 'Code postal :', {'label_attr': {'class': 'text-primary mb-1'}}) }}
+                  {{ form_widget(form.postalCode, {'attr': {'cols': '20', 'rows': '7', 'class': 'border border-primary rounded'}}) }}
+                  {{ form_errors(form.postalCode) }}
+                </div>
+                <div class="col-md-6 mt-3">
+                  {{ form_label(form.hiringDate, 'Date d\'embauche :', {'label_attr': {'class': 'text-primary mb-1'}}) }}
+                  {{ form_widget(form.hiringDate, {'attr': {'cols': '20', 'rows': '7', 'class': 'border border-primary rounded'}}) }}
+                  {{ form_errors(form.hiringDate) }}
+                </div>
+                 <div class="col-md-6">
+                    {{ form_label(form.plainPassword.first, "Nouveau mot de passe :", {'label_attr': {'class': 'text-primary mb-1'}}) }}
+                    {{ form_widget(form.plainPassword.first, {'attr': {'class': 'border border-primary rounded'}}) }}
+                    {{ form_errors(form.plainPassword.first) }}
+                </div>
+                <div class="col-md-6">
+                    {{ form_label(form.plainPassword.second, "Confirmer nouveau votre mot de passe :", {'label_attr': {'class': 'text-primary mb-1'}}) }}
+                    {{ form_widget(form.plainPassword.second, {'attr': {'class': 'border border-primary rounded'}}) }}
+                    {{ form_errors(form.plainPassword.second) }}
+                </div>
+              </div><br><br>
+                <div class="form-group row">
+                  <div class="text-center">
+                    <input type="submit" class="btn btn-lg btn-primary" value="Envoyer">
+                  </div>
+                </div>
+              </div>
+            </div>
+          {{ form_end(form) }}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <br><br><br><br><br>
+
+{% endblock %}

@@ -70,8 +70,12 @@ class AppAuthenticator extends AbstractFormLoginAuthenticator implements Passwor
         $user = $this->entityManager->getRepository(User::class)->findOneBy(['login' => $credentials['login']]);
 
         if (!$user) {
-            // fail authentication with a custom error
-            throw new CustomUserMessageAuthenticationException('Identifiant ou mot de passe incorrect.');
+            // Erreur si les identifiants rentrés sont incorrects
+            throw new CustomUserMessageAuthenticationException('Identifiant incorrect.');
+        }
+        if (!$user->getEnabled()) {
+            // Erreur si le compte auquel l'utilisateur souhaite se connecter est désactivé
+            throw new CustomUserMessageAuthenticationException('Compte désactivé.');
         }
 
         return $user;
@@ -105,6 +109,10 @@ class AppAuthenticator extends AbstractFormLoginAuthenticator implements Passwor
         elseif (in_array('ROLE_ACCOUNTANT', $token->getRoleNames())) 
         {
             $landingPage = 'accountant.homepage.index';
+        }
+        elseif (in_array('ROLE_ADMIN', $token->getRoleNames())) 
+        {
+            $landingPage = 'admin.homepage.index';
         }
         else
         {

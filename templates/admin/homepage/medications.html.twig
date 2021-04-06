@@ -6,23 +6,34 @@
     <div class="col">
         <h1 class="mt-4 mb-4 bread text-center">Liste des Medicaments</h1>
 
+        {# affichage des messages flash: #}
+        {% for message in app.flashes('noticeMedication') %}
+        <p class="alert alert-success">{{ message }}</p>
+        {% endfor %}
+
         <table class="table table-striped table-bordered rounded text-center">
             <tr class="text-white table-primary">
+                <th>Id</th>
                 <th>Code</th>
                 <th>Nom</th>
                 <th>Famille</th>
                 <th>Composition</th>
                 <th>Effets secondaires</th>
                 <th>Contre indications</th>
+                <th><a href="{{ url('admin.medicationForm')}}" class="btn btn-light">Ajouter un médicament</a></th>
             </tr>
             {% for medication in medicationArray %}
                 <tr>
+                    <td>{{ medication.id }}</td>
                     <td>{{ medication.code }}</td>
                     <td>{{ medication.name }}</td>
                     <td>{{ medication.family }}</td>
                     <td>{{ medication.composition }}</td>
                     <td>{{ medication.sideEffects }}</td>
                     <td>{{ medication.contraindications }}</td>
+                    <td>  
+                        <a href="{{ url('admin.medicationForm', {id:medication.id})}}" class="btn btn-warning">Modifier</a>
+                    </td>
                 </tr>
             {% endfor %}
         </table>

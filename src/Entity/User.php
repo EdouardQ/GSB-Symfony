@@ -76,6 +76,11 @@ class User implements UserInterface
      */
     private $reports;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $enabled;
+
     public function __construct()
     {
         $this->reports = new ArrayCollection();
@@ -91,7 +96,7 @@ class User implements UserInterface
         return $this->login;
     }
 
-    public function setLogin(string $login): self
+    public function setLogin(?string $login): self
     {
         $this->login = $login;
 
@@ -165,7 +170,7 @@ class User implements UserInterface
         return $this->name;
     }
 
-    public function setName(string $name): self
+    public function setName(?string $name): self
     {
         $this->name = $name;
 
@@ -177,7 +182,7 @@ class User implements UserInterface
         return $this->firstName;
     }
 
-    public function setFirstname(string $firstName): self
+    public function setFirstname(?string $firstName): self
     {
         $this->firstName = $firstName;
 
@@ -189,7 +194,7 @@ class User implements UserInterface
         return $this->adress;
     }
 
-    public function setAdress(string $adress): self
+    public function setAdress(?string $adress): self
     {
         $this->adress = $adress;
 
@@ -201,7 +206,7 @@ class User implements UserInterface
         return $this->postalCode;
     }
 
-    public function setPostalCode(string $postalCode): self
+    public function setPostalCode(?string $postalCode): self
     {
         $this->postalCode = $postalCode;
 
@@ -225,7 +230,7 @@ class User implements UserInterface
         return $this->email;
     }
 
-    public function setEmail(string $email): self
+    public function setEmail(?string $email): self
     {
         $this->email = $email;
 
@@ -237,7 +242,7 @@ class User implements UserInterface
         return $this->city;
     }
 
-    public function setCity(string $city): self
+    public function setCity(?string $city): self
     {
         $this->city = $city;
 
@@ -270,6 +275,18 @@ class User implements UserInterface
                 $report->setUser(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getEnabled(): ?bool
+    {
+        return $this->enabled;
+    }
+
+    public function setEnabled(bool $enabled): self
+    {
+        $this->enabled = $enabled;
 
         return $this;
     }

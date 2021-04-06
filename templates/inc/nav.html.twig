@@ -6,8 +6,8 @@
     <a href="{{ url('visitor.report.create') }}" class="bar-item bouton">Créer un compte-rendu</a>
     <a href="{{ url('visitor.expense_form.bundle_monthly') }}" class="bar-item bouton">Créer une fiche frais</a>
     <a href="{{ url('visitor.expense_form.index') }}" class="bar-item bouton">Voir mes fiches de frais</a>
-    <a href="{{ url('visitor.homepage.list_practitioners') }}" class="bar-item bouton">Liste des practiciens</a>
     <a href="{{ url('visitor.homepage.list_visitors') }}" class="bar-item bouton">Liste des visteurs</a>
+    <a href="{{ url('visitor.homepage.list_practitioners') }}" class="bar-item bouton">Liste des practiciens</a>
     <a href="{{ url('visitor.homepage.list_medications') }}" class="bar-item bouton">Liste des médicaments</a>
   {% endif %}
   {% if is_granted('ROLE_ACCOUNTANT') %}
@@ -17,6 +17,10 @@
   {% endif %}
   {% if is_granted('ROLE_ADMIN') %}
     <a href="{{ url('admin.homepage.index') }}" class="bar-item bouton">Accueil</a>
+    <a href="{{ url('admin.homepage.list_visitors') }}" class="bar-item bouton">Liste des visteurs</a>
+    <a href="{{ url('admin.homepage.list_accountants') }}" class="bar-item bouton">Liste des comptables</a>
+    <a href="{{ url('admin.homepage.list_practitioners') }}" class="bar-item bouton">Liste des practiciens</a>
+    <a href="{{ url('admin.homepage.list_medications') }}" class="bar-item bouton">Liste des médicaments</a>
   {% endif %}
 </div>
 

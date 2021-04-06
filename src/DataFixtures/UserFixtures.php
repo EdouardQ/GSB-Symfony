@@ -21,6 +21,7 @@ class UserFixtures extends Fixture
             'city' => 'paris',
             'postalCode' => '75015',
             'hiringDate' => '2019-09-01',
+            'enabled' => true,
         ],
         [
             'name' => 'Gest',
@@ -33,6 +34,7 @@ class UserFixtures extends Fixture
             'city' => 'Berre',
             'postalCode' => '13025',
             'hiringDate' => '1985-11-01',
+            'enabled' => true,
         ],
         [
             'name' => 'Frémont',
@@ -45,6 +47,7 @@ class UserFixtures extends Fixture
             'city' => 'Allauh',
             'postalCode' => '13012',
             'hiringDate' => '1998-10-01',
+            'enabled' => true,
         ],
         [
             'name' => 'Groetschel',
@@ -57,6 +60,7 @@ class UserFixtures extends Fixture
             'city' => 'paris',
             'postalCode' => '75015',
             'hiringDate' => '2019-09-01',
+            'enabled' => true,
         ],
         [
             'name' => 'Baribaud ',
@@ -69,6 +73,20 @@ class UserFixtures extends Fixture
             'city' => 'Issy-les-Moulineaux',
             'postalCode' => '92130',
             'hiringDate' => '2019-09-01',
+            'enabled' => true,
+        ],
+        [
+            'name' => 'admin ',
+            'firstName' => 'admin',
+            'login' => 'admin',
+            'roles' => ['ROLE_ADMIN'],
+            'email' => 'admin@gsb.fr',
+            'password' => '$argon2i$v=19$m=16,t=2,p=1$c1o0ZWI0ZkczalB5ODRKQg$q+DWOfcstsq5+NV9+apfpw',
+            'adress' => '40 av Barth',
+            'city' => 'paris',
+            'postalCode' => '75015',
+            'hiringDate' => '2019-09-01',
+            'enabled' => true,
         ]
     ];
     public function load(ObjectManager $manager)
@@ -85,6 +103,7 @@ class UserFixtures extends Fixture
             $entity->setCity($user['city']);
             $entity->setPostalCode($user['postalCode']);
             $entity->setHiringDate(new DateTime( $user['hiringDate']));
+            $entity->setEnabled($user['enabled']);
 
             $this->addReference($user['login'], $entity);
             

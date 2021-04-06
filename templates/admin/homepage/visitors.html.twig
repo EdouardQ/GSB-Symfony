@@ -1,0 +1,52 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+    
+<div class="row">
+    <div class="col">
+        <h1 class="mt-4 mb-4 bread text-center">Liste des Visiteurs</h1>
+
+        {# affichage des messages flash: #}
+        {% for message in app.flashes('noticeVisitor') %}
+        <p class="alert alert-success">{{ message }}</p>
+        {% endfor %}
+
+        <table class="table table-striped rounded text-center">
+            <tr class="text-white table-primary">
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Prénom</th>
+                <th>Login</th>
+                <th>Email</th>
+                <th>Ville</th>
+                <th>Code Postal</th>
+                <th>Mot de passe</th>
+                <th><a href="{{ url('admin.create.user')}}" class="btn btn-light">Ajouter un visiteur</a></th>
+            </tr>
+            {% for visitor in visitorArray %}
+                <tr>
+                    <td>{{ visitor.id }}</td>
+                    <td>{{ visitor.name }}</td>
+                    <td>{{ visitor.firstName }}</td>
+                    <td>{{ visitor.login }}</td>
+                    <td>{{ visitor.email }}</td>
+                    <td>{{ visitor.city }}</td>
+                    <td>{{ visitor.postalCode }}</td>
+                    <td><a href="{{ url('admin.password', {id:visitor.id})}}" class="btn btn-warning">Changer le mot de passe</a></td>
+                    <td>  
+                        <a href="{{ url('admin.update.user', {id:visitor.id})}}" class="btn btn-warning">Modifier</a>
+                        <a href="{{ url('admin.toggle.user', {id:visitor.id}) }}" class="btn btn-danger" onclick="return confirm('Êtes-vous sûr de changer le status du compte du visiteur {{ visitor.name }} {{ visitor.firstName }}')">
+                        {% if visitor.enabled %}
+                            Désactiver
+                        {% else %}
+                            Activer
+                        {% endif %}
+                        </a>                   
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+
+{% endblock %}

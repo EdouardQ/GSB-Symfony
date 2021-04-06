@@ -1,0 +1,45 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+    
+<div class="row">
+    <div class="col">
+        <h1 class="mt-4 mb-4 bread text-center">Liste des Praticiens</h1>
+
+        {# affichage des messages flash: #}
+        {% for message in app.flashes('noticePratitioner') %}
+        <p class="alert alert-success">{{ message }}</p>
+        {% endfor %}
+
+        <table class="table table-striped rounded text-center">
+            <tr class="text-white table-primary">
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Prénom</th>
+                <th>Adresse</th>
+                <th>Ville</th>
+                <th>Code Postal</th>
+                <th>Coefficient de réputation</th>
+                <th>Lieu de travail</th>
+                <th><a href="{{ url('admin.practitionerForm')}}" class="btn btn-light">Ajouter un praticien</a></th>
+            </tr>
+            {% for practitioner in practitionerArray %}
+                <tr>
+                    <td>{{ practitioner.id }}</td>
+                    <td>{{ practitioner.name }}</td>
+                    <td>{{ practitioner.firstName }}</td>
+                    <td>{{ practitioner.adress }}</td>
+                    <td>{{ practitioner.city }}</td>
+                    <td>{{ practitioner.postalCode }}</td>
+                    <td>{{ practitioner.coeffReputation }}</td>
+                    <td>{{ practitioner.workplace.wording }}</td>
+                    <td>  
+                        <a href="{{ url('admin.practitionerForm', {id:practitioner.id})}}" class="btn btn-warning">Modifier</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+
+{% endblock %}
