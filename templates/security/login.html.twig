@@ -1,30 +1,26 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Log in!{% endblock %}
+{% block title %}GSB - Connexion{% endblock %}
 
 {% block body %}
 <form method="post">
-    {% if error %}
-        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-    {% endif %}
+    
 
-    {% if app.user %}
-        <div class="mb-3">
-            You are logged in as {{ app.user.username }}, <a href="{{ path('security.logout') }}">Logout</a>
-        </div>
-    {% endif %}
-
+    
     <div class="login">
-        <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-        <label for="inputLogin">Login</label>
-        <input type="text" value="{{ last_username }}" name="login" id="inputLogin" class="form-control" required autofocus>
-        <label for="inputPassword">Password</label>
-        <input type="password" name="password" id="inputPassword" class="form-control" required>
+        <img class="mb-4 mx-auto d-block" src="{{ asset('img/gsb.png') }}" alt="Gsb_logo">
+        {% if error %}
+            <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+        {% endif %}
+        <label for="inputLogin">Identifiant</label>
+        <input type="text" value="{{ last_username }}" name="login" id="inputLogin" class="form-control text-center" required autofocus>
+        <label for="inputPassword">Mot de passe</label>
+        <input type="password" name="password" id="inputPassword" class="form-control text-center" required>
 
         <input type="hidden" name="_csrf_token"
             value="{{ csrf_token('authenticate') }}"
         >
-        <button class="btn_log btn btn-lg btn-danger" type="submit">Sign in</button>
+        <button class="btn_log btn btn-lg btn-primary rounded-pill" type="submit">Connexion</button>
     </div>
 
     {#

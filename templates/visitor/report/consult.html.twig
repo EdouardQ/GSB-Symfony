@@ -1,0 +1,61 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+<br>
+<section>
+    <div class="row">
+        <div class="col">
+            <h1 class="mt-4 mb-4 bread text-center">Compte-rendu numéro {{ report.id }}</h1>
+            <table class="table table-striped rounded text-center">
+                <tr class="text-white table-primary">
+                    <th>Praticien visité</th>
+                    <th>Date</th>
+                    <th>Reason de la visiste</th>
+                </tr>
+                <tr>
+                    <td>{{ report.practitioner.name }} {{ report.practitioner.firstName }}</td>
+                    <td>{{ report.date|date('d-m-Y') }}</td>
+                    <td>{{ report.reasonVisit }}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="row mt-4">
+        <div class="col">
+            <h4>Bilan :</h4>
+            <p class="card card-body">{{ report.summary }}</p>
+        </div>
+    </div>
+    
+    {% if samplesOfferArray != null %}
+        <div class="row mt-4">
+            <div class="col">
+                <table class="table table-striped rounded text-center">
+                    <h4 class="mb-2">Échantillon(s) offert(s) :</h4>
+                    <tr class="text-white table-primary">
+                        <th>Nom</th>
+                        <th>Code</th>
+                        <th>Famille</th>
+                        <th>Composition</th>
+                        <th>Quantité</th>
+                    </tr>
+                    {% for samplesOffer in samplesOfferArray %}
+                        <tr>
+                            <td>{{ samplesOffer.medication.name }}</td>
+                            <td>{{ samplesOffer.medication.code }}</td>
+                            <td>{{ samplesOffer.medication.family }}</td>
+                            <td>{{ samplesOffer.medication.composition }}</td>
+                            <td>{{ samplesOffer.quantity }}</td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    {% endif %}
+
+    <p>
+        <span class="mr-2"><h5><a href="{{ url('visitor.report.index') }}" class="btn btn-primary">&lt; Retour <i class="ion-ios-arrow-forward"></i></a></h5></span>
+    </p>
+</section>
+
+{% endblock %}

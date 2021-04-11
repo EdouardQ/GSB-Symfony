@@ -1,0 +1,117 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+
+    <div class="container">
+        <div class="row no-gutters slider-text align-items-center justify-content-center">
+            <div class="col-md-9 ftco-animate text-center">
+                <h1 class="mt-4 mb-2 bread">Fiche frais du {{ expenseForm.month }}</h1>
+                <br>
+
+                {# affichage des messages flash: #}
+                {% for message in app.flashes('noticeExpenseBundle') %}
+                <p class="alert alert-success">{{ message }}</p>
+                {% endfor %}
+                
+                <table class='table table-striped table-hover table-bordered ' style='width:100%; color: black;' >
+                    <thead>
+                        <tr class="table-primary">
+                            <th style="color : white">Statut</th>
+                            <th style="color : white">Dernière modification faite le</th>
+                            <th style="color : white">Nombre de Justificatifs</th>
+                            <th style="color : white">Montant Total des Frais</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="">
+                            <td>{{ expenseForm.state.wording }}</td>
+                            <td>{{ expenseForm.dateUpdate | date('d-m-Y') }}</td>
+                            <td>{{ expenseForm.nbSupportingDocuments }}</td>
+                            <td>{{ expenseForm.validAmount }} €</td>
+                        </tr>
+                    </tbody>
+                </table> 
+            </div>
+        </div>
+    </div>
+    
+    <br><br>
+     
+    <div class="">
+        <div class="card-body">
+            <div class="row">
+                <div class="frais mb-4">
+                    <div class="card-header" style="background-color: #26c4ec";>
+                        <h3 class="card-title" style="text-align: center; color: white;">Frais forfait</h3>
+                    </div>
+
+
+                    <table class='table table-striped table-hover table-bordered text-center' style='width:100%; color: black;' >
+                        <thead>
+                            <tr>
+                                <th>Libelle</th>
+                                <th>Quantité</th>
+                                <th>Date de saisie</th>
+                                <th>Montant à l'unité</th>
+                                <th>Montant Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% for line in lineExpenseBundleArray %}
+                            <tr>
+                                <td>{{ line.expenseBundle.wording }}</td>
+                                <td>{{ line.quantity }}</td>
+                                <td>{{ line.date | date('d-m-Y') }}</td>
+                                <td>{{ line.expenseBundle.amount }} €</td>
+                                <td>{{ (line.expenseBundle.amount|number_format(2,'.',',') * line.quantity|number_format(2,'.',','))|number_format(2,'.',',') }} €</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table> 
+                </div>
+
+                <div class="frais">
+                    <div class="card-header" style="background-color: #26c4ec";>
+                        <h3 class="card-title" style="text-align: center; color: white;">Frais hors forfait</h3>
+                    </div>
+
+
+                    <table class='table table-striped table-hover table-bordered text-center' style='width:100%; color: black;' >
+                        <thead>
+                            <tr>
+                                <th>Libelle</th>
+                                <th>Date</th>
+                                <th>Montant</th>
+                                <th>Justificatif</th>
+                                {% if expenseForm.state.wording == "Validée et mise en paiement" or  expenseForm.state.wording == "Remboursée" %}
+                                    <th>Statut</th>
+                                {% endif %}
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% for line in lineExpenseOutBundleArray %}
+                            <tr>
+                                <td>{{ line.wording }}</td>
+                                <td>{{ line.date | date('d-m-Y') }}</td>
+                                <td>{{ line.amount }} €</td>
+                                {% if line.supportingDocument != null %}
+                                    <td><a href="{{ url('visitor.expense_form.display_supporting_document', {supportingDocument: line.supportingDocument}) }}" target='_blank' class="btn btn-primary">Consulter</a></td>
+                                {% else %}
+                                    <td>Aucun justificatif donné</td>
+                                {% endif %}
+                                {% if expenseForm.state.wording == "Validée et mise en paiement" or  expenseForm.state.wording == "Remboursée" %}
+                                    {% if line.valid %}
+                                        <td class="bg-success">Frais accepté</td>
+                                    {% else %}
+                                        <td class="bg-danger">Frais refusé</td>
+                                    {% endif %}
+                                {% endif %}
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table> 
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

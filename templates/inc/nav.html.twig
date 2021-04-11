@@ -1,40 +1,40 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-    
-    {#
-    <a class="navbar-brand" href="{{ url('homepage.index') }}">Homepage</a>
-    #}
-    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-    {#
-      <li class="nav-item active">
-        <a class="nav-link" href="{{ url('homepage.index') }}">Accueil</a>
-      </li>
-       
-      <li class="nav-item">
-        <a class="nav-link" href="{{ url('game.index') }}">Liste</a>
-      </li>
-      #}
+<div class="sidebar bar-block carte animate-left" style="display:none" id="maSidebar">
+  <button class="bar-item bouton large" onclick="fermer()">Fermer &times;</button>
+  {% if is_granted('ROLE_VISITOR') %}
+    <a href="{{ url('visitor.homepage.index') }}" class="bar-item bouton">Accueil</a>
+    <a href="{{ url('visitor.report.index') }}" class="bar-item bouton">Consulter mes comptes-rendus</a>
+    <a href="{{ url('visitor.report.create') }}" class="bar-item bouton">Créer un compte-rendu</a>
+    <a href="{{ url('visitor.expense_form.bundle_monthly') }}" class="bar-item bouton">Créer une fiche frais</a>
+    <a href="{{ url('visitor.expense_form.index') }}" class="bar-item bouton">Voir mes fiches de frais</a>
+    <a href="{{ url('visitor.homepage.list_visitors') }}" class="bar-item bouton">Liste des visteurs</a>
+    <a href="{{ url('visitor.homepage.list_practitioners') }}" class="bar-item bouton">Liste des practiciens</a>
+    <a href="{{ url('visitor.homepage.list_medications') }}" class="bar-item bouton">Liste des médicaments</a>
+  {% endif %}
+  {% if is_granted('ROLE_ACCOUNTANT') %}
+    <a href="{{ url('accountant.homepage.index') }}" class="bar-item bouton">Accueil</a>
+    <a href="{{ url('accountant.expense_form.list_expense_form_left') }}" class="bar-item bouton">Consultation fiches restantes</a>
+    <a href="{{ url('accountant.expense_form.list_expense_form_treated') }}" class="bar-item bouton">Consultation fiches traitées</a>
+  {% endif %}
+  {% if is_granted('ROLE_ADMIN') %}
+    <a href="{{ url('admin.homepage.index') }}" class="bar-item bouton">Accueil</a>
+    <a href="{{ url('admin.homepage.list_visitors') }}" class="bar-item bouton">Liste des visiteurs</a>
+    <a href="{{ url('admin.homepage.list_accountants') }}" class="bar-item bouton">Liste des comptables</a>
+    <a href="{{ url('admin.homepage.list_practitioners') }}" class="bar-item bouton">Liste des practiciens</a>
+    <a href="{{ url('admin.homepage.list_medications') }}" class="bar-item bouton">Liste des médicaments</a>
+  {% endif %}
+</div>
 
-      {% if is_granted('ROLE_VISITEUR') %}
-      <li class="nav-item">
-        <a href="{{ url('visiteur.homepage.index') }}" class="nav-link">Accueil</a>
-      </li>
-      <li class="nav-item">
-        <a href="#" class="nav-link">Voir mes fiches de frais</a>
-      </li>
-      {% endif %}
+<div id="main">
 
-      <li class="nav-item">
-        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-          <a href="{{ url('security.logout') }}" class="nav-link">Déconnexion</a>
-        {% else %}
-          <a href="{{ url('security.login') }}" class="nav-link">Connexion</a>    
-        {% endif %}
-      </li>
-
-    </ul>
+  <div class="teal">
+    <button id="ouvrirNav" class="bouton-side teal xlarge" onclick="ouvrir()">&#9776;</button>
+    {% if is_granted('ROLE_VISITOR') %}
+    <a href="{{ url('visitor.homepage.index') }}"><img class="logo-nav" src="{{ asset('img/gsb.png') }}" alt="gsb.png"></a>
+    {% elseif is_granted('ROLE_ACCOUNTANT') %}
+    <a href="{{ url('accountant.homepage.index') }}"><img class="logo-nav" src="{{ asset('img/gsb.png') }}" alt="gsb.png"></a>
+    {% elseif is_granted('ROLE_ADMIN') %}
+    <a href="{{ url('admin.homepage.index') }}"><img class="logo-nav" src="{{ asset('img/gsb.png') }}" alt="gsb.png"></a>
+    {% endif %}
+    <a href="{{ url('security.logout') }}" class="bouton-deco">Déconnexion</a>
   </div>
-</nav>
+{# le div de id="main" est fermé dans base.html.twig pour gérer tout l'écran de la navbar#}

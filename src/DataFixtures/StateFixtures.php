@@ -10,16 +10,16 @@ class StateFixtures extends Fixture
 {
     private array $list = [
         [
-            "libelle" => "Remboursée",
+            "wording" => "Remboursée",
         ],
         [
-            "libelle" => "Saisie clôturée",
+            "wording" => "Saisie clôturée",
         ],
         [
-            "libelle" => "Fiche créée, saisie en cours",
+            "wording" => "Fiche créée, saisie en cours",
         ],
         [
-            "libelle" => "Validée et mise en paiement",
+            "wording" => "Validée et mise en paiement",
         ],
     ];
 
@@ -27,9 +27,9 @@ class StateFixtures extends Fixture
     {
         foreach ($this->list as $state) {
             $entity = new State;
-            $entity->setLibelle($state["libelle"]);
+            $entity->setWording($state["wording"]);
 
-            $this->addReference($state['libelle'], $entity);
+            $this->addReference($state['wording'], $entity);
 
             $manager->persist($entity);
         }

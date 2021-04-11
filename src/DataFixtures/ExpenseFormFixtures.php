@@ -12,31 +12,31 @@ class ExpenseFormFixtures extends Fixture implements DependentFixtureInterface
 {
     private array $list = [
         [
-            "user" => "equilliou",
-            "mois" => "02-2021",
-            "nbJustificatifs" => 2,
-            "montantValide" => 203.00,
-            "dateModif" => '12:00:00 2021-02-28',
+            "user" => "ffremont",
+            "month" => "03-2021",
+            "nbSupportingDocuments" => 0,
+            "validAmount" => 204.40,
+            "dateUpdate" => '12:00:00 2021-03-25',
             "state" => "Saisie clôturée",
-            "token" => "equilliou_02-2021"
+            "token" => "ffremont_03-2021"
         ],
         [
-            "user" => "equilliou",
-            "mois" => "01-2021",
-            "nbJustificatifs" => 2,
-            "montantValide" => 225.00,
-            "dateModif" => '12:30:49 2021-01-27',
+            "user" => "jdebelle",
+            "month" => "03-2021",
+            "nbSupportingDocuments" => 0,
+            "validAmount" => 194.80,
+            "dateUpdate" => '12:30:49 2021-03-27',
             "state" => "Remboursée",
-            "token" => "equilliou_01-2021"
+            "token" => "jdebelle_03-2021"
         ],
         [
-            "user" => "agest",
-            "mois" => "01-2021",
-            "nbJustificatifs" => 2,
-            "montantValide" => 118.00,
-            "dateModif" => '12:30:49 2021-01-27',
-            "state" => "Remboursée",
-            "token" => "agest_01-2021"
+            "user" => "cenault",
+            "month" => "03-2021",
+            "nbSupportingDocuments" => 0,
+            "validAmount" => 141.00,
+            "dateUpdate" => '12:30:49 2021-03-27',
+            "state" => "Validée et mise en paiement",
+            "token" => "cenault_03-2021"
         ],
     ];
 
@@ -45,10 +45,10 @@ class ExpenseFormFixtures extends Fixture implements DependentFixtureInterface
     {
         foreach ($this->list as $expenseForm) {
             $entity = new ExpenseForm;
-            $entity->setMois($expenseForm["mois"]);
-            $entity->setNbJustificatifs($expenseForm["nbJustificatifs"]);
-            $entity->setMontantValide($expenseForm["montantValide"]);
-            $entity->setDateModif(new DateTime( $expenseForm["dateModif"]));
+            $entity->setMonth($expenseForm["month"]);
+            $entity->setNbSupportingDocuments($expenseForm["nbSupportingDocuments"]);
+            $entity->setValidAmount($expenseForm["validAmount"]);
+            $entity->setDateUpdate(new DateTime( $expenseForm["dateUpdate"]));
             $entity->setToken($expenseForm["token"]);
 
             $entity->setUser($this->getReference($expenseForm['user']));

@@ -1,0 +1,73 @@
+{% extends "base.html.twig" %}
+
+{% form_theme form "form/custom_bootstrap_4_layout.html.twig" %}
+
+{% block body %}
+
+<section class="hero-wrap hero-wrap-2" data-stellar-background-ratio="0.5">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row no-gutters slider-text align-items-center justify-content-center">
+        <div class="col-md-9 ftco-animate text-center">
+          <h1 class="mb-2 mt-3 bread text-primary">
+                {% if  app.request.pathInfo|split('/')|last matches '/^\\d+$/' %}
+                    Modifier un Frais Hors Forfait
+                {% else %}
+                    Ajouter un Frais Hors Forfait
+                {% endif %}
+          </h1>
+        </div>
+      </div>
+    </div>
+  </section>
+  <br><br>
+
+  <div class="site-section">
+    <div class="container">
+        <p>
+            <span class="mr-2"><h5><a href="{{ url('visitor.expense_form.bundle_monthly') }}" class="btn btn-primary">&lt; Retour <i class="ion-ios-arrow-forward"></i></a></h5></span>
+        </p>
+     
+      <div class="row">
+        <div class="col-md-12">
+
+          {{ form_start(form, { attr: { novalidate: 'novalidate' } }) }}    
+            <div class="p-3 p-lg-5 border border-2 border-primary rounded">
+              <div class="form-group row">
+                <div class="col-md-6">
+                  {{ form_label(form.wording, 'Libelle :', {'label_attr': {'class': 'text-primary mb-2'}}) }}
+                  {{ form_widget(form.wording, {'attr': {'class': 'border border-primary rounded'}}) }}
+                  {{ form_errors(form.wording) }}
+                </div>
+                <div class="col-md-6">
+                  {{ form_label(form.date, 'Date :', {'label_attr': {'class': 'text-primary mb-2'}}) }}
+                  {{ form_widget(form.date, {'attr': {'min': "now"|date("Y-m"~"-01"), 'max': "now"|date("Y-m")~"-"~dayMax , 'class': 'border border-primary rounded'}}) }}
+                  {{ form_errors(form.date) }}
+                </div>
+                <div class="col-md-6">
+                  {{ form_label(form.amount, 'Montant :', {'label_attr': {'class': 'text-primary mb-2'}}) }}
+                  {{ form_widget(form.amount, {'attr': {'min': '1', 'class': 'border border-primary rounded'}}) }}
+                  {{ form_errors(form.amount) }}
+                </div>
+                <div class="col-md-6 mt-2">
+                  {{ form_label(form.supportingDocument, 'Justificatif (optionnel) :', {'label_attr': {'class': 'text-primary mb-2'}}) }}
+                  {{ form_widget(form.supportingDocument) }}
+                  {{ form_errors(form.supportingDocument) }}
+                </div>
+              </div><br><br>
+                <div class="form-group row">
+                  <div class="text-center">
+                    <input type="submit" class="btn btn-outline-primary btn-lg " value="Envoyer">
+                  </div>
+                </div>
+              </div>
+            </div>
+          {{ form_end(form) }}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <br><br><br><br><br>
+
+{% endblock %}

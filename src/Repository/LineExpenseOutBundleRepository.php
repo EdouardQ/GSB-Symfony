@@ -2,9 +2,10 @@
 
 namespace App\Repository;
 
+use App\Entity\ExpenseForm;
 use App\Entity\LineExpenseOutBundle;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
 /**
  * @method LineExpenseOutBundle|null find($id, $lockMode = null, $lockVersion = null)
@@ -17,6 +18,17 @@ class LineExpenseOutBundleRepository extends ServiceEntityRepository
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, LineExpenseOutBundle::class);
+    }
+
+    public function findLineExpenseOutBundleByExpenseForm(ExpenseForm $expenseForm) 
+    {
+        return $this->createQueryBuilder('line_expense_out_bundle')
+            ->join('line_expense_out_bundle.expenseForm', 'expenseForm')
+            ->where("line_expense_out_bundle.expenseForm = :id_expenseForm")
+            ->setParameter('id_expenseForm', $expenseForm->getId())
+            ->getQuery()
+            ->getResult()
+        ;
     }
 
     // /**

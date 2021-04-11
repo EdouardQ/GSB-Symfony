@@ -1,0 +1,64 @@
+{% extends "base.html.twig" %}
+
+{% form_theme form "form/custom_bootstrap_4_layout.html.twig" %}
+
+{% block body %}
+<br><br>
+<section class="hero-wrap hero-wrap-2" data-stellar-background-ratio="0.5">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row no-gutters slider-text align-items-center justify-content-center">
+        <div class="col-md-9 ftco-animate text-center">
+            <h1 class="mb-2 bread">Echantillons du compte-rendu numéro {{ numReport }}</h1>
+        </div>
+      </div>
+    </div>
+  </section>
+      
+  <br><br>
+
+  <div class="site-section">
+    <div class="container">  
+      <div class="row">
+        <div class="col-md-12">
+
+            {# affichage des messages flash: #}
+            {% for message in app.flashes('noticeBis') %}
+                <p class="alert alert-success">{{ message }}</p>
+            {% endfor %}
+
+          {{ form_start(form, { attr: { novalidate: 'novalidate' } }) }}    
+            <div class="p-3 p-lg-5 border border-2 border-primary rounded">
+              <div class="form-group row">
+                <div class="col-md-6">
+                  {{ form_label(form.medication, 'Médicament :', {'label_attr': {'class': 'text-primary mb-2'}}) }}
+                  {{ form_widget(form.medication, {'attr': {'class': 'border border-primary rounded'}}) }}
+                  {{ form_errors(form.medication) }}
+                </div>
+                <div class="col-md-6">
+                  {{ form_label(form.quantity, 'Quantity :', {'label_attr': {'class': 'text-primary mb-2'}}) }}
+                  {{ form_widget(form.quantity, {'attr': {'min': 1, 'class': 'border border-primary rounded'}}) }}
+                  {{ form_errors(form.quantity) }}
+                </div>
+              </div><br><br>
+                <div class="form-group row">
+                  <div class="text-center">
+                    <input type="submit" class="btn btn-primary btn-lg btn-block" value="Envoyer">
+                  </div>
+                </div>
+              </div>
+            </div>
+          {{ form_end(form) }}          
+        </div>
+      </div>
+    </div>
+    <br>
+    <p style="text-align: center;">
+        <a href="{{ url('visitor.report.index') }}" class="btn btn-danger" onclick="return confirm('Êtes-vous sûr de vouloir arrêter la saisie des échantillons offerts')">Arrêter la saisie d'échantillon</a>
+    </p>
+         
+  </div>
+
+  <br><br><br><br><br>
+
+{% endblock %}

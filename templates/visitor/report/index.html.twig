@@ -1,0 +1,41 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+    
+<div class="row">
+    <div class="col">
+        <h1 class="mt-4 mb-4 bread text-center">Liste des comptes-rendus</h1>
+
+        {# affichage des messages flash: #}
+        {% for message in app.flashes('noticeReport') %}
+            <p class="alert alert-success">{{ message }}</p>
+        {% endfor %}
+
+        <table class="table table-striped rounded text-center">
+            <tr class="text-white table-primary">
+                <th>Date</th>
+                <th>Praticien</th>
+                <th>Raison de la Visite</th>
+                <th>Échantillon(s) offert(s)</th>
+                <th></th>
+            </tr>
+            {% for report in reportArray %}
+                <tr>
+                    <td>{{ report.date|date("m/d/Y") }}</td>
+                    <td>{{ report.practitioner.name }} {{ report.practitioner.firstName }}</td>
+                    <td>{{ report.reasonVisit }}</td>
+                    <td>
+                        {% if report.id in samplesOfferFromAllReportArray|keys %}
+                            Oui
+                        {% else %}
+                            Non
+                        {% endif %}
+                    </td>
+                    <td><a href="{{ url('visitor.report.consult', {id:report.id}) }}" class="btn btn-primary">Consulter</a></td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+
+{% endblock %}

@@ -20,7 +20,7 @@ class LineExpenseBundle
     /**
      * @ORM\Column(type="integer")
      */
-    private $quantite;
+    private $quantity;
 
     /**
      * @ORM\ManyToOne(targetEntity=ExpenseForm::class)
@@ -34,19 +34,24 @@ class LineExpenseBundle
      */
     private $expenseBundle;
 
+    /**
+     * @ORM\Column(type="date", nullable=true)
+     */
+    private $date;
+
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getQuantite(): ?int
+    public function getQuantity(): ?int
     {
-        return $this->quantite;
+        return $this->quantity;
     }
 
-    public function setQuantite(int $quantite): self
+    public function setQuantity(?int $quantity): self
     {
-        $this->quantite = $quantite;
+        $this->quantity = $quantity;
 
         return $this;
     }
@@ -71,6 +76,18 @@ class LineExpenseBundle
     public function setExpenseBundle(?ExpenseBundle $expenseBundle): self
     {
         $this->expenseBundle = $expenseBundle;
+
+        return $this;
+    }
+
+    public function getDate(): ?\DateTimeInterface
+    {
+        return $this->date;
+    }
+
+    public function setDate(?\DateTimeInterface $date): self
+    {
+        $this->date = $date;
 
         return $this;
     }

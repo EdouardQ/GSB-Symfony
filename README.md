@@ -1,26 +1,25 @@
-# GSB - Symfony
+# GSB-Symfony
 
-Informations générales directement accesible depuis le dossier "\description".
+Ce projet réunie le dévellopement d'une application de gestion de comptes-rendus et de fiche de frais de visites (PPE2 + PPE3).
 
-Langages utilisés :
-     - Html
-     - Css
-     - JavaScript
-     - Php
-     - MySql
+## Pré-requis
 
-Outil pour la gestion du projet :
-     - Git Hub (une branche pour la prod, une autre pour le dev afin de gérer les conflits)
-     - Trello (répartition des tâches)
-     - Discord (pour le dialogue / réunions)
+Nous vous invitons à exécuter les commandes suivantes :
 
-Compostion du groupe : 
-    - Edouard Quilliou
-    - Jonas Groetschel
-    - Marc Baribaud
+- ``composer req profiler --dev``
+- ``composer req asset debug annot twig make form validator orm ormfixtures security mime``
 
+## Organisation
+- Git Hub (une branche pour la prod, une autre pour le dev afin de gérer les conflits)
+- Discord (pour le dialogue / réunions)
 
-Nous exploitons des packages, et voici les instructions que nous avons éxécutés :
+## Auteurs
 
-composer req profiler --dev
-composer req asset debug annot twig make form validator orm ormfixtures security
+* **Edouard** **Quilliou** _alias_ [@EdouardQ](https://github.com/EdouardQ)
+* **Jonas** **Groetschel** _alias_ [@Jogroe](https://github.com/Jogroe)
+* **Marc** **Baribaud** _alias_ [@devFendrix](https://github.com/devFendrix)
+
+## Note
+
+Pour update la version prod, rentrer la commande suivante:
+APP_ENV=prod APP_DEBUG=0 php bin/console cache:clear

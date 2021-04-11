@@ -12,10 +12,18 @@ class LineExpenseOutBundleFixtures extends Fixture implements DependentFixtureIn
 {
     private array $list =[
         [
-            "libelle" => "invitation ai restaurant pdg DSB",
-            "date" => "2021-01-16",
-            "montant" => 200.00,
-            "expenseForm" => "equilliou_01-2021"
+            "wording" => "invitation au restaurant praticien Gosselin Albert",
+            "date" => "2021-03-16",
+            "amount" => 40.00,
+            "expenseForm" => "jdebelle_03-2021",
+            "valid" => True,
+        ],
+        [
+            "wording" => "invitation au restaurant praticien Notini Alain",
+            "date" => "2021-03-21",
+            "amount" => 60.00,
+            "expenseForm" => "cenault_03-2021",
+            "valid" => false,
         ],
     ];
 
@@ -23,12 +31,12 @@ class LineExpenseOutBundleFixtures extends Fixture implements DependentFixtureIn
     {
         foreach ($this->list as $lineExpenseOutBundle) {
             $entity = new LineExpenseOutBundle;
-            $entity->setLibelle($lineExpenseOutBundle["libelle"]);
+            $entity->setWording($lineExpenseOutBundle["wording"]);
             $entity->setDate(new DateTime( $lineExpenseOutBundle["date"]));
-            $entity->setMontant($lineExpenseOutBundle["montant"]);
+            $entity->setAmount($lineExpenseOutBundle["amount"]);
+            $entity->setValid($lineExpenseOutBundle["valid"]);
 
             $entity->setExpenseForm($this->getReference($lineExpenseOutBundle['expenseForm']));
-
 
             $manager->persist($entity);
         }
@@ -36,7 +44,7 @@ class LineExpenseOutBundleFixtures extends Fixture implements DependentFixtureIn
         $manager->flush();
     }
     
-    public function getDependencies():array
+    public function getDependencies(): array
     {
         // liste des fixtures dépendantes
         return [

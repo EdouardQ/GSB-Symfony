@@ -1,0 +1,52 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+    
+<div class="row">
+    <div class="col">
+        <h1 class="mt-4 mb-4 bread text-center">Liste des Comptables</h1>
+
+        {# affichage des messages flash: #}
+        {% for message in app.flashes('noticeAccountant') %}
+        <p class="alert alert-success">{{ message }}</p>
+        {% endfor %}
+
+        <table class="table table-striped rounded text-center">
+            <tr class="text-white table-primary">
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Prénom</th>
+                <th>Login</th>
+                <th>Email</th>
+                <th>Ville</th>
+                <th>Code Postal</th>
+                <th>Mot de passe</th>
+                <th><a href="{{ url('admin.create.user', {role:'accountant'})}}" class="btn btn-light">Ajouter un comptable</a></th>
+            </tr>
+            {% for accountant in accountantArray %}
+                <tr>
+                    <td>{{ accountant.id }}</td>
+                    <td>{{ accountant.name }}</td>
+                    <td>{{ accountant.firstName }}</td>
+                    <td>{{ accountant.login }}</td>
+                    <td>{{ accountant.email }}</td>
+                    <td>{{ accountant.city }}</td>
+                    <td>{{ accountant.postalCode }}</td>
+                    <td><a href="{{ url('admin.password', {id:accountant.id})}}" class="btn btn-warning">Changer le mot de passe</a></td>
+                    <td>  
+                        <a href="{{ url('admin.update.user', {id:accountant.id})}}" class="btn btn-warning">Modifier</a>
+                        <a href="{{ url('admin.toggle.user', {id:accountant.id}) }}" onclick="return confirm('Êtes-vous sûr de changer le status du compte du visiteur {{ accountant.name }} {{ accountant.firstName }}')"
+                        {% if accountant.enabled %}
+                            class="btn btn-danger">Désactiver
+                        {% else %}
+                            class="btn btn-success">Activer
+                        {% endif %}
+                        </a>                   
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+
+{% endblock %}

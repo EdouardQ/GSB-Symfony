@@ -10,20 +10,20 @@ class ExpenseBundleFixtures extends Fixture
 {
     private array $list = [
         [
-            "libelle" => "Forfait Etape",
-            "montant" => 110.00
+            "wording" => "Forfait Etape",
+            "amount" => 110.00
         ],
         [
-            "libelle" => "Frais Kilométrique",
-            "montant" => 0.62
+            "wording" => "Frais Kilométrique",
+            "amount" => 0.62
         ],
         [
-            "libelle" => "Nuitée Hôtel",
-            "montant" => 80.00
+            "wording" => "Nuitée Hôtel",
+            "amount" => 80.00
         ],
         [
-            "libelle" => "Repas Restaurant",
-            "montant" => 25.00
+            "wording" => "Repas Restaurant",
+            "amount" => 25.00
         ],
     ];
 
@@ -31,10 +31,10 @@ class ExpenseBundleFixtures extends Fixture
     {
         foreach ($this->list as $expenseBundle) {
             $entity = new ExpenseBundle;
-            $entity->setLibelle($expenseBundle["libelle"]);
-            $entity->setMontant($expenseBundle["montant"]);
+            $entity->setWording($expenseBundle["wording"]);
+            $entity->setAmount($expenseBundle["amount"]);
 
-            $this->addReference($expenseBundle['libelle'], $entity);
+            $this->addReference($expenseBundle['wording'], $entity);
 
             $manager->persist($entity);
         }

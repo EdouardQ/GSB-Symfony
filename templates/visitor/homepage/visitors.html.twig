@@ -1,0 +1,30 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+    
+<div class="row">
+    <div class="col">
+        <h1 class="mt-4 mb-4 bread text-center">Liste des Visiteurs</h1>
+
+        <table class="table table-striped rounded text-center">
+            <tr class="text-white table-primary">
+                <th>Nom</th>
+                <th>Prénom</th>
+                <th>Email</th>
+                <th>Ville</th>
+                <th>Code Postal</th>
+            </tr>
+            {% for visitor in visitorArray %}
+                <tr>
+                    <td>{{ visitor.name }}</td>
+                    <td>{{ visitor.firstName }}</td>
+                    <td>{{ visitor.email }}</td>
+                    <td>{{ visitor.city }}</td>
+                    <td>{{ visitor.postalCode }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+
+{% endblock %}

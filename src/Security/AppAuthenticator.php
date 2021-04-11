@@ -70,8 +70,12 @@ class AppAuthenticator extends AbstractFormLoginAuthenticator implements Passwor
         $user = $this->entityManager->getRepository(User::class)->findOneBy(['login' => $credentials['login']]);
 
         if (!$user) {
-            // fail authentication with a custom error
-            throw new CustomUserMessageAuthenticationException('Login could not be found.');
+            // Erreur si les identifiants rentrés sont incorrects
+            throw new CustomUserMessageAuthenticationException('Identifiant incorrect.');
+        }
+        if (!$user->getEnabled()) {
+            // Erreur si le compte auquel l'utilisateur souhaite se connecter est désactivé
+            throw new CustomUserMessageAuthenticationException('Compte désactivé.');
         }
 
         return $user;
@@ -97,19 +101,20 @@ class AppAuthenticator extends AbstractFormLoginAuthenticator implements Passwor
         }
 
         // définir la page d'atterrissage selon le rôle
+        if (in_array('ROLE_ADMIN', $token->getRoleNames())) {
+            $landingPage = 'admin.homepage.index';
+        }
+        elseif (in_array('ROLE_VISITOR', $token->getRoleNames())) {
+            $landingPage = 'visitor.homepage.index';
+        }
+        elseif (in_array('ROLE_ACCOUNTANT', $token->getRoleNames())) {
+            $landingPage = 'accountant.homepage.index';
+        }
+        else {
+            $landingPage = 'homepage.index';
+        }
 
-        if (in_array('ROLE_VISITEUR', $token->getRoleNames())) 
-        {
-            $landingPage = 'visiteur.homepage.index';
-        }
-        elseif (in_array('ROLE_COMPTABLE', $token->getRoleNames())) 
-        {
-            // $landingPage = 'comptable.homepage.index';
-        }
-        else
-        {
-        $landingPage = 'homepage.index';
-        }
+        return new RedirectResponse($this->urlGenerator->generate($landingPage));
 
         // For example : return new RedirectResponse($this->urlGenerator->generate('some_route'));
         // throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);

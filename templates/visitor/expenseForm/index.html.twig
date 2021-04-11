@@ -1,0 +1,31 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+    
+<div class="row">
+    <div class="col">
+        <h1 class="mt-4 mb-4 bread text-center">Liste des fiches de frais</h1>
+        <table class="table table-striped  rounded text-center">
+            <tr class="text-white table-primary">
+                <th>Mois</th>
+                <th>Nb Justificatifs</th>
+                <th>Montant valide</th>
+                <th>Date modification</th>
+                <th>Etat</th>
+                <th></th>
+            </tr>
+            {% for expense_form in expenseform %}
+                <tr>
+                    <td>{{ expense_form.month }}</td>
+                    <td>{{ expense_form.nbSupportingDocuments }}</td>
+                    <td>{{ expense_form.validAmount }}€</td>
+                    <td>{{ expense_form.dateUpdate|date("m/d/Y") }}</td>
+                    <td>{{ expense_form.state.wording }}</td>
+                    <td><a href="{{ url('visitor.expense_form.consult_expense_form', {id:expense_form.id}) }}" class="btn btn-primary">Consulter</a></td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+
+{% endblock %}

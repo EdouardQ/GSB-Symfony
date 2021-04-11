@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\LineExpenseOutBundleRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
  * @ORM\Entity(repositoryClass=LineExpenseOutBundleRepository::class)
@@ -20,7 +21,7 @@ class LineExpenseOutBundle
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $libelle;
+    private $wording;
 
     /**
      * @ORM\Column(type="date")
@@ -30,7 +31,7 @@ class LineExpenseOutBundle
     /**
      * @ORM\Column(type="decimal", precision=9, scale=2)
      */
-    private $montant;
+    private $amount;
 
     /**
      * @ORM\ManyToOne(targetEntity=ExpenseForm::class)
@@ -38,19 +39,29 @@ class LineExpenseOutBundle
      */
     private $expenseForm;
 
+    /**
+     * @ORM\Column(type="string", length=100, nullable=true)
+     */
+    private $supportingDocument;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $valid;
+
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getLibelle(): ?string
+    public function getWording(): ?string
     {
-        return $this->libelle;
+        return $this->wording;
     }
 
-    public function setLibelle(string $libelle): self
+    public function setWording(?string $wording): self
     {
-        $this->libelle = $libelle;
+        $this->wording = $wording;
 
         return $this;
     }
@@ -67,14 +78,14 @@ class LineExpenseOutBundle
         return $this;
     }
 
-    public function getMontant(): ?string
+    public function getAmount(): ?string
     {
-        return $this->montant;
+        return $this->amount;
     }
 
-    public function setMontant(string $montant): self
+    public function setAmount(?string $amount): self
     {
-        $this->montant = $montant;
+        $this->amount = $amount;
 
         return $this;
     }
@@ -87,6 +98,30 @@ class LineExpenseOutBundle
     public function setExpenseForm(?ExpenseForm $expenseForm): self
     {
         $this->expenseForm = $expenseForm;
+
+        return $this;
+    }
+
+    public function getSupportingDocument(): null|string|UploadedFile
+    {
+        return $this->supportingDocument;
+    }
+
+    public function setSupportingDocument(null|string|UploadedFile $supportingDocument): self
+    {
+        $this->supportingDocument = $supportingDocument;
+
+        return $this;
+    }
+
+    public function getValid(): ?bool
+    {
+        return $this->valid;
+    }
+
+    public function setValid(bool $valid): self
+    {
+        $this->valid = $valid;
 
         return $this;
     }

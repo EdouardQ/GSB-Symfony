@@ -8,15 +8,34 @@
         <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
         <link rel="stylesheet" href="{{ asset('css/style.css') }}">
         <link rel="stylesheet" href="{{ asset('css/style_responsive.css') }}">
-
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Mukta&display=swap">
         {% block stylesheets %}{% endblock %}
     </head>
     <body>
-        {% include "inc/nav.html.twig" %}
+        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+            {% include "inc/nav.html.twig" %}
+        {% endif %}
+        <div class="container">
         {% block body %}{% endblock %}
-
-
+        </div>
+        </div>
         <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
+        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+            <script>
+                function ouvrir() {
+                    document.getElementById("main").style.marginLeft = "20%";
+                    document.getElementById("maSidebar").style.width = "20%";
+                    document.getElementById("maSidebar").style.marginLeft = "block";
+                    document.getElementById("maSidebar").style.display = "block";
+                    document.getElementById("ouvrirNav").style.display = "none";
+                }
+                function fermer() {
+                    document.getElementById("main").style.marginLeft = "0%";
+                    document.getElementById("maSidebar").style.display = "none";
+                    document.getElementById("ouvrirNav").style.display = "inline-block";
+                }
+            </script>
+        {% endif %}
         {% block javascripts %}{% endblock %}
     </body>
 </html>
