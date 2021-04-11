@@ -29,17 +29,17 @@
             <div class="p-3 p-lg-5 border border-2 border-primary rounded">
               <div class="form-group row">
                 <div class="col-md-6">
-                  {{ form_label(form.name, 'Noms :', {'label_attr': {'class': 'text-primary mb-1'}}) }}
+                  {{ form_label(form.name, 'Nom :', {'label_attr': {'class': 'text-primary mb-1'}}) }}
                   {{ form_widget(form.name, {'attr': {'class': 'border border-primary rounded'}}) }}
                   {{ form_errors(form.name) }}
                 </div>
                 <div class="col-md-6">
-                  {{ form_label(form.firstName, 'Prénoms :', {'label_attr': {'class': 'text-primary mb-1'}}) }}
+                  {{ form_label(form.firstName, 'Prénom :', {'label_attr': {'class': 'text-primary mb-1'}}) }}
                   {{ form_widget(form.firstName, {'attr': {'class': 'border border-primary rounded'}}) }}
                   {{ form_errors(form.firstName) }}
                 </div>
                 <div class="col-md-6 mt-3">
-                  {{ form_label(form.login, 'Login :', {'label_attr': {'class': 'text-primary mb-1'}}) }}
+                  {{ form_label(form.login, "Identifiant :", {'label_attr': {'class': 'text-primary mb-1'}}) }}
                   {{ form_widget(form.login, {'attr': {'class': 'border border-primary rounded'}}) }}
                   {{ form_errors(form.login) }}
                 </div>
@@ -64,16 +64,16 @@
                   {{ form_errors(form.postalCode) }}
                 </div>
                 <div class="col-md-6 mt-3">
-                  {{ form_label(form.hiringDate, 'Date d\'embauche :', {'label_attr': {'class': 'text-primary mb-1'}}) }}
+                  {{ form_label(form.hiringDate, "Date d'embauche :", {'label_attr': {'class': 'text-primary mb-1'}}) }}
                   {{ form_widget(form.hiringDate, {'attr': {'cols': '20', 'rows': '7', 'class': 'border border-primary rounded'}}) }}
                   {{ form_errors(form.hiringDate) }}
                 </div>
-                 <div class="col-md-6">
+                 <div class="col-md-6 mt-3">
                     {{ form_label(form.plainPassword.first, "Nouveau mot de passe :", {'label_attr': {'class': 'text-primary mb-1'}}) }}
                     {{ form_widget(form.plainPassword.first, {'attr': {'class': 'border border-primary rounded'}}) }}
                     {{ form_errors(form.plainPassword.first) }}
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-6 mt-3">
                     {{ form_label(form.plainPassword.second, "Confirmer nouveau votre mot de passe :", {'label_attr': {'class': 'text-primary mb-1'}}) }}
                     {{ form_widget(form.plainPassword.second, {'attr': {'class': 'border border-primary rounded'}}) }}
                     {{ form_errors(form.plainPassword.second) }}
