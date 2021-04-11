@@ -12,25 +12,18 @@ class LineExpenseOutBundleFixtures extends Fixture implements DependentFixtureIn
 {
     private array $list =[
         [
-            "wording" => "invitation au restaurant pdg DSB",
-            "date" => "2021-04-16",
-            "amount" => 200.00,
-            "expenseForm" => "equilliou_04-2021",
+            "wording" => "invitation au restaurant praticien Gosselin Albert",
+            "date" => "2021-03-16",
+            "amount" => 40.00,
+            "expenseForm" => "jdebelle_03-2021",
             "valid" => True,
         ],
         [
-            "wording" => "invitation au restaurant pdg DSB",
-            "date" => "2021-01-16",
-            "amount" => 200.00,
-            "expenseForm" => "equilliou_01-2021",
-            "valid" => True,
-        ],
-        [
-            "wording" => "invitation au restaurant pdg DSB",
-            "date" => "2021-01-16",
-            "amount" => 200.00,
-            "expenseForm" => "equilliou_01-2021",
-            "valid" => False,
+            "wording" => "invitation au restaurant praticien Notini Alain",
+            "date" => "2021-03-21",
+            "amount" => 60.00,
+            "expenseForm" => "cenault_03-2021",
+            "valid" => false,
         ],
     ];
 

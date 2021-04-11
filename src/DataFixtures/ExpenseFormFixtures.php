@@ -12,49 +12,31 @@ class ExpenseFormFixtures extends Fixture implements DependentFixtureInterface
 {
     private array $list = [
         [
-            "user" => "equilliou",
-            "month" => "04-2021",
-            "nbSupportingDocuments" => 0,
-            "validAmount" => 319.30,
-            "dateUpdate" => '12:00:00 2021-04-3',
-            "state" => "Fiche créée, saisie en cours",
-            "token" => "equilliou_04-2021"
-        ],
-        [
-            "user" => "equilliou",
-            "month" => "01-2021",
-            "nbSupportingDocuments" => 0,
-            "validAmount" => 225.00,
-            "dateUpdate" => '12:30:49 2021-01-27',
-            "state" => "Remboursée",
-            "token" => "equilliou_01-2021"
-        ],
-        [
-            "user" => "devtest",
-            "month" => "01-2021",
-            "nbSupportingDocuments" => 0,
-            "validAmount" => 118.00,
-            "dateUpdate" => '12:30:49 2021-01-27',
-            "state" => "Saisie clôturée",
-            "token" => "agest_01-2021"
-        ],
-        [
-            "user" => "devtest",
-            "month" => "02-2021",
-            "nbSupportingDocuments" => 0,
-            "validAmount" => 118.00,
-            "dateUpdate" => '12:30:49 2021-02-27',
-            "state" => "Saisie clôturée",
-            "token" => "agest_02-2021"
-        ],
-        [
-            "user" => "devtest",
+            "user" => "ffremont",
             "month" => "03-2021",
             "nbSupportingDocuments" => 0,
-            "validAmount" => 118.00,
-            "dateUpdate" => '12:30:49 2021-03-27',
+            "validAmount" => 204.40,
+            "dateUpdate" => '12:00:00 2021-03-25',
             "state" => "Saisie clôturée",
-            "token" => "agest_03-2021"
+            "token" => "ffremont_03-2021"
+        ],
+        [
+            "user" => "jdebelle",
+            "month" => "03-2021",
+            "nbSupportingDocuments" => 0,
+            "validAmount" => 194.80,
+            "dateUpdate" => '12:30:49 2021-03-27',
+            "state" => "Remboursée",
+            "token" => "jdebelle_03-2021"
+        ],
+        [
+            "user" => "cenault",
+            "month" => "03-2021",
+            "nbSupportingDocuments" => 0,
+            "validAmount" => 141.00,
+            "dateUpdate" => '12:30:49 2021-03-27',
+            "state" => "Validée et mise en paiement",
+            "token" => "cenault_03-2021"
         ],
     ];
 

@@ -13,7 +13,7 @@ class SamplesOfferFixtures extends Fixture implements DependentFixtureInterface
 {
     private array $list = [
         [
-            'report' => "Notini Alain_2021-02-14",
+            'report' => "Notini Alain_2021-03-21",
             'medication' => 'TRYMICINE',
             'quantity' => 5,
         ],

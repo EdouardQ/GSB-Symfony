@@ -14,14 +14,14 @@ class ReportFixtures extends Fixture implements DependentFixtureInterface
 {
     private array $list = [
         [
-            'user' => 'equilliou',
+            'user' => 'cenault',
             'practitioner' => 'Notini Alain',
-            'date' => '2021-02-14',
+            'date' => '2021-03-21',
             'reasonVisit' => "Visite promotion antifongique TRYMICINE",
             'summary' => "Visite promotion antifongique chez le généraliste Notini Alain, échantillons offerts.",
         ],
         [
-            'user' => 'equilliou',
+            'user' => 'jdebelle',
             'practitioner' => 'Gosselin Albert',
             'date' => '2021-03-16',
             'reasonVisit' => "Visite promotion antibiotique ADIMOL",

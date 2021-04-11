@@ -12,34 +12,52 @@ class LineExpenseBundleFixtures extends Fixture implements DependentFixtureInter
 {
     private array $list =[
         [
-            "quantity" => 15,
-            "date" => '2021-04-03',
+            "quantity" => 40,
+            "date" => '2021-03-16',
             "expenseBundle" => "Frais Kilométrique",
-            "expenseForm" => "equilliou_04-2021"
+            "expenseForm" => "jdebelle_03-2021"
+        ],
+        [
+            "quantity" => 120,
+            "date" => '2021-03-20',
+            "expenseBundle" => "Frais Kilométrique",
+            "expenseForm" => "ffremont_03-2021"
+        ],
+        [
+            "quantity" => 50,
+            "date" => '2021-03-21',
+            "expenseBundle" => "Frais Kilométrique",
+            "expenseForm" => "cenault_03-2021"
         ],
         [
             "quantity" => 1,
-            "date" => '2021-04-03',
+            "date" => '2021-03-16',
+            "expenseBundle" => "Nuitée Hôtel",
+            "expenseForm" => "jdebelle_03-2021"
+        ],
+        [
+            "quantity" => 1,
+            "date" => '2021-03-20',
+            "expenseBundle" => "Nuitée Hôtel",
+            "expenseForm" => "ffremont_03-2021"
+        ],
+        [
+            "quantity" => 1,
+            "date" => '2021-03-21',
             "expenseBundle" => "Forfait Etape",
-            "expenseForm" => "equilliou_04-2021"
+            "expenseForm" => "cenault_03-2021"
         ],
         [
-            "quantity" => 1,
-            "date" => '2021-01-16',
+            "quantity" => 2,
+            "date" => '2021-03-16',
             "expenseBundle" => "Repas Restaurant",
-            "expenseForm" => "equilliou_01-2021"
+            "expenseForm" => "jdebelle_03-2021"
         ],
         [
-            "quantity" => 15,
-            "date" => '2021-01-16',
-            "expenseBundle" => "Frais Kilométrique",
-            "expenseForm" => "agest_01-2021"
-        ],
-        [
-            "quantity" => 1,
-            "date" => '2021-01-16',
+            "quantity" => 2,
+            "date" => '2021-03-20',
             "expenseBundle" => "Repas Restaurant",
-            "expenseForm" => "agest_01-2021"
+            "expenseForm" => "ffremont_03-2021"
         ],
     ];
 
