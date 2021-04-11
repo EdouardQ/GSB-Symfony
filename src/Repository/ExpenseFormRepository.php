@@ -50,10 +50,25 @@ class ExpenseFormRepository extends ServiceEntityRepository
         ])
         ->getQuery()
         ->getResult()
-    ;
+        ;
     }
 
-    public function getExpenseFormTreated(State $stateReimbursed, State $stateValidated)
+    public function findAllExpenseFormNotInProgressByUser(User $user, State $stateInProgress)
+    {
+        return $this->createQueryBuilder('expense_form')
+            ->join('expense_form.state', 'state')
+            ->where("state.id != :id_state_in_progress")
+            ->andWhere("expense_form.user = :id_user")
+            ->setParameters([
+                'id_state_in_progress' => $stateInProgress->getId(),
+                'id_user' => $user->getId(),
+            ])
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
+    public function findAllExpenseFormTreated(State $stateReimbursed, State $stateValidated)
     {
         return $this->createQueryBuilder('expense_form')
             ->join('expense_form.state', 'state')

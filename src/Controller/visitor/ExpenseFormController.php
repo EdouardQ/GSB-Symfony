@@ -2,6 +2,7 @@
 
 namespace App\Controller\visitor;
 
+use App\Entity\ExpenseForm;
 use App\Entity\LineExpenseOutBundle;
 use App\Service\ExpenseFormCreation;
 use App\Repository\ExpenseFormRepository;
@@ -11,6 +12,7 @@ use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpKernel\KernelInterface;
 use App\Repository\LineExpenseOutBundleRepository;
+use App\Repository\StateRepository;
 use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
@@ -25,23 +27,27 @@ class ExpenseFormController extends AbstractController{
     private ExpenseFormCreation $expenseFormCreation;
     private LineExpenseBundleRepository $lineExpenseBundleRepository;
     private LineExpenseOutBundleRepository $lineExpenseOutBundleRepository;
+    private StateRepository $stateRepository;
 
     public function __construct(
-        ExpenseFormRepository $expenseFormRepository, ExpenseFormCreation $expenseFormCreation,
+        ExpenseFormRepository $expenseFormRepository, ExpenseFormCreation $expenseFormCreation, StateRepository $stateRepository, 
         LineExpenseBundleRepository $lineExpenseBundleRepository, LineExpenseOutBundleRepository $lineExpenseOutBundleRepository)
     {
         $this->expenseFormRepository = $expenseFormRepository;
         $this->expenseFormCreation = $expenseFormCreation;
         $this->lineExpenseBundleRepository = $lineExpenseBundleRepository;
         $this->lineExpenseOutBundleRepository = $lineExpenseOutBundleRepository;
+        $this->stateRepository = $stateRepository;
     }
 
     #[Route('/expenseForm/index', name: 'visitor.expense_form.index')]
     // Génère et renvoie la page de la liste des fiches de frais
     public function index(): Response
     {
+        $stateInProgress = $this->stateRepository->findBy(['wording' => "Fiche créée, saisie en cours"])[0];
+
         // sélection de tous les fiches frais
-        $expenseformrepository = $this->expenseFormRepository->findBy(['user' => $this->getUser()]);
+        $expenseformrepository = $this->expenseFormRepository->findAllExpenseFormNotInProgressByUser($this->getUser(), $stateInProgress);
 
         // affichage de la vue
         return $this->render('visitor/expenseForm/index.html.twig',[
@@ -82,7 +88,7 @@ class ExpenseFormController extends AbstractController{
         ]);
     }
 
-    #[Route('/expenseForm/bundleMonthly/displaySupportingDocument/{supportingDocument}', name: 'visitor.expense_form.bundle_monthly.display_supporting_document')]
+    #[Route('/expenseForm/displaySupportingDocument/{supportingDocument}', name: 'visitor.expense_form.display_supporting_document')]
     // Génère la page du justificatif dans un nouvel onglet
     public function displaySupportingDocument(LineExpenseOutBundle $entity, KernelInterface $kernelInterface): Response
     {   
@@ -91,5 +97,21 @@ class ExpenseFormController extends AbstractController{
 
         // Affiche le contenu du fichier et ne ne force pas le téléchargement par le navigateur
         return $this->file($file, null, ResponseHeaderBag::DISPOSITION_INLINE);
+    }
+
+    #[Route('/expenseForm/consultExpenseForm/{id}', name:'visitor.expense_form.consult_expense_form')]
+    // Génère la page pour consulter les fiches de frais closes
+    public function consultExpenseForm(ExpenseForm $entity){
+        if($entity->getUser() === $this->getUser()) {
+            $lineExpenseBundleArray = $this->lineExpenseBundleRepository->findLineExpenseBundleByExpenseForm($entity);
+            $lineExpenseOutBundleArray = $this->lineExpenseOutBundleRepository->findLineExpenseOutBundleByExpenseForm($entity);
+            
+
+            return $this->render('visitor/expenseForm/consultExpenseForm.html.twig', [
+                'expenseForm' => $entity,
+                'lineExpenseBundleArray' => $lineExpenseBundleArray,
+                'lineExpenseOutBundleArray' => $lineExpenseOutBundleArray,
+            ]);
+        }
     }
 }

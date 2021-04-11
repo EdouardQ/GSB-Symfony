@@ -18,6 +18,20 @@ class LineExpenseOutBundleFixtures extends Fixture implements DependentFixtureIn
             "expenseForm" => "equilliou_04-2021",
             "valid" => True,
         ],
+        [
+            "wording" => "invitation au restaurant pdg DSB",
+            "date" => "2021-01-16",
+            "amount" => 200.00,
+            "expenseForm" => "equilliou_01-2021",
+            "valid" => True,
+        ],
+        [
+            "wording" => "invitation au restaurant pdg DSB",
+            "date" => "2021-01-16",
+            "amount" => 200.00,
+            "expenseForm" => "equilliou_01-2021",
+            "valid" => False,
+        ],
     ];
 
     public function load(ObjectManager $manager)

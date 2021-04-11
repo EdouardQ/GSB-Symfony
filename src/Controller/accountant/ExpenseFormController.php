@@ -60,7 +60,7 @@ class ExpenseFormController extends AbstractController
         $stateValidated = $this->stateRepository->findBy(['wording' => "Validée et mise en paiement"])[0];
 
         // Sélection de tous les fiches frais restant à valider ou refusé
-        $expenseformrepository = $this->expenseFormRepository->getExpenseFormTreated($stateReimbursed, $stateValidated);
+        $expenseformrepository = $this->expenseFormRepository->findAllExpenseFormTreated($stateReimbursed, $stateValidated);
 
         // affichage de la vue
         return $this->render('accountant/expenseForm/listExpenseFormTreated.html.twig', [

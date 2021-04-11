@@ -1,42 +1,33 @@
 {% extends "base.html.twig" %}
 
-{% set trans_month_hash = { 
-        "January": "de Janvier", 
-        "February": "de Février", 
-        "March": "de Mars", 
-        "April": "d'Avril", 
-        "May": "de Mai", 
-        "June": "de Juin", 
-        "July": "de Juillet",
-        "August": "d'Août", 
-        "September": "de Septembre", 
-        "October": "de Octobre", 
-        "November": "de Novembre", 
-        "December": "de Décembre"
-    } 
-%}
-
 {% block body %}
 
     <div class="container">
         <div class="row no-gutters slider-text align-items-center justify-content-center">
             <div class="col-md-9 ftco-animate text-center">
-                <h1 class="mt-4 mb-2 bread">Fiche frais {{ trans_month_hash["now"|date("F")] ~ ' ' ~ "now"|date("Y")}}</h1>
+                <h1 class="mt-4 mb-2 bread">Fiche frais du {{ expenseForm.month }}</h1>
                 <br>
+
+                {# affichage des messages flash: #}
+                {% for message in app.flashes('noticeExpenseBundle') %}
+                <p class="alert alert-success">{{ message }}</p>
+                {% endfor %}
                 
                 <table class='table table-striped table-hover table-bordered ' style='width:100%; color: black;' >
                     <thead>
                         <tr class="table-primary">
                             <th style="color : white">Statut</th>
+                            <th style="color : white">Dernière modification faite le</th>
                             <th style="color : white">Nombre de Justificatifs</th>
                             <th style="color : white">Montant Total des Frais</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr class="">
-                            <td>{{ bundleMonthly.state.wording }}</td>
-                            <td>{{ bundleMonthly.nbSupportingDocuments }}</td>
-                            <td>{{ bundleMonthly.validAmount }} €</td>
+                            <td>{{ expenseForm.state.wording }}</td>
+                            <td>{{ expenseForm.dateUpdate | date('d-m-Y') }}</td>
+                            <td>{{ expenseForm.nbSupportingDocuments }}</td>
+                            <td>{{ expenseForm.validAmount }} €</td>
                         </tr>
                     </tbody>
                 </table> 
@@ -63,7 +54,6 @@
                                 <th>Date de saisie</th>
                                 <th>Montant à l'unité</th>
                                 <th>Montant Total</th>
-                                <th><a href="{{ url('visitor.line_expense.form_bundle')}}" class="btn btn-primary">Ajouter un frais forfait</a></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -74,10 +64,6 @@
                                 <td>{{ line.date | date('d-m-Y') }}</td>
                                 <td>{{ line.expenseBundle.amount }} €</td>
                                 <td>{{ (line.expenseBundle.amount|number_format(2,'.',',') * line.quantity|number_format(2,'.',','))|number_format(2,'.',',') }} €</td>
-                                <td>  
-                                    <a href="{{ url('visitor.line_expense.form_bundle', {id:line.id})}}" class="btn btn-warning">Modifier</a>
-                                    <a href="{{ url('visitor.line_expense.delete_bundle', {id:line.id}) }}" class="btn btn-danger" onclick="return confirm('Êtes-vous sûr de supprimer le frais {{ line.expenseBundle.wording }} du {{ line.date | date('d-m-Y') }}')">Supprimer</a>                        
-                                </td>
                             </tr>
                         {% endfor %}
                         </tbody>
@@ -97,7 +83,9 @@
                                 <th>Date</th>
                                 <th>Montant</th>
                                 <th>Justificatif</th>
-                                <th><a href="{{ url('visitor.line_expense.form_out_bundle')}}" class="btn btn-primary">Ajouter un frais hors forfait</a></th>
+                                {% if expenseForm.state.wording == "Validée et mise en paiement" or  expenseForm.state.wording == "Remboursée" %}
+                                    <th>Statut</th>
+                                {% endif %}
                             </tr>
                         </thead>
                         <tbody>
@@ -111,10 +99,13 @@
                                 {% else %}
                                     <td>Aucun justificatif donné</td>
                                 {% endif %}
-                                <td>  
-                                    <a href="{{ url('visitor.line_expense.form_out_bundle', {id:line.id})}}" class="btn btn-warning">Modifier</a>
-                                    <a href="{{ url('visitor.line_expense.delete_out_bundle', {id:line.id}) }}" class="btn btn-danger" onclick="return confirm('Êtes-vous sûr de supprimer le frais {{ line.wording }} du {{ line.date | date('d-m-Y') }}')">Supprimer</a>                   
-                                </td>
+                                {% if expenseForm.state.wording == "Validée et mise en paiement" or  expenseForm.state.wording == "Remboursée" %}
+                                    {% if line.valid %}
+                                        <td class="bg-success">Frais accepté</td>
+                                    {% else %}
+                                        <td class="bg-danger">Frais refusé</td>
+                                    {% endif %}
+                                {% endif %}
                             </tr>
                         {% endfor %}
                         </tbody>
