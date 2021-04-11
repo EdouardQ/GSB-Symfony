@@ -46,7 +46,13 @@ class EntitiesController extends AbstractController
 
             $entityManager->flush();
 
-            $this->addFlash('noticeVisitor', "Le Visiteur a bien été modifié");
+            if($user->getRoles() === ["ROLE_ACCOUNTANT"]){
+                $this->addFlash('noticeAccountant', "Le comptable a bien été enregistré");
+
+                return $this->redirectToRoute('admin.homepage.list_accountants');
+            }
+
+            $this->addFlash('noticeVisitor', "Le visiteur a bien été modifié");
 
             return $this->redirectToRoute('admin.homepage.list_visitors');
         }
@@ -57,9 +63,9 @@ class EntitiesController extends AbstractController
         ]);
     }
 
-    #[Route('/create/user', name: 'admin.create.user')]
+    #[Route('/create/user/{role}', name: 'admin.create.user')]
 
-    public function createUser(Request $request, UserPasswordEncoderInterface $passwordEncoder): Response
+    public function createUser(string $role, Request $request, UserPasswordEncoderInterface $passwordEncoder): Response
     {   
         $user = new User;
 
@@ -77,14 +83,26 @@ class EntitiesController extends AbstractController
             );
 
             $user->setEnabled(False);
-            $user->setRoles(["ROLE_VISITOR"]);
+
+            if($role === "visitor"){
+                $user->setRoles(["ROLE_VISITOR"]);
+            }
+            elseif($role === "accountant"){
+                $user->setRoles(["ROLE_ACCOUNTANT"]);
+            }
 
             $entityManager = $this->getDoctrine()->getManager();
             
             $entityManager->persist($user);
             $entityManager->flush();
 
-            $this->addFlash('noticeVisitor', "Le Visiteur a bien été modifié");
+            if($role === "accountant"){
+                $this->addFlash('noticeAccountant', "Le comptable a bien été modifié");
+
+                return $this->redirectToRoute('admin.homepage.list_accountants');
+            }
+
+            $this->addFlash('noticeVisitor', "Le visiteur a bien été modifié");
 
             return $this->redirectToRoute('admin.homepage.list_visitors');
         }
@@ -105,7 +123,13 @@ class EntitiesController extends AbstractController
 
         $entityManager->flush();
 
-        $this->addFlash('noticeVisitor', "Le Visiteur a bien été modifié");
+        if($user->getRoles() === ["ROLE_ACCOUNTANT"]){
+            $this->addFlash('noticeAccountant', "Le comptable a bien été enregistré");
+
+            return $this->redirectToRoute('admin.homepage.list_accountants');
+        }
+
+        $this->addFlash('noticeVisitor', "Le visiteur a bien été modifié");
 
         return $this->redirectToRoute('admin.homepage.list_visitors');
     }
@@ -130,7 +154,7 @@ class EntitiesController extends AbstractController
 
             $entityManager->flush();
 
-            $this->addFlash('noticeVisitor', "Le Visiteur a bien été modifié");
+            $this->addFlash('noticeVisitor', "Le visiteur a bien été modifié");
 
             return $this->redirectToRoute('admin.homepage.list_visitors');
         }
@@ -157,7 +181,7 @@ class EntitiesController extends AbstractController
             $entityManager->persist($entity);
             $entityManager->flush();
 
-            $this->addFlash('noticePratitioner', $id? "Le Praticien a bien été modifié" : "Le Praticien a bien été crée");
+            $this->addFlash('noticePratitioner', $id? "Le praticien a bien été modifié" : "Le Praticien a bien été crée");
 
             return $this->redirectToRoute('admin.homepage.list_practitioners');
         }

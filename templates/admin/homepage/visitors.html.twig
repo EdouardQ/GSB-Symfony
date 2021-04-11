@@ -21,7 +21,7 @@
                 <th>Ville</th>
                 <th>Code Postal</th>
                 <th>Mot de passe</th>
-                <th><a href="{{ url('admin.create.user')}}" class="btn btn-light">Ajouter un visiteur</a></th>
+                <th><a href="{{ url('admin.create.user', {role:'visitor'})}}" class="btn btn-light">Ajouter un visiteur</a></th>
             </tr>
             {% for visitor in visitorArray %}
                 <tr>

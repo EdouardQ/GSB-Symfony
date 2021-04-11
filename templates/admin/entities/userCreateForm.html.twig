@@ -69,12 +69,12 @@
                   {{ form_errors(form.hiringDate) }}
                 </div>
                  <div class="col-md-6">
-                    {{ form_label(form.plainPassword.first, "Nouveau mot de passe :", {'label_attr': {'class': 'text-primary mb-1'}}) }}
+                    {{ form_label(form.plainPassword.first, "Mot de passe :", {'label_attr': {'class': 'text-primary mb-1'}}) }}
                     {{ form_widget(form.plainPassword.first, {'attr': {'class': 'border border-primary rounded'}}) }}
                     {{ form_errors(form.plainPassword.first) }}
                 </div>
                 <div class="col-md-6">
-                    {{ form_label(form.plainPassword.second, "Confirmer nouveau votre mot de passe :", {'label_attr': {'class': 'text-primary mb-1'}}) }}
+                    {{ form_label(form.plainPassword.second, "Confirmer votre mot de passe :", {'label_attr': {'class': 'text-primary mb-1'}}) }}
                     {{ form_widget(form.plainPassword.second, {'attr': {'class': 'border border-primary rounded'}}) }}
                     {{ form_errors(form.plainPassword.second) }}
                 </div>
