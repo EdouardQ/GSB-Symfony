@@ -5,17 +5,20 @@
 <div class="row">
     <div class="col">
         <h1 class="mt-4 mb-4 bread text-center">Liste des fiches de frais</h1>
-        <table class="table table-striped rounded text-center">
-            <tr class="text-white table-primary">
-                <th>Mois</th>
-                <th>Nb Justificatifs</th>
-                <th>Montant valide</th>
-                <th>Date modification</th>
-                <th>Etat</th>
-                <th></th>
-            </tr>
-            {% for expense_form in expenseform %}
-                <tr>
+        <table class="table table-striped rounded text-center sortable">
+            <thead>
+                <tr class="text-white table-primary item">
+                    <th>Mois</th>
+                    <th>Nb Justificatifs</th>
+                    <th>Montant valide</th>
+                    <th>Date modification</th>
+                    <th>Etat</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for expense_form in expenseform %}
+                <tr class="item">
                     <td>{{ expense_form.month }}</td>
                     <td>{{ expense_form.nbSupportingDocuments }}</td>
                     <td>{{ expense_form.validAmount }}€</td>
@@ -24,8 +27,14 @@
                     <td><a href="{{ url('accountant.expense_form.consult_expense_form', {id:expense_form.id}) }}" class="btn btn-primary">Consulter</a></td>
                 </tr>
             {% endfor %}
+            </tbody>
         </table>
     </div>
 </div>
 
+{% endblock %}
+
+{% block javascripts %}
+    <script src="https://www.kryogenix.org/code/browser/sorttable/sorttable.js"></script>
+    {{ parent() }}
 {% endblock %}

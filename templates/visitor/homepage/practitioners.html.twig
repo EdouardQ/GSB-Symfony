@@ -6,29 +6,38 @@
     <div class="col">
         <h1 class="mt-4 mb-4 bread text-center">Liste des Praticiens</h1>
 
-        <table class="table table-striped rounded text-center">
-            <tr class="text-white table-primary">
-                <th>Nom</th>
-                <th>Prénom</th>
-                <th>Adresse</th>
-                <th>Ville</th>
-                <th>Code Postal</th>
-                <th>Coefficient de réputation</th>
-                <th>Lieu de travail</th>
-            </tr>
-            {% for practitioner in practitionerArray %}
-                <tr>
-                    <td>{{ practitioner.name }}</td>
-                    <td>{{ practitioner.firstName }}</td>
-                    <td>{{ practitioner.adress }}</td>
-                    <td>{{ practitioner.city }}</td>
-                    <td>{{ practitioner.postalCode }}</td>
-                    <td>{{ practitioner.coeffReputation }}</td>
-                    <td>{{ practitioner.workplace.wording }}</td>
+        <table class="table table-striped rounded text-center sortable">
+            <thead>
+                <tr class="text-white table-primary">
+                    <th>Nom</th>
+                    <th>Prénom</th>
+                    <th>Adresse</th>
+                    <th>Ville</th>
+                    <th>Code Postal</th>
+                    <th>Coefficient de réputation</th>
+                    <th>Lieu de travail</th>
                 </tr>
-            {% endfor %}
+            </thead>
+            <tbody>
+                {% for practitioner in practitionerArray %}
+                    <tr class="item">
+                        <td>{{ practitioner.name }}</td>
+                        <td>{{ practitioner.firstName }}</td>
+                        <td>{{ practitioner.adress }}</td>
+                        <td>{{ practitioner.city }}</td>
+                        <td>{{ practitioner.postalCode }}</td>
+                        <td>{{ practitioner.coeffReputation }}</td>
+                        <td>{{ practitioner.workplace.wording }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
         </table>
     </div>
 </div>
 
+{% endblock %}
+
+{% block javascripts %}
+    <script src="https://www.kryogenix.org/code/browser/sorttable/sorttable.js"></script>
+    {{ parent() }}
 {% endblock %}

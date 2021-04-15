@@ -50,3 +50,8 @@
 </div>
 
 {% endblock %}
+
+{% block javascripts %}
+    <script src="https://www.kryogenix.org/code/browser/sorttable/sorttable.js"></script>
+    {{ parent() }}
+{% endblock %}

@@ -13,20 +13,69 @@ class LineExpenseBundleFixtures extends Fixture implements DependentFixtureInter
     private array $list =[
         [
             "quantity" => 40,
+            "date" => '2021-02-16',
+            "expenseBundle" => "Frais Kilométriques",
+            "expenseForm" => "jdebelle_02-2021"
+        ],
+        [
+            "quantity" => 120,
+            "date" => '2021-02-20',
+            "expenseBundle" => "Frais Kilométriques",
+            "expenseForm" => "ffremont_02-2021"
+        ],
+        [
+            "quantity" => 50,
+            "date" => '2021-02-21',
+            "expenseBundle" => "Frais Kilométriques",
+            "expenseForm" => "cenault_02-2021"
+        ],
+        [
+            "quantity" => 1,
+            "date" => '2021-02-16',
+            "expenseBundle" => "Nuitée Hôtel",
+            "expenseForm" => "jdebelle_02-2021"
+        ],
+        [
+            "quantity" => 1,
+            "date" => '2021-02-20',
+            "expenseBundle" => "Nuitée Hôtel",
+            "expenseForm" => "ffremont_02-2021"
+        ],
+        [
+            "quantity" => 1,
+            "date" => '2021-02-21',
+            "expenseBundle" => "Forfait Etape",
+            "expenseForm" => "cenault_02-2021"
+        ],
+        [
+            "quantity" => 2,
+            "date" => '2021-02-16',
+            "expenseBundle" => "Repas Restaurant",
+            "expenseForm" => "jdebelle_02-2021"
+        ],
+        [
+            "quantity" => 2,
+            "date" => '2021-02-20',
+            "expenseBundle" => "Repas Restaurant",
+            "expenseForm" => "ffremont_02-2021"
+        ],
+
+        [
+            "quantity" => 40,
             "date" => '2021-03-16',
-            "expenseBundle" => "Frais Kilométrique",
+            "expenseBundle" => "Frais Kilométriques",
             "expenseForm" => "jdebelle_03-2021"
         ],
         [
             "quantity" => 120,
             "date" => '2021-03-20',
-            "expenseBundle" => "Frais Kilométrique",
+            "expenseBundle" => "Frais Kilométriques",
             "expenseForm" => "ffremont_03-2021"
         ],
         [
             "quantity" => 50,
             "date" => '2021-03-21',
-            "expenseBundle" => "Frais Kilométrique",
+            "expenseBundle" => "Frais Kilométriques",
             "expenseForm" => "cenault_03-2021"
         ],
         [

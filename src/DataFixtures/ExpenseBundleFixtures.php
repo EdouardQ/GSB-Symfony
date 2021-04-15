@@ -14,7 +14,7 @@ class ExpenseBundleFixtures extends Fixture
             "amount" => 110.00
         ],
         [
-            "wording" => "Frais Kilométrique",
+            "wording" => "Frais Kilométriques",
             "amount" => 0.62
         ],
         [
