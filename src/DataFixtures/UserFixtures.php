@@ -12,9 +12,9 @@ class UserFixtures extends Fixture
     private array $list = [
         [
             'name' => 'dev ',
-            'firstName' => 'fullstack',
-            'login' => 'devfull',
-            'roles' => ['ROLE_VISITOR', 'ROLE_ACCOUNTANT', 'ROLE_ADMIN'],
+            'firstName' => 'admin',
+            'login' => 'devadmin',
+            'roles' => ['ROLE_ADMIN'],
             'email' => 'dev@gsb.fr',
             'password' => '$argon2i$v=19$m=16,t=2,p=1$c1o0ZWI0ZkczalB5ODRKQg$q+DWOfcstsq5+NV9+apfpw',
             'adress' => 'dev',

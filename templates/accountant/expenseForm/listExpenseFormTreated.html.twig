@@ -5,25 +5,34 @@
 <div class="row">
     <div class="col">
         <h1 class="mt-4 mb-4 bread text-center">Liste des fiches de frais</h1>
-        <table class="table table-striped rounded text-center">
-            <tr class="text-white table-primary">
-                <th>Mois</th>
-                <th>Nb Justificatifs</th>
-                <th>Montant valide</th>
-                <th>Date modification</th>
-                <th>Etat</th>
-            </tr>
-            {% for expense_form in expenseform %}
-                <tr>
-                    <td>{{ expense_form.month }}</td>
-                    <td>{{ expense_form.nbSupportingDocuments }}</td>
-                    <td>{{ expense_form.validAmount }}€</td>
-                    <td>{{ expense_form.dateUpdate|date("m/d/Y") }}</td>
-                    <td>{{ expense_form.state.wording }}</td>
+        <table class="table table-striped rounded text-center sortable">
+            <thead>
+                <tr class="text-white table-primary">
+                    <th>Mois</th>
+                    <th>Nb Justificatifs</th>
+                    <th>Montant valide</th>
+                    <th>Date modification</th>
+                    <th>Etat</th>
                 </tr>
-            {% endfor %}
+            </thead>
+            <tbody>
+                {% for expense_form in expenseform %}
+                    <tr class="item">
+                        <td>{{ expense_form.month }}</td>
+                        <td>{{ expense_form.nbSupportingDocuments }}</td>
+                        <td>{{ expense_form.validAmount }}€</td>
+                        <td>{{ expense_form.dateUpdate|date("m/d/Y") }}</td>
+                        <td>{{ expense_form.state.wording }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
         </table>
     </div>
 </div>
 
+{% endblock %}
+
+{% block javascripts %}
+    <script src="https://www.kryogenix.org/code/browser/sorttable/sorttable.js"></script>
+    {{ parent() }}
 {% endblock %}

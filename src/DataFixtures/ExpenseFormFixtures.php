@@ -13,6 +13,33 @@ class ExpenseFormFixtures extends Fixture implements DependentFixtureInterface
     private array $list = [
         [
             "user" => "ffremont",
+            "month" => "02-2021",
+            "nbSupportingDocuments" => 0,
+            "validAmount" => 204.40,
+            "dateUpdate" => '12:00:00 2021-02-25',
+            "state" => "Remboursée",
+            "token" => "ffremont_02-2021"
+        ],
+        [
+            "user" => "jdebelle",
+            "month" => "02-2021",
+            "nbSupportingDocuments" => 0,
+            "validAmount" => 194.80,
+            "dateUpdate" => '12:30:49 2021-02-27',
+            "state" => "Remboursée",
+            "token" => "jdebelle_02-2021"
+        ],
+        [
+            "user" => "cenault",
+            "month" => "02-2021",
+            "nbSupportingDocuments" => 0,
+            "validAmount" => 141.00,
+            "dateUpdate" => '12:30:49 2021-02-27',
+            "state" => "Validée et mise en paiement",
+            "token" => "cenault_02-2021"
+        ],
+        [
+            "user" => "ffremont",
             "month" => "03-2021",
             "nbSupportingDocuments" => 0,
             "validAmount" => 204.40,
@@ -26,7 +53,7 @@ class ExpenseFormFixtures extends Fixture implements DependentFixtureInterface
             "nbSupportingDocuments" => 0,
             "validAmount" => 194.80,
             "dateUpdate" => '12:30:49 2021-03-27',
-            "state" => "Remboursée",
+            "state" => "Saisie clôturée",
             "token" => "jdebelle_03-2021"
         ],
         [
@@ -35,7 +62,7 @@ class ExpenseFormFixtures extends Fixture implements DependentFixtureInterface
             "nbSupportingDocuments" => 0,
             "validAmount" => 141.00,
             "dateUpdate" => '12:30:49 2021-03-27',
-            "state" => "Validée et mise en paiement",
+            "state" => "Saisie clôturée",
             "token" => "cenault_03-2021"
         ],
     ];

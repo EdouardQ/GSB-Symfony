@@ -44,9 +44,14 @@
         </div>
     </div>
     
-    <br><br>
+    <br>
+    {# affichage des messages flash: #}
+    {% for message in app.flashes('noticeExpenseBundle') %}
+    <p class="alert alert-success">{{ message }}</p>
+    {% endfor %}
+    <br>
      
-    <div class="">
+    <div class="container">
         <div class="card-body">
             <div class="row">
                 <div class="frais mb-4">
