@@ -3,6 +3,7 @@
 namespace App\Controller\accountant;
 
 use App\Entity\ExpenseForm;
+use App\Service\ExpenseFormUpdate;
 use App\Repository\StateRepository;
 use App\Entity\LineExpenseOutBundle;
 use App\Service\ExpenseFormCreation;
@@ -11,7 +12,6 @@ use Symfony\Component\HttpFoundation\Response;
 use App\Repository\LineExpenseBundleRepository;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Repository\LineExpenseOutBundleRepository;
-use App\Service\ExpenseFormUpdate;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 #[Route('/accountant')]
@@ -85,7 +85,7 @@ class ExpenseFormController extends AbstractController
 
     #[Route('expenseForm/toggleValid/{id}', name:'accountant.expense_form.toggle_valid')]
     // Génère et renvoie la page détail d'un frais forfait en fonction de son id
-    public function toggleValid(int $id = null, LineExpenseOutBundle $entity): Response
+    public function toggleValid(LineExpenseOutBundle $entity): Response
     {
         $entity->setValid(!$entity->getValid());
 
@@ -93,7 +93,7 @@ class ExpenseFormController extends AbstractController
 
         $this->getDoctrine()->getManager()->flush($entity);
 
-        $this->addFlash('noticeExpenseForm',  $id ? "Le frais hors forfait a bien été accepté" : "Le frais hors forfait a bien été refusé");
+        $this->addFlash('noticeExpenseForm', "Le frais hors forfait a bien été modifié." );
 
         return $this->redirectToRoute('accountant.expense_form.consult_expense_form', ['id' => $entity->getExpenseForm()->getId()]);
     }
