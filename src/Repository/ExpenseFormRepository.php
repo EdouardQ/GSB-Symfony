@@ -83,6 +83,18 @@ class ExpenseFormRepository extends ServiceEntityRepository
         ;
     }
 
+    public function findAllExpenseFormToClose()
+    {
+        return $this->createQueryBuilder('expense_form')
+            ->join('expense_form.state', 'state')
+            ->where("state.wording = 'Fiche créée, saisie en cours'")
+            ->andWhere("expense_form.month != :month")
+            ->setParameter('month', date("m-Y"))
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
     // /**
     //  * @return ExpenseForm[] Returns an array of ExpenseForm objects
     //  */
