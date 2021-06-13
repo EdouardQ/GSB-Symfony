@@ -2,9 +2,10 @@
 
 namespace App\Service;
 
-use App\Entity\ExpenseForm;
 use DateTime;
 use App\Entity\User;
+use App\Entity\ExpenseForm;
+use App\Repository\StateRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Repository\ExpenseFormRepository;
 use App\Repository\LineExpenseBundleRepository;
@@ -15,16 +16,18 @@ class ExpenseFormUpdate
     private ExpenseFormRepository $expenseFormRepository;
     private LineExpenseBundleRepository $lineExpenseBundleRepository;
     private LineExpenseOutBundleRepository $lineExpenseOutBundleRepository;
+    private StateRepository $stateRepository;
     private EntityManagerInterface $entityManager; // permet d'éxécuter insert, delete et update en sql
 
 
 
     public function __construct(ExpenseFormRepository $expenseFormRepository, LineExpenseBundleRepository $lineExpenseBundleRepository, 
-        LineExpenseOutBundleRepository $lineExpenseOutBundleRepository, EntityManagerInterface $entityManager)
+        LineExpenseOutBundleRepository $lineExpenseOutBundleRepository, StateRepository $stateRepository, EntityManagerInterface $entityManager)
     {
         $this->expenseFormRepository = $expenseFormRepository;
         $this->lineExpenseBundleRepository = $lineExpenseBundleRepository;
         $this->lineExpenseOutBundleRepository = $lineExpenseOutBundleRepository;
+        $this->stateRepository = $stateRepository;
         $this->entityManager = $entityManager;
     }
 
@@ -77,5 +80,18 @@ class ExpenseFormUpdate
         $entity->setDateUpdate(new DateTime(date("H:i:s d-m-Y")));
 
         $this->entityManager->flush();
+    }
+
+    public function closeAllInProgressExpenseForm(): void
+    {
+        $expenseFormToCloseList = $this->expenseFormRepository->findAllExpenseFormToClose();
+        if (!empty($expenseFormToCloseList)) {
+            $state_cloture = $this->stateRepository->findBy(['wording' => 'Saisie clôturée'])[0];
+            foreach ($expenseFormToCloseList as $expenseForm) {
+                $expenseForm->setState($state_cloture);
+            }
+
+            $this->entityManager->flush();
+        }
     }
 }

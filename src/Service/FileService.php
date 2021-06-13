@@ -14,7 +14,7 @@ class FileService
         return $this->fileName;
     }
 
-    public function upload(string $directory, UploadedFile $file):void
+    public function upload(string $directory, UploadedFile $file): void
     {
         // renommage
         $randomName = ByteString::fromRandom(32)->lower();
@@ -26,7 +26,7 @@ class FileService
         $file->move($directory, $this->fileName);
     }
 
-    public function delete(string $directory, string $file):void
+    public function delete(string $directory, string $file): void
     {
         unlink($directory.$file);
     }

@@ -16,7 +16,7 @@ class ExpenseFormCreation
         $this->stateRepository = $stateRepository;
     }
 
-    public function creation(User $user,string $month):ExpenseForm
+    public function creation(User $user,string $month): ExpenseForm
     {
         // Récupération de l'état de fiche de frais "Fiche créée, saisie en cours" et extraction de la requete dans uen variable
         $stateOnCreation = $this->stateRepository->findBy([
